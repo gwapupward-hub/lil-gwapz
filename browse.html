@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#09080d">
+  <meta name="description" content="Browse all 152 Lil Gwapz Reaction Pack 01 stickers. View, filter, and download transparent PNGs.">
+  <title>Browse the 152 reactions — Lil Gwapz</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body class="browse-page">
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="Lil Gwapz home"><span class="mark-crown">♛</span> Lil <b>Gwapz</b></a>
+    <nav class="desktop-nav" aria-label="Main navigation"><a href="./">Explore</a><a class="active" href="browse.html">Browse 152</a><a href="./#pack">The pack</a></nav>
+    <a class="header-cta" href="./">Back to explore</a>
+  </header>
+  <main class="browse-main">
+    <section class="browse-intro"><p class="eyebrow"><span class="eyebrow-dot"></span> REACTION PACK 01</p><h1>Find your<br><em>reaction.</em></h1><p>Every mood has two sides. Browse the full collection and save the one that feels like you.</p><div class="browse-actions"><button class="button button-primary" id="download-all">Download all 152</button><span class="download-caption">Transparent PNG · 512 × 512 px</span></div></section>
+    <section class="gallery-controls" aria-label="Filter stickers">
+      <label class="search-box"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Find a reaction…" autocomplete="off"><kbd>/</kbd></label>
+      <div class="filter-row" id="mood-filters" aria-label="Filter by mood"></div>
+      <div class="filter-row secondary-filters"><div class="segmented" role="group" aria-label="Filter by character"><button class="selected" data-sex="all">All</button><button data-sex="M">Male</button><button data-sex="F">Female</button></div><label class="select-wrap"><span class="sr-only">Filter by colorway</span><select id="color-filter"><option value="all">All colors</option><option value="GRN">Green</option><option value="ORG">Orange</option><option value="RED">Red</option><option value="PUR">Purple</option></select></label><span class="result-count" id="result-count" aria-live="polite">152 stickers</span></div>
+    </section>
+    <section class="gallery-grid" id="gallery-grid" aria-label="Sticker gallery"></section>
+    <div class="empty-state" id="empty-state" hidden><span>✦</span><h2>No reactions found</h2><p>Try another mood, name, or color.</p><button class="button button-outline" id="clear-filters">Clear filters</button></div>
+    <section class="download-strip"><div><p class="eyebrow">TAKE THE WHOLE CREW</p><h2>Keep all 152 close.</h2><p>Every sticker as a crisp, transparent PNG.</p></div><button class="button button-primary" id="download-all-bottom">Download full pack</button></section>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="./"><span class="mark-crown">♛</span> Lil <b>Gwapz</b></a><p>Reaction Pack 01 · 76 moods in two distinct looks.</p><a href="https://gwapspot.com" rel="noreferrer">A GwapSpot creation</a></footer>
+  <nav class="mobile-nav" aria-label="Mobile navigation"><a href="./">⌂<span>Explore</span></a><a class="selected" href="browse.html">▦<span>Browse</span></a><a href="./#pack">✦<span>Pack 01</span></a></nav>
+  <dialog class="sticker-dialog" id="sticker-dialog" aria-label="Sticker details"><button class="dialog-close" id="dialog-close" aria-label="Close sticker preview">×</button><div class="dialog-art"><img id="dialog-image" alt=""></div><div class="dialog-details"><p class="eyebrow" id="dialog-id"></p><h2 id="dialog-name"></h2><p id="dialog-variant"></p><a class="button button-primary" id="dialog-download" download>Download PNG</a></div></dialog>
+</body>
+</html>
