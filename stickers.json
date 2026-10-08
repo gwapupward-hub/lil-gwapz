@@ -1,0 +1,2264 @@
+[
+  {
+    "id": "LG-R01-001",
+    "name": "Big Smile",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😀",
+    "keywords": [
+      "gwap",
+      "big",
+      "smile"
+    ],
+    "filename": "LG-R01-001-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-001",
+    "name": "Big Smile",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😀",
+    "keywords": [
+      "gwap",
+      "big",
+      "smile"
+    ],
+    "filename": "LG-R01-001-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-002",
+    "name": "Big Laugh",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😂",
+    "keywords": [
+      "gwap",
+      "big",
+      "laugh"
+    ],
+    "filename": "LG-R01-002-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-002",
+    "name": "Big Laugh",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😂",
+    "keywords": [
+      "gwap",
+      "big",
+      "laugh"
+    ],
+    "filename": "LG-R01-002-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-003",
+    "name": "Happy Tears",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🥹",
+    "keywords": [
+      "gwap",
+      "happy",
+      "tears"
+    ],
+    "filename": "LG-R01-003-M-PUR-v02-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-003",
+    "name": "Happy Tears",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🥹",
+    "keywords": [
+      "gwap",
+      "happy",
+      "tears"
+    ],
+    "filename": "LG-R01-003-F-PUR-v02-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-004",
+    "name": "Friendly Wave",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "👋",
+    "keywords": [
+      "gwap",
+      "friendly",
+      "wave"
+    ],
+    "filename": "LG-R01-004-M-RED-v02-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-004",
+    "name": "Friendly Wave",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "👋",
+    "keywords": [
+      "gwap",
+      "friendly",
+      "wave"
+    ],
+    "filename": "LG-R01-004-F-RED-v02-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-005",
+    "name": "Wink",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😉",
+    "keywords": [
+      "gwap",
+      "wink"
+    ],
+    "filename": "LG-R01-005-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-005",
+    "name": "Wink",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😉",
+    "keywords": [
+      "gwap",
+      "wink"
+    ],
+    "filename": "LG-R01-005-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-006",
+    "name": "Good Vibes",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "✌️",
+    "keywords": [
+      "gwap",
+      "good",
+      "vibes"
+    ],
+    "filename": "LG-R01-006-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-006",
+    "name": "Good Vibes",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "✌️",
+    "keywords": [
+      "gwap",
+      "good",
+      "vibes"
+    ],
+    "filename": "LG-R01-006-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-007",
+    "name": "Proud Smile",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😌",
+    "keywords": [
+      "gwap",
+      "proud",
+      "smile"
+    ],
+    "filename": "LG-R01-007-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-007",
+    "name": "Proud Smile",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😌",
+    "keywords": [
+      "gwap",
+      "proud",
+      "smile"
+    ],
+    "filename": "LG-R01-007-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-008",
+    "name": "Shy Smile",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "😊",
+    "keywords": [
+      "gwap",
+      "shy",
+      "smile"
+    ],
+    "filename": "LG-R01-008-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-008",
+    "name": "Shy Smile",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "😊",
+    "keywords": [
+      "gwap",
+      "shy",
+      "smile"
+    ],
+    "filename": "LG-R01-008-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-009",
+    "name": "Big Hug",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🤗",
+    "keywords": [
+      "gwap",
+      "big",
+      "hug"
+    ],
+    "filename": "LG-R01-009-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-009",
+    "name": "Big Hug",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🤗",
+    "keywords": [
+      "gwap",
+      "big",
+      "hug"
+    ],
+    "filename": "LG-R01-009-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-010",
+    "name": "Peace & Love",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🫶",
+    "keywords": [
+      "gwap",
+      "peace",
+      "&",
+      "love"
+    ],
+    "filename": "LG-R01-010-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-010",
+    "name": "Peace & Love",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🫶",
+    "keywords": [
+      "gwap",
+      "peace",
+      "&",
+      "love"
+    ],
+    "filename": "LG-R01-010-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-011",
+    "name": "Heart Eyes",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😍",
+    "keywords": [
+      "gwap",
+      "heart",
+      "eyes"
+    ],
+    "filename": "LG-R01-011-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-011",
+    "name": "Heart Eyes",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😍",
+    "keywords": [
+      "gwap",
+      "heart",
+      "eyes"
+    ],
+    "filename": "LG-R01-011-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-012",
+    "name": "Blowing a Kiss",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "😘",
+    "keywords": [
+      "gwap",
+      "blowing",
+      "a",
+      "kiss"
+    ],
+    "filename": "LG-R01-012-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-012",
+    "name": "Blowing a Kiss",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "😘",
+    "keywords": [
+      "gwap",
+      "blowing",
+      "a",
+      "kiss"
+    ],
+    "filename": "LG-R01-012-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-013",
+    "name": "Much Love",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "❤️",
+    "keywords": [
+      "gwap",
+      "much",
+      "love"
+    ],
+    "filename": "LG-R01-013-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-013",
+    "name": "Much Love",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "❤️",
+    "keywords": [
+      "gwap",
+      "much",
+      "love"
+    ],
+    "filename": "LG-R01-013-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-014",
+    "name": "Miss You",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🥺",
+    "keywords": [
+      "gwap",
+      "miss",
+      "you"
+    ],
+    "filename": "LG-R01-014-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-014",
+    "name": "Miss You",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🥺",
+    "keywords": [
+      "gwap",
+      "miss",
+      "you"
+    ],
+    "filename": "LG-R01-014-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-015",
+    "name": "Flirty Smirk",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😏",
+    "keywords": [
+      "gwap",
+      "flirty",
+      "smirk"
+    ],
+    "filename": "LG-R01-015-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-015",
+    "name": "Flirty Smirk",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😏",
+    "keywords": [
+      "gwap",
+      "flirty",
+      "smirk"
+    ],
+    "filename": "LG-R01-015-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-016",
+    "name": "Bashful Crush",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🥰",
+    "keywords": [
+      "gwap",
+      "bashful",
+      "crush"
+    ],
+    "filename": "LG-R01-016-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-016",
+    "name": "Bashful Crush",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🥰",
+    "keywords": [
+      "gwap",
+      "bashful",
+      "crush"
+    ],
+    "filename": "LG-R01-016-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-017",
+    "name": "Bestie Love",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🫂",
+    "keywords": [
+      "gwap",
+      "bestie",
+      "love"
+    ],
+    "filename": "LG-R01-017-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-017",
+    "name": "Bestie Love",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🫂",
+    "keywords": [
+      "gwap",
+      "bestie",
+      "love"
+    ],
+    "filename": "LG-R01-017-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-018",
+    "name": "Thank You",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🙏",
+    "keywords": [
+      "gwap",
+      "thank",
+      "you"
+    ],
+    "filename": "LG-R01-018-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-018",
+    "name": "Thank You",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🙏",
+    "keywords": [
+      "gwap",
+      "thank",
+      "you"
+    ],
+    "filename": "LG-R01-018-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-019",
+    "name": "My Bad",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😅",
+    "keywords": [
+      "gwap",
+      "my",
+      "bad"
+    ],
+    "filename": "LG-R01-019-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-019",
+    "name": "My Bad",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😅",
+    "keywords": [
+      "gwap",
+      "my",
+      "bad"
+    ],
+    "filename": "LG-R01-019-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-020",
+    "name": "Say Less",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🤐",
+    "keywords": [
+      "gwap",
+      "say",
+      "less"
+    ],
+    "filename": "LG-R01-020-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-020",
+    "name": "Say Less",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🤐",
+    "keywords": [
+      "gwap",
+      "say",
+      "less"
+    ],
+    "filename": "LG-R01-020-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-021",
+    "name": "Crying Laugh",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🤣",
+    "keywords": [
+      "gwap",
+      "crying",
+      "laugh"
+    ],
+    "filename": "LG-R01-021-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-021",
+    "name": "Crying Laugh",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🤣",
+    "keywords": [
+      "gwap",
+      "crying",
+      "laugh"
+    ],
+    "filename": "LG-R01-021-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-022",
+    "name": "Tongue Out",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😛",
+    "keywords": [
+      "gwap",
+      "tongue",
+      "out"
+    ],
+    "filename": "LG-R01-022-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-022",
+    "name": "Tongue Out",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😛",
+    "keywords": [
+      "gwap",
+      "tongue",
+      "out"
+    ],
+    "filename": "LG-R01-022-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-023",
+    "name": "Goofy Face",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🤪",
+    "keywords": [
+      "gwap",
+      "goofy",
+      "face"
+    ],
+    "filename": "LG-R01-023-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-023",
+    "name": "Goofy Face",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🤪",
+    "keywords": [
+      "gwap",
+      "goofy",
+      "face"
+    ],
+    "filename": "LG-R01-023-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-024",
+    "name": "Peekaboo",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🙈",
+    "keywords": [
+      "gwap",
+      "peekaboo"
+    ],
+    "filename": "LG-R01-024-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-024",
+    "name": "Peekaboo",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🙈",
+    "keywords": [
+      "gwap",
+      "peekaboo"
+    ],
+    "filename": "LG-R01-024-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-025",
+    "name": "Silly Dance",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "💃",
+    "keywords": [
+      "gwap",
+      "silly",
+      "dance"
+    ],
+    "filename": "LG-R01-025-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-025",
+    "name": "Silly Dance",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "💃",
+    "keywords": [
+      "gwap",
+      "silly",
+      "dance"
+    ],
+    "filename": "LG-R01-025-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-026",
+    "name": "Fake Shock",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😱",
+    "keywords": [
+      "gwap",
+      "fake",
+      "shock"
+    ],
+    "filename": "LG-R01-026-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-026",
+    "name": "Fake Shock",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😱",
+    "keywords": [
+      "gwap",
+      "fake",
+      "shock"
+    ],
+    "filename": "LG-R01-026-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-027",
+    "name": "Caught You",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "👀",
+    "keywords": [
+      "gwap",
+      "caught",
+      "you"
+    ],
+    "filename": "LG-R01-027-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-027",
+    "name": "Caught You",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "👀",
+    "keywords": [
+      "gwap",
+      "caught",
+      "you"
+    ],
+    "filename": "LG-R01-027-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-028",
+    "name": "Mischief Mode",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😈",
+    "keywords": [
+      "gwap",
+      "mischief",
+      "mode"
+    ],
+    "filename": "LG-R01-028-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-028",
+    "name": "Mischief Mode",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😈",
+    "keywords": [
+      "gwap",
+      "mischief",
+      "mode"
+    ],
+    "filename": "LG-R01-028-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-029",
+    "name": "Facepalm Laugh",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🤦",
+    "keywords": [
+      "gwap",
+      "facepalm",
+      "laugh"
+    ],
+    "filename": "LG-R01-029-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-029",
+    "name": "Facepalm Laugh",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🤦",
+    "keywords": [
+      "gwap",
+      "facepalm",
+      "laugh"
+    ],
+    "filename": "LG-R01-029-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-030",
+    "name": "Whew!",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😮‍💨",
+    "keywords": [
+      "gwap",
+      "whew!"
+    ],
+    "filename": "LG-R01-030-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-030",
+    "name": "Whew!",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😮‍💨",
+    "keywords": [
+      "gwap",
+      "whew!"
+    ],
+    "filename": "LG-R01-030-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-031",
+    "name": "Side-Eye",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "👀",
+    "keywords": [
+      "gwap",
+      "side-eye"
+    ],
+    "filename": "LG-R01-031-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-031",
+    "name": "Side-Eye",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "👀",
+    "keywords": [
+      "gwap",
+      "side-eye"
+    ],
+    "filename": "LG-R01-031-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-032",
+    "name": "Smirk Mode",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😏",
+    "keywords": [
+      "gwap",
+      "smirk",
+      "mode"
+    ],
+    "filename": "LG-R01-032-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-032",
+    "name": "Smirk Mode",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😏",
+    "keywords": [
+      "gwap",
+      "smirk",
+      "mode"
+    ],
+    "filename": "LG-R01-032-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-033",
+    "name": "Unimpressed",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "😒",
+    "keywords": [
+      "gwap",
+      "unimpressed"
+    ],
+    "filename": "LG-R01-033-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-033",
+    "name": "Unimpressed",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "😒",
+    "keywords": [
+      "gwap",
+      "unimpressed"
+    ],
+    "filename": "LG-R01-033-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-034",
+    "name": "Too Cool",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😎",
+    "keywords": [
+      "gwap",
+      "too",
+      "cool"
+    ],
+    "filename": "LG-R01-034-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-034",
+    "name": "Too Cool",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😎",
+    "keywords": [
+      "gwap",
+      "too",
+      "cool"
+    ],
+    "filename": "LG-R01-034-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-035",
+    "name": "Shades On",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🕶️",
+    "keywords": [
+      "gwap",
+      "shades",
+      "on"
+    ],
+    "filename": "LG-R01-035-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-035",
+    "name": "Shades On",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🕶️",
+    "keywords": [
+      "gwap",
+      "shades",
+      "on"
+    ],
+    "filename": "LG-R01-035-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-036",
+    "name": "Salute",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🫡",
+    "keywords": [
+      "gwap",
+      "salute"
+    ],
+    "filename": "LG-R01-036-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-036",
+    "name": "Salute",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🫡",
+    "keywords": [
+      "gwap",
+      "salute"
+    ],
+    "filename": "LG-R01-036-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-037",
+    "name": "Bossed Up",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "👑",
+    "keywords": [
+      "gwap",
+      "bossed",
+      "up"
+    ],
+    "filename": "LG-R01-037-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-037",
+    "name": "Bossed Up",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "👑",
+    "keywords": [
+      "gwap",
+      "bossed",
+      "up"
+    ],
+    "filename": "LG-R01-037-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-038",
+    "name": "Cold Flex",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🥶",
+    "keywords": [
+      "gwap",
+      "cold",
+      "flex"
+    ],
+    "filename": "LG-R01-038-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-038",
+    "name": "Cold Flex",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🥶",
+    "keywords": [
+      "gwap",
+      "cold",
+      "flex"
+    ],
+    "filename": "LG-R01-038-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-039",
+    "name": "Don't Play With Me",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😤",
+    "keywords": [
+      "gwap",
+      "don't",
+      "play",
+      "with",
+      "me"
+    ],
+    "filename": "LG-R01-039-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-039",
+    "name": "Don't Play With Me",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😤",
+    "keywords": [
+      "gwap",
+      "don't",
+      "play",
+      "with",
+      "me"
+    ],
+    "filename": "LG-R01-039-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-040",
+    "name": "Mic Drop",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🎤",
+    "keywords": [
+      "gwap",
+      "mic",
+      "drop"
+    ],
+    "filename": "LG-R01-040-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-040",
+    "name": "Mic Drop",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🎤",
+    "keywords": [
+      "gwap",
+      "mic",
+      "drop"
+    ],
+    "filename": "LG-R01-040-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-041",
+    "name": "Huh?",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "❓",
+    "keywords": [
+      "gwap",
+      "huh?"
+    ],
+    "filename": "LG-R01-041-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-041",
+    "name": "Huh?",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "❓",
+    "keywords": [
+      "gwap",
+      "huh?"
+    ],
+    "filename": "LG-R01-041-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-042",
+    "name": "Ain't No Way",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🤯",
+    "keywords": [
+      "gwap",
+      "ain't",
+      "no",
+      "way"
+    ],
+    "filename": "LG-R01-042-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-042",
+    "name": "Ain't No Way",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🤯",
+    "keywords": [
+      "gwap",
+      "ain't",
+      "no",
+      "way"
+    ],
+    "filename": "LG-R01-042-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-043",
+    "name": "Wait, What?",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😵",
+    "keywords": [
+      "gwap",
+      "wait",
+      "",
+      "what?"
+    ],
+    "filename": "LG-R01-043-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-043",
+    "name": "Wait, What?",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😵",
+    "keywords": [
+      "gwap",
+      "wait",
+      "",
+      "what?"
+    ],
+    "filename": "LG-R01-043-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-044",
+    "name": "Thinkin'",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🤔",
+    "keywords": [
+      "gwap",
+      "thinkin'"
+    ],
+    "filename": "LG-R01-044-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-044",
+    "name": "Thinkin'",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🤔",
+    "keywords": [
+      "gwap",
+      "thinkin'"
+    ],
+    "filename": "LG-R01-044-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-045",
+    "name": "Suspicious",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🧐",
+    "keywords": [
+      "gwap",
+      "suspicious"
+    ],
+    "filename": "LG-R01-045-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-045",
+    "name": "Suspicious",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🧐",
+    "keywords": [
+      "gwap",
+      "suspicious"
+    ],
+    "filename": "LG-R01-045-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-046",
+    "name": "Loading...",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "⏳",
+    "keywords": [
+      "gwap",
+      "loading"
+    ],
+    "filename": "LG-R01-046-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-046",
+    "name": "Loading...",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "⏳",
+    "keywords": [
+      "gwap",
+      "loading"
+    ],
+    "filename": "LG-R01-046-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-047",
+    "name": "Looking Around",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "👀",
+    "keywords": [
+      "gwap",
+      "looking",
+      "around"
+    ],
+    "filename": "LG-R01-047-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-047",
+    "name": "Looking Around",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "👀",
+    "keywords": [
+      "gwap",
+      "looking",
+      "around"
+    ],
+    "filename": "LG-R01-047-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-048",
+    "name": "Bruh",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😑",
+    "keywords": [
+      "gwap",
+      "bruh"
+    ],
+    "filename": "LG-R01-048-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-048",
+    "name": "Bruh",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😑",
+    "keywords": [
+      "gwap",
+      "bruh"
+    ],
+    "filename": "LG-R01-048-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-049",
+    "name": "You Serious?",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🤨",
+    "keywords": [
+      "gwap",
+      "you",
+      "serious?"
+    ],
+    "filename": "LG-R01-049-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-049",
+    "name": "You Serious?",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🤨",
+    "keywords": [
+      "gwap",
+      "you",
+      "serious?"
+    ],
+    "filename": "LG-R01-049-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-050",
+    "name": "I Knew It",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😌",
+    "keywords": [
+      "gwap",
+      "i",
+      "knew",
+      "it"
+    ],
+    "filename": "LG-R01-050-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-050",
+    "name": "I Knew It",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😌",
+    "keywords": [
+      "gwap",
+      "i",
+      "knew",
+      "it"
+    ],
+    "filename": "LG-R01-050-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-051",
+    "name": "Sad Face",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😢",
+    "keywords": [
+      "gwap",
+      "sad",
+      "face"
+    ],
+    "filename": "LG-R01-051-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-051",
+    "name": "Sad Face",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😢",
+    "keywords": [
+      "gwap",
+      "sad",
+      "face"
+    ],
+    "filename": "LG-R01-051-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-052",
+    "name": "Real Tears",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😭",
+    "keywords": [
+      "gwap",
+      "real",
+      "tears"
+    ],
+    "filename": "LG-R01-052-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-052",
+    "name": "Real Tears",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😭",
+    "keywords": [
+      "gwap",
+      "real",
+      "tears"
+    ],
+    "filename": "LG-R01-052-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-053",
+    "name": "Broken Heart",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "💔",
+    "keywords": [
+      "gwap",
+      "broken",
+      "heart"
+    ],
+    "filename": "LG-R01-053-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-053",
+    "name": "Broken Heart",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "💔",
+    "keywords": [
+      "gwap",
+      "broken",
+      "heart"
+    ],
+    "filename": "LG-R01-053-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-054",
+    "name": "Disappointed",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😞",
+    "keywords": [
+      "gwap",
+      "disappointed"
+    ],
+    "filename": "LG-R01-054-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-054",
+    "name": "Disappointed",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😞",
+    "keywords": [
+      "gwap",
+      "disappointed"
+    ],
+    "filename": "LG-R01-054-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-055",
+    "name": "That Hurt",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😣",
+    "keywords": [
+      "gwap",
+      "that",
+      "hurt"
+    ],
+    "filename": "LG-R01-055-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-055",
+    "name": "That Hurt",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😣",
+    "keywords": [
+      "gwap",
+      "that",
+      "hurt"
+    ],
+    "filename": "LG-R01-055-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-056",
+    "name": "Exhausted",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "😩",
+    "keywords": [
+      "gwap",
+      "exhausted"
+    ],
+    "filename": "LG-R01-056-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-056",
+    "name": "Exhausted",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "😩",
+    "keywords": [
+      "gwap",
+      "exhausted"
+    ],
+    "filename": "LG-R01-056-F-PUR-v02-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-057",
+    "name": "Sleepy",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "😴",
+    "keywords": [
+      "gwap",
+      "sleepy"
+    ],
+    "filename": "LG-R01-057-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-057",
+    "name": "Sleepy",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "😴",
+    "keywords": [
+      "gwap",
+      "sleepy"
+    ],
+    "filename": "LG-R01-057-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-058",
+    "name": "Stressed Out",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "😫",
+    "keywords": [
+      "gwap",
+      "stressed",
+      "out"
+    ],
+    "filename": "LG-R01-058-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-058",
+    "name": "Stressed Out",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "😫",
+    "keywords": [
+      "gwap",
+      "stressed",
+      "out"
+    ],
+    "filename": "LG-R01-058-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-059",
+    "name": "Overwhelmed",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "😵‍💫",
+    "keywords": [
+      "gwap",
+      "overwhelmed"
+    ],
+    "filename": "LG-R01-059-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-059",
+    "name": "Overwhelmed",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "😵‍💫",
+    "keywords": [
+      "gwap",
+      "overwhelmed"
+    ],
+    "filename": "LG-R01-059-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-060",
+    "name": "I'm Done",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🚫",
+    "keywords": [
+      "gwap",
+      "i'm",
+      "done"
+    ],
+    "filename": "LG-R01-060-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-060",
+    "name": "I'm Done",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🚫",
+    "keywords": [
+      "gwap",
+      "i'm",
+      "done"
+    ],
+    "filename": "LG-R01-060-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-061",
+    "name": "Money Eyes",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🤑",
+    "keywords": [
+      "gwap",
+      "money",
+      "eyes"
+    ],
+    "filename": "LG-R01-061-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-061",
+    "name": "Money Eyes",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🤑",
+    "keywords": [
+      "gwap",
+      "money",
+      "eyes"
+    ],
+    "filename": "LG-R01-061-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-062",
+    "name": "Locked In",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🎯",
+    "keywords": [
+      "gwap",
+      "locked",
+      "in"
+    ],
+    "filename": "LG-R01-062-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-062",
+    "name": "Locked In",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🎯",
+    "keywords": [
+      "gwap",
+      "locked",
+      "in"
+    ],
+    "filename": "LG-R01-062-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-063",
+    "name": "Grind Mode",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "💪",
+    "keywords": [
+      "gwap",
+      "grind",
+      "mode"
+    ],
+    "filename": "LG-R01-063-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-063",
+    "name": "Grind Mode",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "💪",
+    "keywords": [
+      "gwap",
+      "grind",
+      "mode"
+    ],
+    "filename": "LG-R01-063-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-064",
+    "name": "Get to the Gwap",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "💰",
+    "keywords": [
+      "gwap",
+      "get",
+      "to",
+      "the",
+      "gwap"
+    ],
+    "filename": "LG-R01-064-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-064",
+    "name": "Get to the Gwap",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "💰",
+    "keywords": [
+      "gwap",
+      "get",
+      "to",
+      "the",
+      "gwap"
+    ],
+    "filename": "LG-R01-064-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-065",
+    "name": "Paid",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "💵",
+    "keywords": [
+      "gwap",
+      "paid"
+    ],
+    "filename": "LG-R01-065-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-065",
+    "name": "Paid",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "💵",
+    "keywords": [
+      "gwap",
+      "paid"
+    ],
+    "filename": "LG-R01-065-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-066",
+    "name": "Counting Gwap",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "💸",
+    "keywords": [
+      "gwap",
+      "counting",
+      "gwap"
+    ],
+    "filename": "LG-R01-066-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-066",
+    "name": "Counting Gwap",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "💸",
+    "keywords": [
+      "gwap",
+      "counting",
+      "gwap"
+    ],
+    "filename": "LG-R01-066-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-067",
+    "name": "Big Win",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🏆",
+    "keywords": [
+      "gwap",
+      "big",
+      "win"
+    ],
+    "filename": "LG-R01-067-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-067",
+    "name": "Big Win",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🏆",
+    "keywords": [
+      "gwap",
+      "big",
+      "win"
+    ],
+    "filename": "LG-R01-067-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-068",
+    "name": "Building",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🧱",
+    "keywords": [
+      "gwap",
+      "building"
+    ],
+    "filename": "LG-R01-068-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-068",
+    "name": "Building",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🧱",
+    "keywords": [
+      "gwap",
+      "building"
+    ],
+    "filename": "LG-R01-068-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-069",
+    "name": "Victory",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "✌️",
+    "keywords": [
+      "gwap",
+      "victory"
+    ],
+    "filename": "LG-R01-069-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-069",
+    "name": "Victory",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "✌️",
+    "keywords": [
+      "gwap",
+      "victory"
+    ],
+    "filename": "LG-R01-069-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-070",
+    "name": "Celebration Dance",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🕺",
+    "keywords": [
+      "gwap",
+      "celebration",
+      "dance"
+    ],
+    "filename": "LG-R01-070-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-070",
+    "name": "Celebration Dance",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🕺",
+    "keywords": [
+      "gwap",
+      "celebration",
+      "dance"
+    ],
+    "filename": "LG-R01-070-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-071",
+    "name": "Fire Up",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🔥",
+    "keywords": [
+      "gwap",
+      "fire",
+      "up"
+    ],
+    "filename": "LG-R01-071-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-071",
+    "name": "Fire Up",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🔥",
+    "keywords": [
+      "gwap",
+      "fire",
+      "up"
+    ],
+    "filename": "LG-R01-071-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-072",
+    "name": "Dua / Prayer",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🤲",
+    "keywords": [
+      "gwap",
+      "dua",
+      "prayer"
+    ],
+    "filename": "LG-R01-072-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-072",
+    "name": "Dua / Prayer",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🤲",
+    "keywords": [
+      "gwap",
+      "dua",
+      "prayer"
+    ],
+    "filename": "LG-R01-072-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-073",
+    "name": "Grateful / Blessed",
+    "sex": "M",
+    "color": "RED",
+    "emoji": "🙏",
+    "keywords": [
+      "gwap",
+      "grateful",
+      "blessed"
+    ],
+    "filename": "LG-R01-073-M-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-073",
+    "name": "Grateful / Blessed",
+    "sex": "F",
+    "color": "RED",
+    "emoji": "🙏",
+    "keywords": [
+      "gwap",
+      "grateful",
+      "blessed"
+    ],
+    "filename": "LG-R01-073-F-RED-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-074",
+    "name": "Gym Mode",
+    "sex": "M",
+    "color": "GRN",
+    "emoji": "🏋️",
+    "keywords": [
+      "gwap",
+      "gym",
+      "mode"
+    ],
+    "filename": "LG-R01-074-M-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-074",
+    "name": "Gym Mode",
+    "sex": "F",
+    "color": "GRN",
+    "emoji": "🏋️",
+    "keywords": [
+      "gwap",
+      "gym",
+      "mode"
+    ],
+    "filename": "LG-R01-074-F-GRN-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-075",
+    "name": "Food Mood",
+    "sex": "M",
+    "color": "ORG",
+    "emoji": "🍔",
+    "keywords": [
+      "gwap",
+      "food",
+      "mood"
+    ],
+    "filename": "LG-R01-075-M-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-075",
+    "name": "Food Mood",
+    "sex": "F",
+    "color": "ORG",
+    "emoji": "🍔",
+    "keywords": [
+      "gwap",
+      "food",
+      "mood"
+    ],
+    "filename": "LG-R01-075-F-ORG-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-076",
+    "name": "Good Night",
+    "sex": "M",
+    "color": "PUR",
+    "emoji": "🌙",
+    "keywords": [
+      "gwap",
+      "good",
+      "night"
+    ],
+    "filename": "LG-R01-076-M-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  },
+  {
+    "id": "LG-R01-076",
+    "name": "Good Night",
+    "sex": "F",
+    "color": "PUR",
+    "emoji": "🌙",
+    "keywords": [
+      "gwap",
+      "good",
+      "night"
+    ],
+    "filename": "LG-R01-076-F-PUR-v01-TELEGRAM-512.png",
+    "width": 512,
+    "height": 512
+  }
+]
