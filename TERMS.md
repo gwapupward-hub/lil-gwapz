@@ -9,7 +9,7 @@ By accessing, downloading, displaying or using any Lil Gwapz content, you agree 
 
 ## 1. Ownership
 
-Lil Gwapz is an original intellectual-property property created and owned by **Tha GwapSpot**. Except for the limited license expressly granted below, Tha GwapSpot retains all right, title and interest in and to:
+Lil Gwapz is an original intellectual-property brand created and owned by **Tha GwapSpot**. Except for the limited license expressly granted below, Tha GwapSpot retains all right, title and interest in and to:
 
 - the Lil Gwapz name and identity;
 - all Lil Gwapz characters and character designs;
