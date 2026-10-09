@@ -6,5 +6,6 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 
 /* Lil Gwapz brand mark */
+.wordmark{display:inline-flex;align-items:center;flex-shrink:0}
 .wordmark img{display:block;width:112px;height:68px;object-fit:contain}
-@media(max-width:520px){.wordmark img{width:98px;height:60px}}
+@media(max-width:640px){.wordmark img{width:98px;height:56px}}
