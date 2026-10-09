@@ -9,3 +9,9 @@
 .wordmark{display:inline-flex;align-items:center;flex-shrink:0}
 .wordmark img{display:block;width:112px;height:68px;object-fit:contain}
 @media(max-width:640px){.wordmark img{width:98px;height:56px}}
+
+.site-header{position:sticky;top:0;backdrop-filter:blur(16px)}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:11px}
+.hero-actions .button-outline{border-color:#514a5d;background:rgba(20,18,27,.68)}
+.hero-actions .button-outline:hover{border-color:#aaa3b4}
+@media(max-width:640px){.hero-actions{gap:9px}.hero-actions .button{min-height:46px;padding-inline:17px;font-size:12px}}
