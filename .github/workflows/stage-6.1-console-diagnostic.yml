@@ -42,5 +42,5 @@ jobs:
           cat /tmp/lilgwapz-serve.log
           exit 1
 
-      - name: Capture console and network diagnostics
-        run: node scripts/diagnose-stage-6.1-console.mjs
+      - name: Capture minimal sticker initiator trace
+        run: node scripts/diagnose-stage-6.1-console-min.mjs
