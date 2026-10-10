@@ -44,12 +44,13 @@
   align-items:center;
   justify-content:center;
 }
-.site-footer .footer-links a{
+.site-footer .footer-links a,.download-license-note a{
   display:inline-flex!important;
   min-width:44px!important;
   min-height:44px!important;
   align-items:center;
   justify-content:center;
+  touch-action:manipulation;
 }
 .card-download,.download-one,.sticker-viewer-close,.sticker-viewer-nav{
   min-width:44px;
@@ -59,7 +60,7 @@
 .button,.header-cta,.desktop-nav a,.text-link,.site-footer a,.mood-tile,.mobile-nav a,.filter-chip,.browse-tile-link,.card-download,.download-one,.sticker-viewer-close,.sticker-viewer-nav{
   touch-action:manipulation;
 }
-.button:active,.header-cta:active,.text-link:active,.site-footer a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{
+.button:active,.header-cta:active,.text-link:active,.site-footer a:active,.download-license-note a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{
   transform:scale(.94);
   filter:drop-shadow(0 0 14px var(--gwap-green-glow));
 }
@@ -88,5 +89,5 @@
   .hero-sticker,.hero-sticker img{animation:none!important;translate:none!important}
   .browse-tile-art img{transition:none!important}
   .browse-tile:hover .browse-tile-art img,.browse-tile:focus-within .browse-tile-art img{transform:none}
-  .button:active,.header-cta:active,.text-link:active,.site-footer a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{transform:none;filter:none}
+  .button:active,.header-cta:active,.text-link:active,.site-footer a:active,.download-license-note a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{transform:none;filter:none}
 }
