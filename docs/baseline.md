@@ -16,68 +16,62 @@ Date: 2026-10-10
 
 ## Tooling
 
-Installed in the isolated Vercel stage runner, outside the repository:
+Installed outside the repository in the isolated Vercel runner:
 
 ```text
 lighthouse 13.5.0
 playwright 1.64.0
-@axe-core/playwright 4.13.0
 sharp 0.35.5
 broken-link-checker 0.7.8
-serve 14.2.6
+pixelmatch 8.0.0
+pngjs 7.0.0
 ```
 
 ## Sticker asset count
-
-Command:
 
 ```sh
 find assets/stickers -maxdepth 1 -type f -iname '*.png' | wc -l
 ```
 
-Output:
-
 ```text
 152
 ```
 
-Result: **PASS** — expected 152 and found 152.
+Result: **PASS**.
 
 ## Original accent discovery
 
-The original experimental source inherited this token from the current site:
+The experimental source inherited:
 
 ```css
 --green:#18e13a;
 ```
 
-The stage specification requires `#13dd13`. The owner explicitly authorized replacing the legacy accent **only in the experimental preview**. Production remains untouched.
+The owner authorized normalizing the accent to `#13dd13` **inside the experimental preview only**. Production remains untouched.
 
-## Original host behavior
-
-Command:
+## Production host behavior
 
 ```sh
 curl -sI https://lilgwapz.xyz/
 ```
 
-Observed:
+Previously observed:
 
 ```text
 HTTP/2 200
 ```
 
-The stage originally expected a 301/308 redirect to `www`. The owner explicitly restricted this run to the experimental preview, so production domain routing is not modified in this sprint.
+The production apex → `www` redirect is explicitly deferred during this experimental run.
 
-## Lighthouse mobile baseline
+## Lighthouse mobile baseline — fresh resume run
 
-Local test host: `http://127.0.0.1:8080`
+Baseline source: `experiment/ui-ux-v2` served locally.
 
 | Page | SEO | Performance | LCP | CLS | Transfer | Images |
 |---|---:|---:|---:|---:|---:|---:|
-| Home `/` | 1.00 | 0.77 | 6913.984 ms | 0.022219 | 2,051,250 B | 9 |
-| Browse `/browse.html` | 1.00 | 0.57 | 8286.098 ms | 0.397641 | 5,601,017 B | 27 |
-| IP policy `/ip-policy.html` | 1.00 | 0.95 | 2867.316 ms | 0 | 349,561 B | 1 |
+| Home `/` | 1.00 | 0.77 | 6909.008 ms | 0.022219 | 2,051,250 B | 9 |
+| Browse `/browse.html` | 1.00 | 0.57 | 8273.250 ms | 0.397641 | 5,601,017 B | 27 |
+| IP policy `/ip-policy.html` | 1.00 | 0.96 | 2854.225 ms | 0 | 349,561 B | 1 |
 
 ## Baseline screenshots captured in the isolated runner
 
@@ -88,4 +82,4 @@ Local test host: `http://127.0.0.1:8080`
 - `docs/baseline/browse-768.png`
 - `docs/baseline/browse-1280.png`
 
-The binary screenshots were generated successfully in the stage runner. They were not committed because the connected GitHub write interface for this run supports text mutations but not direct binary-file transfer from the Vercel sandbox.
+The binary screenshots were generated successfully in the isolated runner. The connected GitHub write interface used here supports text mutations but does not directly transfer these sandbox-generated binary files into the repository.
