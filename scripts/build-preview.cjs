@@ -14,7 +14,7 @@ fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 
 const files = [
-  'index.html','browse.html','ip-policy.html','privacy.html','terms.html',
+  'index.html','browse.html','ip-policy.html','privacy.html','terms.html','404.html',
   'app.js','styles.css','legal.css','legal.js',
   'favicon.ico','favicon-32.png','favicon-96.png','apple-touch-icon.png','site.webmanifest',
   'sitemap.xml','robots.txt'
@@ -42,5 +42,6 @@ const result = {
 if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || result.og < 152) {
   throw new Error(`Unexpected preview build counts: ${JSON.stringify(result)}`);
 }
+if (!fs.existsSync(path.join(dist, '404.html'))) throw new Error('Missing dist/404.html');
 
 console.log('dist ready', result);
