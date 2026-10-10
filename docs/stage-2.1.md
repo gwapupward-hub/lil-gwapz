@@ -164,12 +164,62 @@ node scripts/build-stage-1.2.cjs && node scripts/build-browse.mjs && node script
 
 Its existing install command continues to install `sharp@0.35.5 --no-save`.
 
-This project is `live: false`. No production project, production domain, production alias, or `main` branch was modified.
+Integrated Stage 2.1 source commit:
 
-Exact sprint-branch preview deployment evidence will be appended after the integrated branch deployment reaches READY and passes smoke verification.
+```text
+cf4257df092e07fb620378152e9f7a3a5ad2037e
+```
+
+Verified experimental preview deployment:
+
+```text
+deployment: dpl_AoAqBWeEViiq2W4j8JApbpFask6x
+url: https://lil-gwapz-itfvbhjpr-bigdaddygwaps-projects.vercel.app
+state: READY
+branch: sprint-1-foundations
+commit: cf4257df092e07fb620378152e9f7a3a5ad2037e
+```
+
+Build-log evidence:
+
+```text
+complete { stickers: 152, urls: 157 }
+browse tiles generated: 152; eager: 8; lazy: 144
+dist ready { stickers: 152, thumbs: 152, pages: 152, og: 153 }
+Deployment completed
+```
+
+Deployed `/browse.html` smoke checks:
+
+```text
+HTTP 200
+canonical = https://www.lilgwapz.xyz/browse.html
+og:url   = https://www.lilgwapz.xyz/browse.html
+css/browse-tiles.css = 200
+js/browse-filters.js = 200
+js/browse-tiles.js = 200
+static .download-license-note present
+152 generated sticker tiles present
+first 8 tiles eager; remaining tiles lazy
+Attitude display verified: male Swagger / female Sassy
+legacy app.js Browse renderer absent
+preview x-robots-tag = noindex
+```
+
+Deployment alias check:
+
+```text
+lil-gwapz-git-sprint-1-foundations-bigdaddygwaps-projects.vercel.app
+```
+
+No production custom domain or production alias is attached to this deployment.
+
+This experimental project remains separate from `lil-gwapz-production`. No production project, production domain, production alias, or `main` branch was modified.
+
+Result: **PASS**.
 
 ## Stage result
 
-Stage 2.1 browser/static gates: **PASS**.
+Stage 2.1: **PASS**.
 
-Stage 2.2 must not begin until the integrated `sprint-1-foundations` preview is READY and smoke-verified.
+All required Stage 2.1 static, deterministic, browser, CLS, JS-off, network, and integrated-preview gates are satisfied. Stage 2.2 may now begin on the experimental path only.
