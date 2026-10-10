@@ -23,9 +23,72 @@
   .hero-sticker-three img{animation-delay:2.4s}
 }
 
+/* Stage 3.2 — press feedback, CTA hierarchy, and small-screen spacing. */
+.hero-actions .button:first-child{
+  min-height:48px;
+  background:var(--gwap-green);
+  color:#071007;
+  box-shadow:0 10px 35px rgba(19,221,19,.18),0 0 0 1px rgba(19,221,19,.08);
+}
+.hero-actions .button-outline{
+  min-height:48px;
+  background:rgba(20,18,27,.58);
+  border-color:#514a5d;
+  color:var(--ink);
+  box-shadow:none;
+}
+.header-cta,.desktop-nav a,.text-link,.site-footer a,.mobile-nav a,.filter-chip{
+  min-width:44px;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+.site-footer .footer-links a,.download-license-note a{
+  display:inline-flex!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  align-items:center;
+  justify-content:center;
+  touch-action:manipulation;
+}
+.card-download,.download-one,.sticker-viewer-close,.sticker-viewer-nav{
+  min-width:44px;
+  min-height:44px;
+}
+.browse-actions .button{min-height:44px}
+.button,.header-cta,.desktop-nav a,.text-link,.site-footer a,.mood-tile,.mobile-nav a,.filter-chip,.browse-tile-link,.card-download,.download-one,.sticker-viewer-close,.sticker-viewer-nav{
+  touch-action:manipulation;
+}
+.button:active,.header-cta:active,.text-link:active,.site-footer a:active,.download-license-note a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{
+  transition:none;
+  transform:scale(.94);
+  filter:drop-shadow(0 0 14px var(--gwap-green-glow));
+}
+
+@media(max-width:640px){
+  .hero{padding-inline:clamp(16px,5.5vw,22px)}
+  .hero h1{font-size:clamp(46px,15vw,62px);line-height:.92;letter-spacing:-.06em}
+  .hero-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;width:100%;max-width:420px}
+  .hero-actions .button{width:100%;min-height:48px;padding-inline:18px;font-size:13px}
+  .header-cta{min-height:44px;padding-inline:14px}
+  .mobile-nav a{min-height:48px}
+  .filter-chip{min-height:44px}
+}
+@media(max-width:360px){
+  .site-header{gap:10px;padding-inline:14px}
+  .header-cta{padding-inline:12px;font-size:11px}
+  .hero{padding-top:38px}
+  .hero h1{font-size:clamp(44px,14.5vw,52px)}
+  .hero-art{height:300px}
+  .section-heading{align-items:flex-start;flex-direction:column;gap:8px}
+  .section-heading .text-link{align-self:flex-start}
+}
+
 @media(prefers-reduced-motion:reduce){
   .motion-reveal,.motion-reveal.is-revealed{opacity:1;translate:none;transition:none!important;transition-delay:0s!important}
   .hero-sticker,.hero-sticker img{animation:none!important;translate:none!important}
   .browse-tile-art img{transition:none!important}
   .browse-tile:hover .browse-tile-art img,.browse-tile:focus-within .browse-tile-art img{transform:none}
+  .button:active,.header-cta:active,.text-link:active,.site-footer a:active,.download-license-note a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{transform:none;filter:none}
 }
