@@ -202,8 +202,54 @@ No production custom domain or production alias is attached to the validation de
 
 Result: **PASS**.
 
+## Integrated sprint preview
+
+The exact validated Stage 2.2 source was promoted to `sprint-1-foundations` in commit:
+
+```text
+602b9969b2d44ae7af6d3da8975db8ce66cebf14
+```
+
+Verified experimental sprint deployment:
+
+```text
+deployment: dpl_FUSVeX1v8jSLh6jDxfRKtLhNSfso
+url: https://lil-gwapz-hq5frkkni-bigdaddygwaps-projects.vercel.app
+state: READY
+branch: sprint-1-foundations
+target: preview
+commit: 602b9969b2d44ae7af6d3da8975db8ce66cebf14
+```
+
+Integrated deployment build/smoke evidence:
+
+```text
+Stage 1.2 generated 152/152
+Stage 2.1 Browse generated 152 tiles; 8 eager; 144 lazy
+dist ready { stickers: 152, thumbs: 152, pages: 152, og: 153 }
+/browse.html = HTTP 200
+/css/dialog.css = HTTP 200
+/js/sticker-dialog.js = HTTP 200
+/stickers/LG-R01-001-M-GRN-v01-TELEGRAM-512.png = HTTP 200
+same-origin full PNG route verified
+Stage 2.2 dialog markup present
+152 Browse tiles present
+canonical = https://www.lilgwapz.xyz/browse.html
+preview x-robots-tag = noindex
+```
+
+The deployment alias list contains only:
+
+```text
+lil-gwapz-git-sprint-1-foundations-bigdaddygwaps-projects.vercel.app
+```
+
+No `lilgwapz.xyz`, `www.lilgwapz.xyz`, or other production custom domain is attached to the integrated sprint deployment.
+
+Result: **PASS**.
+
 ## Stage result
 
 Stage 2.2: **PASS**.
 
-All required dialog, filtered navigation, desktop hover/download, touch tap, long-press, scroll protection, same-origin download, keyboard/focus, accessibility, console, build, and validation-preview gates are satisfied. The exact tested Stage 2.2 source may be promoted to `sprint-1-foundations` for final integrated preview verification.
+All required dialog, filtered navigation, desktop hover/download, touch tap, long-press, scroll protection, same-origin download, keyboard/focus, accessibility, console, build, validation-preview, and integrated-sprint-preview gates are satisfied. Stage 3.1 may begin on the experimental path only.
