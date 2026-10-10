@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
 
       - name: Install dependencies
-        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 serve@14.2.5
+        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 @axe-core/playwright@4.13.0 serve@14.2.5
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
@@ -42,5 +42,5 @@ jobs:
           cat /tmp/lilgwapz-serve.log
           exit 1
 
-      - name: Capture minimal sticker initiator trace
-        run: node scripts/diagnose-stage-6.1-console-min.mjs
+      - name: Capture axe-enabled sticker console trace
+        run: node scripts/diagnose-stage-6.1-axe-console.mjs
