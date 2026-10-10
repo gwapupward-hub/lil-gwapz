@@ -14,7 +14,7 @@ fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 
 const files = [
-  'index.html','browse.html','ip-policy.html','privacy.html','terms.html',
+  'index.html','browse.html','ip-policy.html','privacy.html','terms.html','404.html',
   'app.js','styles.css','legal.css','legal.js',
   'favicon.ico','favicon-32.png','favicon-96.png','apple-touch-icon.png','site.webmanifest',
   'sitemap.xml','robots.txt'
@@ -36,10 +36,11 @@ const result = {
   stickers: count('stickers', '.png'),
   thumbs: count('thumbs', '.webp'),
   pages: count('s', '.html'),
-  og: count('og', '.jpg')
+  og: count('og', '.jpg'),
+  custom404: fs.existsSync(path.join(dist, '404.html'))
 };
 
-if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || result.og < 152) {
+if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || result.og < 152 || !result.custom404) {
   throw new Error(`Unexpected preview build counts: ${JSON.stringify(result)}`);
 }
 

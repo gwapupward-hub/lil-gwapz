@@ -1,0 +1,107 @@
+name: Stage 6.1 Accessibility Gate
+
+on:
+  push:
+    branches:
+      - stage61-accessibility-gate
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Install pinned validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save \
+            sharp@0.35.5 \
+            playwright@1.64.0 \
+            @axe-core/playwright@4.13.0 \
+            serve@14.2.5 \
+            lighthouse@13.5.0
+          npm ls --depth=0 sharp playwright @axe-core/playwright serve lighthouse
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build deterministic preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+
+      - name: Start preview server
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+
+      - name: Browser accessibility, green-use, 404, and regression gate
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/test-stage-6.1.mjs
+
+      - name: Lighthouse accessibility gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          for page in home browse terms notfound; do
+            case "$page" in
+              home) url="http://127.0.0.1:4173/" ;;
+              browse) url="http://127.0.0.1:4173/browse.html" ;;
+              terms) url="http://127.0.0.1:4173/terms.html" ;;
+              notfound) url="http://127.0.0.1:4173/404.html" ;;
+            esac
+            npx lighthouse "$url" \
+              --only-categories=accessibility \
+              --chrome-flags="--headless --no-sandbox --disable-gpu" \
+              --output=json \
+              --output-path="/tmp/lh-${page}.json" \
+              --quiet
+          done
+          node - <<'NODE'
+          const fs = require('fs');
+          let failed = false;
+          for (const page of ['home','browse','terms','notfound']) {
+            const p = `/tmp/lh-${page}.json`;
+            if (!fs.existsSync(p)) {
+              console.error(`FAIL: ${page} Lighthouse output missing`);
+              failed = true;
+              continue;
+            }
+            const j = JSON.parse(fs.readFileSync(p,'utf8'));
+            const score = Math.round((j.categories?.accessibility?.score ?? 0) * 100);
+            console.log(`${page}: accessibility=${score}`);
+            if (score < 95) {
+              console.error(`FAIL: ${page} accessibility ${score} < 95`);
+              failed = true;
+            }
+          }
+          if (failed) process.exit(1);
+          NODE
+
+      - name: Screenshot hashes
+        if: always()
+        shell: bash
+        run: |
+          if [ -d artifacts/stage-6.1 ]; then
+            sha256sum artifacts/stage-6.1/*.png || true
+          fi

@@ -1,5 +1,6 @@
 :root {
   --gwap-green: #13dd13;
+  --gwap-green-rgb: 19, 221, 19;
   --gwap-green-glow: rgba(19, 221, 19, .35);
   --bg: #09080d;
   --ink: #ffffff;
@@ -20,4 +21,45 @@
     line-height: 1.1;
     letter-spacing: -.13em;
   }
+}
+
+/* Stage 6.1 — accessibility and canonical Gwap Green enforcement. */
+body { --green: var(--gwap-green); }
+
+/* Gwap Green text is reserved for the canonical #09080D canvas. */
+.home-page .hero h1 em,
+.home-page .spark-one {
+  color: var(--ink);
+  text-shadow: 0 0 18px var(--gwap-green-glow);
+}
+
+/* Green-filled controls always use dark text. */
+.mobile-nav a.selected {
+  background: var(--gwap-green);
+  color: #071007;
+}
+.mobile-nav a.selected span { color: inherit; }
+
+.license-dialog-mark,
+.rule-card > span {
+  background: var(--gwap-green);
+  border-color: var(--gwap-green);
+  color: #071007;
+}
+
+/* Links on raised dialog surfaces remain light; green is retained as an accent. */
+.license-dialog a:not(.button) {
+  color: var(--ink);
+  text-decoration-color: var(--gwap-green);
+}
+
+/* Generated sticker pages keep keyboard/touch targets at the project minimum. */
+.sticker-page .back-link,
+.sticker-page .site-footer a,
+.sticker-page .wordmark,
+.sticker-page .header-cta {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
 }
