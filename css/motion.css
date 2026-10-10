@@ -61,6 +61,7 @@
   touch-action:manipulation;
 }
 .button:active,.header-cta:active,.text-link:active,.site-footer a:active,.download-license-note a:active,.mood-tile:active,.mobile-nav a:active,.filter-chip:active,.browse-tile-link:active,.card-download:active,.download-one:active,.sticker-viewer-close:active,.sticker-viewer-nav:active{
+  transition:none;
   transform:scale(.94);
   filter:drop-shadow(0 0 14px var(--gwap-green-glow));
 }
