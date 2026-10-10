@@ -24,7 +24,10 @@ jobs:
       - name: Install Chromium and system dependencies
         run: npx playwright install --with-deps chromium
       - name: Build experimental preview output
-        run: node scripts/build-preview.cjs
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
       - name: Start static server
         run: |
           npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
