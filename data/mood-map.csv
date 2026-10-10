@@ -1,0 +1,77 @@
+reaction_id,reaction,emoji,keywords,mood,all_label,male_label,female_label
+LG-R01-001,Big Smile,😀,"gwap,big,smile",happy,Happy,Happy,Happy
+LG-R01-002,Big Laugh,😂,"gwap,big,laugh",happy,Happy,Happy,Happy
+LG-R01-003,Happy Tears,🥹,"gwap,happy,tears",happy,Happy,Happy,Happy
+LG-R01-004,Friendly Wave,👋,"gwap,friendly,wave",happy,Happy,Happy,Happy
+LG-R01-005,Wink,😉,"gwap,wink",happy,Happy,Happy,Happy
+LG-R01-006,Good Vibes,✌️,"gwap,good,vibes",happy,Happy,Happy,Happy
+LG-R01-007,Proud Smile,😌,"gwap,proud,smile",happy,Happy,Happy,Happy
+LG-R01-008,Shy Smile,😊,"gwap,shy,smile",happy,Happy,Happy,Happy
+LG-R01-009,Big Hug,🤗,"gwap,big,hug",love,Love,Love,Love
+LG-R01-010,Peace & Love,🫶,"gwap,peace,&,love",love,Love,Love,Love
+LG-R01-011,Heart Eyes,😍,"gwap,heart,eyes",love,Love,Love,Love
+LG-R01-012,Blowing a Kiss,😘,"gwap,blowing,a,kiss",love,Love,Love,Love
+LG-R01-013,Much Love,❤️,"gwap,much,love",love,Love,Love,Love
+LG-R01-014,Miss You,🥺,"gwap,miss,you",love,Love,Love,Love
+LG-R01-015,Flirty Smirk,😏,"gwap,flirty,smirk",love,Love,Love,Love
+LG-R01-016,Bashful Crush,🥰,"gwap,bashful,crush",love,Love,Love,Love
+LG-R01-017,Bestie Love,🫂,"gwap,bestie,love",love,Love,Love,Love
+LG-R01-018,Thank You,🙏,"gwap,thank,you",happy,Happy,Happy,Happy
+LG-R01-019,My Bad,😅,"gwap,my,bad",chill,Chill,Chill,Chill
+LG-R01-020,Say Less,🤐,"gwap,say,less",attitude,Attitude,Swagger,Sassy
+LG-R01-021,Crying Laugh,🤣,"gwap,crying,laugh",happy,Happy,Happy,Happy
+LG-R01-022,Tongue Out,😛,"gwap,tongue,out",happy,Happy,Happy,Happy
+LG-R01-023,Goofy Face,🤪,"gwap,goofy,face",happy,Happy,Happy,Happy
+LG-R01-024,Peekaboo,🙈,"gwap,peekaboo",happy,Happy,Happy,Happy
+LG-R01-025,Silly Dance,💃,"gwap,silly,dance",happy,Happy,Happy,Happy
+LG-R01-026,Fake Shock,😱,"gwap,fake,shock",happy,Happy,Happy,Happy
+LG-R01-027,Caught You,👀,"gwap,caught,you",attitude,Attitude,Swagger,Sassy
+LG-R01-028,Mischief Mode,😈,"gwap,mischief,mode",attitude,Attitude,Swagger,Sassy
+LG-R01-029,Facepalm Laugh,🤦,"gwap,facepalm,laugh",happy,Happy,Happy,Happy
+LG-R01-030,Whew!,😮‍💨,"gwap,whew!",chill,Chill,Chill,Chill
+LG-R01-031,Side-Eye,👀,"gwap,side-eye",attitude,Attitude,Swagger,Sassy
+LG-R01-032,Smirk Mode,😏,"gwap,smirk,mode",attitude,Attitude,Swagger,Sassy
+LG-R01-033,Unimpressed,😒,"gwap,unimpressed",attitude,Attitude,Swagger,Sassy
+LG-R01-034,Too Cool,😎,"gwap,too,cool",attitude,Attitude,Swagger,Sassy
+LG-R01-035,Shades On,🕶️,"gwap,shades,on",attitude,Attitude,Swagger,Sassy
+LG-R01-036,Salute,🫡,"gwap,salute",attitude,Attitude,Swagger,Sassy
+LG-R01-037,Bossed Up,👑,"gwap,bossed,up",attitude,Attitude,Swagger,Sassy
+LG-R01-038,Cold Flex,🥶,"gwap,cold,flex",attitude,Attitude,Swagger,Sassy
+LG-R01-039,Don't Play With Me,😤,"gwap,don't,play,with,me",attitude,Attitude,Swagger,Sassy
+LG-R01-040,Mic Drop,🎤,"gwap,mic,drop",attitude,Attitude,Swagger,Sassy
+LG-R01-041,Huh?,❓,"gwap,huh?",chill,Chill,Chill,Chill
+LG-R01-042,Ain't No Way,🤯,"gwap,ain't,no,way",hype,Hype,Hype,Hype
+LG-R01-043,"Wait, What?",😵,"gwap,wait,,what?",chill,Chill,Chill,Chill
+LG-R01-044,Thinkin',🤔,"gwap,thinkin'",chill,Chill,Chill,Chill
+LG-R01-045,Suspicious,🧐,"gwap,suspicious",attitude,Attitude,Swagger,Sassy
+LG-R01-046,Loading...,⏳,"gwap,loading",chill,Chill,Chill,Chill
+LG-R01-047,Looking Around,👀,"gwap,looking,around",attitude,Attitude,Swagger,Sassy
+LG-R01-048,Bruh,😑,"gwap,bruh",attitude,Attitude,Swagger,Sassy
+LG-R01-049,You Serious?,🤨,"gwap,you,serious?",attitude,Attitude,Swagger,Sassy
+LG-R01-050,I Knew It,😌,"gwap,i,knew,it",attitude,Attitude,Swagger,Sassy
+LG-R01-051,Sad Face,😢,"gwap,sad,face",chill,Chill,Chill,Chill
+LG-R01-052,Real Tears,😭,"gwap,real,tears",chill,Chill,Chill,Chill
+LG-R01-053,Broken Heart,💔,"gwap,broken,heart",love,Love,Love,Love
+LG-R01-054,Disappointed,😞,"gwap,disappointed",chill,Chill,Chill,Chill
+LG-R01-055,That Hurt,😣,"gwap,that,hurt",chill,Chill,Chill,Chill
+LG-R01-056,Exhausted,😩,"gwap,exhausted",chill,Chill,Chill,Chill
+LG-R01-057,Sleepy,😴,"gwap,sleepy",chill,Chill,Chill,Chill
+LG-R01-058,Stressed Out,😫,"gwap,stressed,out",chill,Chill,Chill,Chill
+LG-R01-059,Overwhelmed,😵‍💫,"gwap,overwhelmed",chill,Chill,Chill,Chill
+LG-R01-060,I'm Done,🚫,"gwap,i'm,done",attitude,Attitude,Swagger,Sassy
+LG-R01-061,Money Eyes,🤑,"gwap,money,eyes",hype,Hype,Hype,Hype
+LG-R01-062,Locked In,🎯,"gwap,locked,in",hype,Hype,Hype,Hype
+LG-R01-063,Grind Mode,💪,"gwap,grind,mode",hype,Hype,Hype,Hype
+LG-R01-064,Get to the Gwap,💰,"gwap,get,to,the,gwap",hype,Hype,Hype,Hype
+LG-R01-065,Paid,💵,"gwap,paid",hype,Hype,Hype,Hype
+LG-R01-066,Counting Gwap,💸,"gwap,counting,gwap",hype,Hype,Hype,Hype
+LG-R01-067,Big Win,🏆,"gwap,big,win",hype,Hype,Hype,Hype
+LG-R01-068,Building,🧱,"gwap,building",hype,Hype,Hype,Hype
+LG-R01-069,Victory,✌️,"gwap,victory",hype,Hype,Hype,Hype
+LG-R01-070,Celebration Dance,🕺,"gwap,celebration,dance",hype,Hype,Hype,Hype
+LG-R01-071,Fire Up,🔥,"gwap,fire,up",hype,Hype,Hype,Hype
+LG-R01-072,Dua / Prayer,🤲,"gwap,dua,prayer",love,Love,Love,Love
+LG-R01-073,Grateful / Blessed,🙏,"gwap,grateful,blessed",love,Love,Love,Love
+LG-R01-074,Gym Mode,🏋️,"gwap,gym,mode",hype,Hype,Hype,Hype
+LG-R01-075,Food Mood,🍔,"gwap,food,mood",chill,Chill,Chill,Chill
+LG-R01-076,Good Night,🌙,"gwap,good,night",chill,Chill,Chill,Chill
