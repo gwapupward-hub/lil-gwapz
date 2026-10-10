@@ -1,0 +1,113 @@
+name: Stage 6.1 Browser Gate
+
+on:
+  push:
+    branches:
+      - stage61-a11y-404
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout exact validation commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Install deterministic audit dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save \
+            sharp@0.35.5 \
+            playwright@1.64.0 \
+            @axe-core/playwright@4.13.0 \
+            serve@14.2.5 \
+            lighthouse@13.5.0
+          npm ls --depth=0 @axe-core/playwright playwright lighthouse sharp serve
+
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+
+      - name: Build experimental preview output
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+
+      - name: Verify Stage 6.1 static contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f 404.html
+          test -f dist/404.html
+          grep -q 'Page Not Found — Lil Gwapz' 404.html
+          grep -q 'noindex,follow' 404.html
+          grep -q '404.html' scripts/build-preview.cjs
+          grep -q -- '--gwap-green: #13dd13' css/tokens.css
+          grep -q 'green-text background rule' scripts/test-stage-6.1.mjs
+          test "$(grep -o 'data-sticker-tile' dist/browse.html | wc -l)" -eq 152
+          test "$(grep -o 'id="mobile-filter-dialog"' dist/browse.html | wc -l)" -eq 1
+
+      - name: Start static server
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          echo $! > /tmp/lilgwapz-serve.pid
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+
+      - name: Run Stage 6.1 Playwright and axe gates
+        run: node scripts/test-stage-6.1.mjs
+
+      - name: Lighthouse accessibility gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          declare -A urls=(
+            [home]='http://127.0.0.1:4173/'
+            [browse]='http://127.0.0.1:4173/browse.html'
+            [terms]='http://127.0.0.1:4173/terms.html'
+            [ip]='http://127.0.0.1:4173/ip-policy.html'
+            [privacy]='http://127.0.0.1:4173/privacy.html'
+            [sticker]='http://127.0.0.1:4173/s/big-smile-male.html'
+            [notfound]='http://127.0.0.1:4173/404.html'
+          )
+          for page in home browse terms ip privacy sticker notfound; do
+            npx lighthouse "${urls[$page]}" \
+              --only-categories=accessibility \
+              --chrome-flags="--headless --no-sandbox --disable-gpu" \
+              --output=json \
+              --output-path="/tmp/lh-${page}.json" \
+              --quiet
+          done
+          node - <<'NODE'
+          const fs = require('fs');
+          const pages = ['home','browse','terms','ip','privacy','sticker','notfound'];
+          const scores = {};
+          for (const page of pages) {
+            const json = JSON.parse(fs.readFileSync(`/tmp/lh-${page}.json`, 'utf8'));
+            const score = Math.round((json.categories?.accessibility?.score ?? 0) * 100);
+            scores[page] = score;
+            if (score < 95) throw new Error(`${page} accessibility score ${score} is below 95`);
+          }
+          console.log('STAGE61_LIGHTHOUSE_PASS', JSON.stringify(scores));
+          NODE
+
+      - name: List screenshot evidence
+        if: always()
+        shell: bash
+        run: |
+          find artifacts/stage-6.1 -maxdepth 1 -type f -name '*.png' -print -exec sha256sum {} \; 2>/dev/null || true
