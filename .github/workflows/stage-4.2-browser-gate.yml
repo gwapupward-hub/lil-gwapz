@@ -1,0 +1,61 @@
+name: Stage 4.2 Browser Gate
+
+on:
+  push:
+    branches:
+      - stage42-grouped-browse
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact validation commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install deterministic test dependencies
+        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 serve@14.2.5
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Build experimental preview output
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+      - name: Verify Stage 4.2 build and idempotence
+        run: |
+          sha256sum css/browse-groups.css dist/css/browse-groups.css
+          sha256sum js/browse-groups.js dist/js/browse-groups.js
+          grep -n 'data-mood-group="happy"' dist/browse.html
+          grep -n 'data-mood-group="attitude"' dist/browse.html
+          grep -n 'data-mood-group="love"' dist/browse.html
+          before=$(sha256sum browse.html | cut -d' ' -f1)
+          node scripts/build-browse.mjs
+          after=$(sha256sum browse.html | cut -d' ' -f1)
+          test "$before" = "$after"
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('dist/browse.html','utf8');
+          const groups=[...html.matchAll(/data-mood-group="(happy|attitude|chill|hype|love)"/g)].map(m=>m[1]);
+          if(groups.join(',')!=='happy,attitude,chill,hype,love') throw new Error(`Unexpected group order: ${groups.join(',')}`);
+          const tiles=(html.match(/data-sticker-tile/g)||[]).length;
+          if(tiles!==152) throw new Error(`Expected 152 static tiles, got ${tiles}`);
+          console.log('static grouped Browse PASS',{groups,tiles});
+          NODE
+      - name: Start static server
+        run: |
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/browse.html >/dev/null && exit 0; sleep 1; done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+      - name: Run Stage 4.2 Playwright gates
+        run: node scripts/test-stage-4.2.mjs
+      - name: List screenshot evidence
+        if: always()
+        run: |
+          find artifacts/stage-4.2 -maxdepth 1 -type f -name '*.png' -print -exec sha256sum {} \; 2>/dev/null || true
