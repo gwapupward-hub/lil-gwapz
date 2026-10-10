@@ -75,7 +75,12 @@ const browse=await browser.newContext({viewport:{width:375,height:900},reducedMo
 const browsePage=await browse.newPage();
 await browsePage.goto(`${base}/browse.html`,{waitUntil:'networkidle'});
 assert.equal(await browsePage.locator('[data-sticker-tile]').count(),152,'Browse retains 152 tiles');
-const browseControls=await browsePage.locator('#download-all,.filter-chip,.mobile-nav a').evaluateAll(nodes=>nodes.filter(node=>getComputedStyle(node).display!=='none').map(node=>{const r=node.getBoundingClientRect();return {text:(node.textContent||'').trim().replace(/\s+/g,' ').slice(0,50),width:r.width,height:r.height}}));
+const browseControls=await browsePage.locator('#download-all,.filter-chip,.mobile-nav a').evaluateAll(nodes=>nodes.map(node=>{
+  const r=node.getBoundingClientRect();
+  const s=getComputedStyle(node);
+  return {text:(node.textContent||'').trim().replace(/\s+/g,' ').slice(0,50),width:r.width,height:r.height,display:s.display,visibility:s.visibility};
+}).filter(x=>x.display!=='none'&&x.visibility!=='hidden'&&x.width>0&&x.height>0));
+assert.ok(browseControls.length>0,'Browse exposes rendered critical controls');
 const smallBrowse=browseControls.filter(t=>t.width<44||t.height<44);
 assert.deepEqual(smallBrowse,[],`critical Browse controls are at least 44x44: ${JSON.stringify(smallBrowse)}`);
 assert.ok(await browsePage.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Browse has no horizontal page overflow at 375px');
