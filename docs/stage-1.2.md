@@ -1,6 +1,6 @@
 # Stage 1.2 Report — Image pipeline, sticker pages, and analytics stub
 
-Status: **FAIL — STOP CONDITION TRIGGERED**
+Status: **STOPPED — MOOD INPUT RESOLVED; REPOSITORY SCOPE CONFLICT FOUND**
 
 Branch: `sprint-1-foundations`
 Previous stage report: `docs/stage-1.1.md` — PASS
@@ -8,99 +8,139 @@ Date: 2026-10-10
 
 Production was not changed.
 
-## Stop condition
+## Mood input — RESOLVED
 
-Stage 1.2 requires each of the 152 sticker records to have an explicit mood from this closed set:
+The owner supplied the locked asset manifest and Telegram import metadata, then authorized continuing with the revised five-family taxonomy:
 
-- `happy`
-- `sassy`
-- `chill`
-- `hype`
-- `love`
+- `happy` → Happy
+- `attitude` → Attitude when both characters are shown
+  - male display label: **Swagger**
+  - female display label: **Sassy**
+- `chill` → Chill
+- `hype` → Hype
+- `love` → Love
 
-It also says:
+`data/mood-map.csv` now contains one canonical entry for each of the 76 reactions. Both male and female sticker variants inherit the reaction's internal mood family.
 
-> If any sticker lacks a mood or colorway, write those to `data/stickers-missing.csv`, stop, and report. Don't guess.
-
-The existing source metadata contains 152 records and has names, sex/gender source data, filename and color/colorway source data, but **no `mood` field on any record**.
-
-Evidence:
+Mood-map counts:
 
 ```text
-source_count 152
-missing_rows 152
-mood_present 0
-colorway_source_present 152
+happy:    16 reactions
+attitude: 19 reactions
+chill:    16 reactions
+hype:     13 reactions
+love:     12 reactions
+TOTAL:    76 reactions
 ```
 
-Representative source record:
+The mapping is derived from the locked reaction name, emoji and keywords in the supplied manifest. It does not alter any source image, revision, checksum or Telegram derivative.
 
-```json
-{"id":"LG-R01-001","name":"Big Smile","sex":"M","color":"GRN","filename":"LG-R01-001-M-GRN-v01-TELEGRAM-512.png","width":512,"height":512}
-```
+The earlier `data/stickers-missing.csv` remains as historical evidence of the original Stage 1.2 stop condition; its missing mood field is now resolved by `data/mood-map.csv`.
 
-Representative filenames:
+## New scope conflict — MANDATORY STOP
+
+Standing Section 0 rule #1 says:
+
+> Change only stage Scope files; if another file must change, stop/report.
+
+Stage 1.2 scope is limited to:
 
 ```text
-LG-R01-001-F-GRN-v01-TELEGRAM-512.png
-LG-R01-001-M-GRN-v01-TELEGRAM-512.png
-LG-R01-002-F-ORG-v01-TELEGRAM-512.png
-LG-R01-002-M-ORG-v01-TELEGRAM-512.png
-LG-R01-003-F-PUR-v02-TELEGRAM-512.png
-LG-R01-003-M-PUR-v02-TELEGRAM-512.png
+stickers/
+thumbs/
+s/
+og/
+data/
+js/track.js
+scripts/
+sitemap.xml
+robots.txt
+docs/
 ```
 
-The filenames encode reaction ID, gender, colorway, version and dimensions, but do not encode one of the required five mood values. Assigning moods from reaction names would be inference, which the stage explicitly prohibits.
+However, the current application architecture still renders Browse through the root `app.js` and root `stickers.json` files, both outside Stage 1.2 scope.
 
-Result: **FAIL — explicit stop condition**.
+Current `app.js` behavior includes:
 
-## Missing metadata file
-
-`data/stickers-missing.csv` contains one row for each affected sticker, identified by reaction ID and gender, with `missing_fields=mood`.
-
-Expected rows:
-
-```text
-152 data rows + 1 header = 153 lines
+```js
+const moodNames = ['All moods','Happy','Sassy','Chill','Hype','Much love'];
 ```
 
-Colorway is not missing; the existing source has color data for all 152 records.
+It also derives moods heuristically at runtime instead of reading the canonical map:
 
-## Same-origin preflight
-
-The existing site resolves sticker assets through a relative same-origin path:
-
-```text
-app.js: const filenamePath = (s) => asset(`assets/stickers/${encodeURIComponent(s.filename)}`);
+```js
+const category = (s) => {
+  const haystack = `${s.name} ${s.keywords.join(' ')}`.toLowerCase();
+  for (const key of ['love','sassy','chill','hype','happy'])
+    if (moodTerms[key].some(term => haystack.includes(term))) return key;
+  return 'happy';
+};
 ```
 
-This is not the Stage 1.2 final same-origin gate because the stage stopped before generating the new `stickers/`, `s/`, and download surfaces.
+And Browse currently loads full 512×512 PNGs from the root asset directory:
 
-## Tasks intentionally not performed after stop
+```js
+const filenamePath = (s) => asset(`assets/stickers/${encodeURIComponent(s.filename)}`);
+...
+stickers = await (await fetch(asset('stickers.json'))).json();
+```
 
-- `data/stickers.json` was **not created** with guessed moods.
+Therefore two required Stage 1.2 outcomes cannot be made effective without changing out-of-scope root files:
+
+1. **The new `attitude` taxonomy cannot replace the old all-gender `sassy` runtime filter** without changing `app.js` or replacing the runtime architecture.
+2. **The Browse transfer-size gate cannot achieve the required >=50% reduction** merely by generating `thumbs/`; the existing Browse renderer will continue requesting full PNGs until the runtime data/render path is changed.
+
+Changing `app.js`, root `stickers.json`, or `browse.html` would violate the declared Stage 1.2 scope.
+
+Result: **STOP — scope conflict found before image-generation work.**
+
+## Completed in this resume
+
+- Supplied `MANIFEST.csv` reviewed as the locked asset ledger.
+- Supplied Telegram import metadata reviewed.
+- 76 unique reactions verified against 152 locked male/female variants.
+- Canonical five-family mood architecture established.
+- `data/mood-map.csv` committed.
+- `attitude` gender display rule encoded as `Swagger` / `Sassy`.
+- Existing root runtime inspected and scope conflict confirmed.
+
+## Tasks intentionally not performed after the scope stop
+
+- `data/stickers.json` was not generated yet.
 - No 256×256 WebP thumbnails were generated.
 - No `/s/<slug>.html` pages were generated.
 - No 1200×630 OG JPGs were generated.
 - `js/track.js` was not created.
 - `sitemap.xml` and `robots.txt` were not changed.
-- No image-count, OG-response, sitemap, transfer-size, or analytics-network gates were run.
+- Root `app.js`, root `stickers.json`, and `browse.html` were **not changed**.
+- No Stage 1.2 transfer-size gate was run because the current renderer cannot consume the generated thumbnails within declared scope.
+- Stage 2.1 was not started.
 
-## Gate status
+## Required stage-plan correction
 
-- **FAIL / NOT RUN** — `data/stickers.json` length/slug uniqueness; stage stopped before generation.
-- **FAIL / NOT RUN** — 152 PNG/thumb/page/OG counts; stage stopped before generation.
-- **FAIL / NOT RUN** — PNG dimensions/alpha verification for new `stickers/` path; stage stopped before generation.
-- **FAIL / NOT RUN** — thumb format/dimensions.
-- **FAIL / NOT RUN** — Browse transfer reduction.
-- **FAIL / NOT RUN** — random `/s/` URL and OG responses.
-- **FAIL / NOT RUN** — sitemap validation.
-- **FAIL / NOT RUN** — `js/track.js` network-request check.
+The clean correction is to expand Stage 1.2 scope to include:
+
+```text
+app.js
+stickers.json
+```
+
+This allows Stage 1.2 to:
+
+1. replace heuristic mood classification with the canonical `data/mood-map.csv` data,
+2. expose `attitude` internally while rendering Swagger/Sassy by gender,
+3. switch Browse image requests from full PNGs to generated 256×256 WebP thumbnails,
+4. retain full same-origin PNGs for dialog/download use,
+5. run the required Browse transfer-reduction gate honestly.
+
+`browse.html` does not need to be added if the existing DOM contract remains sufficient.
+
+No scope expansion has been performed automatically.
 
 ## Stage result
 
-Stage 1.2 is **FAIL / STOPPED** because mood metadata is absent for all 152 stickers.
+Stage 1.2 remains **STOPPED**, but the original missing-mood blocker is resolved.
 
-The next execution may resume only after an authoritative mood mapping is supplied or added for all 76 reactions (and therefore both character variants), using only `happy`, `sassy`, `chill`, `hype`, or `love`.
+The only current blocker is the Stage 1.2 file-scope mismatch between the written plan and the existing repository architecture.
 
-Stage 2.1 must not start.
+Production remains untouched.
