@@ -1,0 +1,31 @@
+/* Stage 3.1 — progressive motion enhancement. Core content stays visible without JS. */
+.motion-reveal{opacity:0;translate:0 14px;transition:opacity .45s ease,translate .45s ease;transition-delay:calc(var(--i,0) * 40ms)}
+.motion-reveal.is-revealed{opacity:1;translate:0 0}
+
+.browse-tile-art img{transition:transform .18s ease,filter .18s ease}
+@media(hover:hover) and (pointer:fine){
+  .browse-tile:hover .browse-tile-art img,.browse-tile:focus-within .browse-tile-art img{transform:scale(1.06);filter:drop-shadow(0 13px 14px rgba(0,0,0,.36)) drop-shadow(0 0 16px var(--gwap-green-glow))}
+}
+
+/* Use a compositor-friendly individual translate so the existing hero rotations remain intact. */
+@keyframes hero-view-drift{from{translate:0 -12px}to{translate:0 12px}}
+@keyframes hero-idle-float{from{translate:0 -6px}to{translate:0 6px}}
+
+@supports (animation-timeline:view()){
+  .hero-sticker{animation-name:hero-view-drift;animation-duration:1ms;animation-timing-function:linear;animation-fill-mode:both;animation-timeline:view();animation-range:entry 0% exit 100%}
+  .hero-sticker img{animation:none!important}
+}
+@supports not (animation-timeline:view()){
+  .hero-sticker{animation:none!important}
+  .hero-sticker img{animation:hero-idle-float 6s ease-in-out infinite alternate}
+  .hero-sticker-one img{animation-delay:0s}
+  .hero-sticker-two img{animation-delay:1.2s}
+  .hero-sticker-three img{animation-delay:2.4s}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .motion-reveal,.motion-reveal.is-revealed{opacity:1;translate:none;transition:none!important;transition-delay:0s!important}
+  .hero-sticker,.hero-sticker img{animation:none!important;translate:none!important}
+  .browse-tile-art img{transition:none!important}
+  .browse-tile:hover .browse-tile-art img,.browse-tile:focus-within .browse-tile-art img{transform:none}
+}
