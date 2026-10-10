@@ -67,9 +67,13 @@
   .filter-chip{min-height:44px}
 }
 @media(max-width:360px){
+  .site-header{gap:10px;padding-inline:14px}
+  .header-cta{padding-inline:12px;font-size:11px}
   .hero{padding-top:38px}
   .hero h1{font-size:clamp(44px,14.5vw,52px)}
   .hero-art{height:300px}
+  .section-heading{align-items:flex-start;flex-direction:column;gap:8px}
+  .section-heading .text-link{align-self:flex-start}
 }
 
 @media(prefers-reduced-motion:reduce){
