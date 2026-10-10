@@ -119,6 +119,19 @@
 .mood-hype{--mood:#ff3c58}
 .mood-love{--mood:#ff5eb8}
 
+.mood-showcase .mood-chill .mood-icon{
+  top:16px;
+  right:20px;
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:var(--gwap-green);
+  color:#071007;
+  font-size:28px;
+}
+
 @media(min-width:900px){
   .mood-showcase-track .mood-tile:nth-child(1){margin-right:18%}
   .mood-showcase-track .mood-tile:nth-child(2){margin-left:4%;margin-right:14%}
@@ -184,5 +197,6 @@
 
   .mood-step{left:22px}
   .mood-showcase .mood-icon{right:21px}
+  .mood-showcase .mood-chill .mood-icon{right:18px}
   .mood-showcase .mood-tile:after{left:22px;right:22px}
 }
