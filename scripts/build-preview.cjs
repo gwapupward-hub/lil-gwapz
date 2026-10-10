@@ -31,16 +31,23 @@ for (const dir of ['assets/brand','css','data','js','stickers','thumbs','s','og'
   if (fs.existsSync(src)) fs.cpSync(src, dst, { recursive: true });
 }
 
+/* Generated sticker pages resolve styles.css imports from /s/ under the static preview path. */
+const nestedLegalCss = path.join(dist, 's', 'legal.css');
+if (fs.existsSync(path.join(root, 'legal.css'))) {
+  fs.copyFileSync(path.join(root, 'legal.css'), nestedLegalCss);
+}
+
 const count = (dir, ext) => fs.readdirSync(path.join(dist, dir)).filter((name) => name.endsWith(ext)).length;
 const result = {
   stickers: count('stickers', '.png'),
   thumbs: count('thumbs', '.webp'),
   pages: count('s', '.html'),
   og: count('og', '.jpg'),
-  custom404: fs.existsSync(path.join(dist, '404.html'))
+  custom404: fs.existsSync(path.join(dist, '404.html')),
+  nestedLegalCss: fs.existsSync(nestedLegalCss)
 };
 
-if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || result.og < 152 || !result.custom404) {
+if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || result.og < 152 || !result.custom404 || !result.nestedLegalCss) {
   throw new Error(`Unexpected preview build counts: ${JSON.stringify(result)}`);
 }
 

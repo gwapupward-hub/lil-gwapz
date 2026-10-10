@@ -53,6 +53,20 @@ body { --green: var(--gwap-green); }
   text-decoration-color: var(--gwap-green);
 }
 
+/* Legal pages keep every actionable link at the project touch-target minimum. */
+.legal-page .header-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.legal-page .legal-document section a:not(.legal-action-link) {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 100%;
+}
+
 /* Generated sticker pages keep keyboard/touch targets at the project minimum. */
 .sticker-page .back-link,
 .sticker-page .site-footer a,
