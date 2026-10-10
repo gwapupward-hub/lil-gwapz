@@ -1,0 +1,67 @@
+name: Stage 5.2 Overflow Diagnostic
+
+on:
+  push:
+    branches:
+      - stage52-overflow-diagnostic
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact diagnostic commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install diagnostic dependencies
+        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 serve@14.2.5
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Build preview
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+      - name: Start server
+        run: |
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+      - name: Diagnose 375px Terms overflow
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser=await chromium.launch({headless:true});
+          const context=await browser.newContext({viewport:{width:375,height:900}});
+          const page=await context.newPage();
+          await page.goto('http://127.0.0.1:4173/terms.html',{waitUntil:'networkidle'});
+          const result=await page.evaluate(()=>{
+            const all=[...document.querySelectorAll('body *')];
+            const overflow=all.map(el=>{
+              const r=el.getBoundingClientRect();
+              const s=getComputedStyle(el);
+              return {
+                tag:el.tagName,
+                cls:el.className||'',
+                text:(el.textContent||'').trim().replace(/\s+/g,' ').slice(0,90),
+                left:r.left,right:r.right,width:r.width,
+                display:s.display,
+                position:s.position,
+                minWidth:s.minWidth,
+                maxWidth:s.maxWidth,
+                whiteSpace:s.whiteSpace,
+                overflowX:s.overflowX
+              };
+            }).filter(x=>x.display!=='none'&&(x.right>innerWidth+1||x.left<-1));
+            return {innerWidth,scrollWidth:document.documentElement.scrollWidth,bodyScrollWidth:document.body.scrollWidth,overflow};
+          });
+          console.log(JSON.stringify(result,null,2));
+          await page.screenshot({path:'/tmp/terms-overflow.png',fullPage:true});
+          await browser.close();
+          NODE
