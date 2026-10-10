@@ -12,6 +12,31 @@
 
 .mood-chill { --mood: var(--gwap-green); }
 
+/* Stage 6.1 — canonical green + semantic contrast enforcement.
+   Gwap Green text is reserved for the exact #09080d background.
+   Green fills always carry dark text. */
+.playground-hero {
+  background:
+    radial-gradient(ellipse at 77% 48%, rgba(116,45,244,.25), transparent 39%),
+    radial-gradient(ellipse at 61% 80%, rgba(19,221,19,.1), transparent 32%);
+}
+.hero h1 em,
+.spark.spark-one {
+  color: var(--ink);
+}
+.button-primary {
+  background: var(--gwap-green);
+  color: #071007;
+  box-shadow: 0 10px 35px rgba(19,221,19,.18);
+}
+.mobile-nav a.selected,
+.mobile-nav a.selected span {
+  color: var(--ink);
+}
+.mobile-nav a.selected {
+  background: rgba(19,221,19,.11);
+}
+
 @media (min-width: 641px) {
   #download-all {
     min-width: 105.546875px;
