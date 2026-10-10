@@ -44,6 +44,13 @@
   align-items:center;
   justify-content:center;
 }
+.site-footer .footer-links a{
+  display:inline-flex!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  align-items:center;
+  justify-content:center;
+}
 .card-download,.download-one,.sticker-viewer-close,.sticker-viewer-nav{
   min-width:44px;
   min-height:44px;
