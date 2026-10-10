@@ -10,6 +10,11 @@ cp.execFileSync(process.execPath, [path.join(__dirname, 'build-stage-1.2.cjs')],
   stdio: 'inherit'
 });
 
+cp.execFileSync(process.execPath, [path.join(__dirname, 'build-browse.mjs')], {
+  cwd: root,
+  stdio: 'inherit'
+});
+
 fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 
