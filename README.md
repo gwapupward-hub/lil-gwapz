@@ -45,6 +45,7 @@ This repository is the production source for the Lil Gwapz web experience and do
 - Individual transparent PNG downloads
 - Client-generated full-pack ZIP download
 - Brand, favicon and social share-card assets
+- [Approved app icon lock and export specifications](assets/brand/ICON_LOCK.md)
 - Public Terms of Service, Privacy Policy and IP Usage Policy
 
 ## Brand ownership
