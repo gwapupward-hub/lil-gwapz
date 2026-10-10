@@ -1,0 +1,124 @@
+name: Stage 6.2 Full QA Gate
+
+on:
+  push:
+    branches:
+      - stage62-full-qa
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Install pinned QA dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save \
+            sharp@0.35.5 \
+            playwright@1.64.0 \
+            @axe-core/playwright@4.13.0 \
+            serve@14.2.5 \
+            lighthouse@13.5.0
+          npm ls --depth=0 sharp playwright @axe-core/playwright serve lighthouse
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build deterministic release candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+
+      - name: Start release-candidate server
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx serve dist -l 4173 > /tmp/lilgwapz-stage62-serve.log 2>&1 &
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lilgwapz-stage62-serve.log
+          exit 1
+
+      - name: Full browser QA matrix
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node scripts/test-stage-6.2.mjs
+
+      - name: Lighthouse release QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          for page in home browse terms ip privacy sticker notfound; do
+            case "$page" in
+              home) url="http://127.0.0.1:4173/" ;;
+              browse) url="http://127.0.0.1:4173/browse.html" ;;
+              terms) url="http://127.0.0.1:4173/terms.html" ;;
+              ip) url="http://127.0.0.1:4173/ip-policy.html" ;;
+              privacy) url="http://127.0.0.1:4173/privacy.html" ;;
+              sticker) url="http://127.0.0.1:4173/s/big-smile-male.html" ;;
+              notfound) url="http://127.0.0.1:4173/404.html" ;;
+            esac
+            if [ "$page" = "home" ] || [ "$page" = "browse" ]; then
+              cats="performance,accessibility,best-practices,seo"
+            else
+              cats="accessibility"
+            fi
+            npx lighthouse "$url" \
+              --only-categories="$cats" \
+              --chrome-flags="--headless --no-sandbox --disable-gpu" \
+              --output=json \
+              --output-path="/tmp/lh62-${page}.json" \
+              --quiet
+          done
+          node - <<'NODE'
+          const fs = require('fs');
+          let failed = false;
+          const pages = ['home','browse','terms','ip','privacy','sticker','notfound'];
+          for (const page of pages) {
+            const j = JSON.parse(fs.readFileSync(`/tmp/lh62-${page}.json`, 'utf8'));
+            const score = (name) => Math.round((j.categories?.[name]?.score ?? 0) * 100);
+            const a11y = score('accessibility');
+            const row = { accessibility: a11y };
+            if (page === 'home' || page === 'browse') {
+              row.performance = score('performance');
+              row.bestPractices = score('best-practices');
+              row.seo = score('seo');
+            }
+            console.log(`${page}: ${JSON.stringify(row)}`);
+            if (a11y < 95) { console.error(`FAIL: ${page} accessibility ${a11y} < 95`); failed = true; }
+            if (page === 'home') {
+              if (row.performance < 60) { console.error(`FAIL: home performance ${row.performance} < 60`); failed = true; }
+              if (row.bestPractices < 90) { console.error(`FAIL: home best-practices ${row.bestPractices} < 90`); failed = true; }
+              if (row.seo < 95) { console.error(`FAIL: home SEO ${row.seo} < 95`); failed = true; }
+            }
+            if (page === 'browse') {
+              if (row.performance < 50) { console.error(`FAIL: browse performance ${row.performance} < 50`); failed = true; }
+              if (row.bestPractices < 90) { console.error(`FAIL: browse best-practices ${row.bestPractices} < 90`); failed = true; }
+              if (row.seo < 95) { console.error(`FAIL: browse SEO ${row.seo} < 95`); failed = true; }
+            }
+          }
+          if (failed) process.exit(1);
+          NODE
+
+      - name: Screenshot hashes
+        if: always()
+        shell: bash
+        run: |
+          if [ -d artifacts/stage-6.2 ]; then
+            sha256sum artifacts/stage-6.2/*.png || true
+          fi
