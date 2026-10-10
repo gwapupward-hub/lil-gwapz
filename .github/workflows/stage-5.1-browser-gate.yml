@@ -1,0 +1,62 @@
+name: Stage 5.1 Browser Gate
+
+on:
+  push:
+    branches:
+      - stage51-sharing-conversion
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact validation commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install deterministic test dependencies
+        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 serve@14.2.5
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Build experimental preview output
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+      - name: Verify Stage 5.1 static contract
+        run: |
+          sha256sum js/share.js dist/js/share.js
+          sha256sum js/sticker-dialog.js dist/js/sticker-dialog.js
+          sha256sum css/dialog.css dist/css/dialog.css
+          grep -n 'Free for personal use. Commercial use needs written permission.' dist/browse.html
+          grep -n 'https://www.lilgwapz.xyz' dist/js/share.js
+          if grep -q 'vercel.app' dist/js/share.js; then echo 'Preview host leaked into canonical sharing runtime'; exit 1; fi
+          node - <<'NODE'
+          const fs=require('fs');
+          const html=fs.readFileSync('dist/browse.html','utf8');
+          const tiles=(html.match(/data-sticker-tile/g)||[]).length;
+          if(tiles!==152) throw new Error(`Expected 152 static tiles, got ${tiles}`);
+          if((html.match(/id="sticker-viewer-share"/g)||[]).length!==1) throw new Error('Share control missing or duplicated');
+          if((html.match(/id="sticker-viewer-copy"/g)||[]).length!==1) throw new Error('Copy control missing or duplicated');
+          if(!html.includes('src="js/share.js"')) throw new Error('share.js is not loaded');
+          const shareIndex=html.indexOf('src="js/share.js"');
+          const dialogIndex=html.indexOf('src="js/sticker-dialog.js"');
+          if(shareIndex<0||dialogIndex<0||shareIndex>dialogIndex) throw new Error('share.js must load before sticker-dialog.js');
+          console.log('static Stage 5.1 PASS',{tiles,shareControl:1,copyControl:1});
+          NODE
+      - name: Start static server
+        run: |
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/browse.html >/dev/null && exit 0; sleep 1; done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+      - name: Run Stage 5.1 Playwright gates
+        run: node scripts/test-stage-5.1.mjs
+      - name: List screenshot evidence
+        if: always()
+        run: |
+          find artifacts/stage-5.1 -maxdepth 1 -type f -name '*.png' -print -exec sha256sum {} \; 2>/dev/null || true
