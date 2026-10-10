@@ -67,6 +67,9 @@ jobs:
       - name: Axe, green-use, overflow, and 404 baseline
         run: node scripts/test-stage-6.1-baseline.mjs
 
+      - name: Diagnose generated sticker-page resource errors
+        run: node scripts/diagnose-stage-6.1-sticker-resource.mjs
+
       - name: Lighthouse accessibility baseline
         shell: bash
         run: |
