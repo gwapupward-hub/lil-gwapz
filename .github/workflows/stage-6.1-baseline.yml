@@ -38,9 +38,7 @@ jobs:
             "lighthouse@${LIGHTHOUSE_VERSION}"
           node --version
           npm --version
-          node -e "console.log('axe', require('@axe-core/playwright/package.json').version)"
-          node -e "console.log('playwright', require('playwright/package.json').version)"
-          node -e "console.log('lighthouse', require('lighthouse/package.json').version)"
+          npm ls --depth=0 @axe-core/playwright playwright lighthouse sharp serve
 
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
