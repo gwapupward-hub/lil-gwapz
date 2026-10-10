@@ -57,7 +57,7 @@ jobs:
       - name: Full browser QA matrix
         env:
           BASE_URL: http://127.0.0.1:4173
-        run: node scripts/test-stage-6.2-v2.mjs
+        run: node scripts/test-stage-6.2-v3.mjs
 
       - name: Lighthouse release QA
         shell: bash
