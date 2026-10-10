@@ -8,23 +8,29 @@
   const id=document.getElementById('sticker-viewer-id');
   const mood=document.getElementById('sticker-viewer-mood');
   const download=document.getElementById('sticker-viewer-download');
+  const shareButton=document.getElementById('sticker-viewer-share');
+  const copyButton=document.getElementById('sticker-viewer-copy');
+  const status=document.getElementById('sticker-viewer-status');
   const closeButton=document.getElementById('sticker-viewer-close');
   const prevButton=document.getElementById('sticker-viewer-prev');
   const nextButton=document.getElementById('sticker-viewer-next');
   const tileBySlug=new Map();
   let stickerBySlug=new Map();
   let currentSlug='';
+  let currentSticker=null;
   let lastTrigger=null;
   let ready=false;
 
   const slugFromTile=tile=>tile.querySelector('.browse-tile-link')?.getAttribute('href')?.match(/s\/([^/?#]+)\.html/)?.[1]||'';
   const visibleTiles=()=>[...grid.querySelectorAll('[data-sticker-tile]:not([hidden])')];
   const sameOriginFull=sticker=>{const url=new URL(sticker.full,location.href);if(url.origin!==location.origin)throw new Error(`Full PNG must be same-origin: ${sticker.slug}`);return url.href};
+  const setStatus=message=>{if(status)status.textContent=message||''};
 
   function setSticker(slug){
     const sticker=stickerBySlug.get(slug); if(!sticker) return false;
     let full; try{full=sameOriginFull(sticker)}catch(error){console.error(error);download.hidden=true;return false}
     currentSlug=slug;
+    currentSticker=sticker;
     image.src=full;
     image.alt=`${sticker.name}, ${sticker.gender} Lil Gwapz`;
     title.textContent=`${sticker.emoji} ${sticker.name}`;
@@ -33,6 +39,7 @@
     download.href=full;
     download.download=`gwap-${sticker.slug}.png`;
     download.hidden=false;
+    setStatus('');
     const visible=visibleTiles();
     const index=visible.findIndex(tile=>slugFromTile(tile)===slug);
     prevButton.disabled=index<=0;
@@ -63,6 +70,35 @@
   dialog.addEventListener('close',()=>{const target=lastTrigger;lastTrigger=null;target?.focus?.()});
   dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();navigate(-1)}else if(event.key==='ArrowRight'){event.preventDefault();navigate(1)}});
   download.addEventListener('click',()=>{if(currentSlug)window.gwapTrack?.('download_single',{slug:currentSlug,surface:'dialog'})});
+
+  shareButton?.addEventListener('click',async()=>{
+    if(!currentSticker||!window.gwapShare) return;
+    shareButton.disabled=true;
+    setStatus('');
+    try{
+      const result=await window.gwapShare.shareSticker({sticker:currentSticker,surface:'dialog'});
+      if(result.status==='shared') setStatus(result.mode==='file'?'Sticker ready to share.':'Link ready to share.');
+      else if(result.status==='copied') setStatus('Link copied.');
+      else if(result.status==='cancelled') setStatus('Share cancelled.');
+      else setStatus('Could not share this sticker.');
+    }catch(error){
+      console.error('Could not share sticker',error);
+      setStatus('Could not share this sticker.');
+    }finally{shareButton.disabled=false}
+  });
+
+  copyButton?.addEventListener('click',async()=>{
+    if(!currentSlug||!window.gwapShare) return;
+    copyButton.disabled=true;
+    setStatus('');
+    try{
+      await window.gwapShare.copyStickerLink({slug:currentSlug,surface:'dialog'});
+      setStatus('Link copied.');
+    }catch(error){
+      console.error('Could not copy sticker link',error);
+      setStatus('Could not copy the link.');
+    }finally{copyButton.disabled=false}
+  });
 
   let activeTile=null,startX=0,startY=0,pressTimer=0,longPressed=false,moved=false,suppressUntil=0;
   const clearPress=()=>{if(pressTimer){clearTimeout(pressTimer);pressTimer=0}};
