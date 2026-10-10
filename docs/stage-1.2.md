@@ -1,49 +1,16 @@
 # Stage 1.2 Report — Image pipeline, sticker pages, and analytics stub
 
-Status: **STOPPED — MOOD INPUT RESOLVED; REPOSITORY SCOPE CONFLICT FOUND**
+Status: **PASS — EXPERIMENTAL PREVIEW ONLY**
 
 Branch: `sprint-1-foundations`
 Previous stage report: `docs/stage-1.1.md` — PASS
 Date: 2026-10-10
 
-Production was not changed.
+Production (`main`, `lil-gwapz-production`, `lilgwapz.xyz`, and `www.lilgwapz.xyz`) was not changed.
 
-## Mood input — RESOLVED
+## Approved scope amendment
 
-The owner supplied the locked asset manifest and Telegram import metadata, then authorized continuing with the revised five-family taxonomy:
-
-- `happy` → Happy
-- `attitude` → Attitude when both characters are shown
-  - male display label: **Swagger**
-  - female display label: **Sassy**
-- `chill` → Chill
-- `hype` → Hype
-- `love` → Love
-
-`data/mood-map.csv` now contains one canonical entry for each of the 76 reactions. Both male and female sticker variants inherit the reaction's internal mood family.
-
-Mood-map counts:
-
-```text
-happy:    16 reactions
-attitude: 19 reactions
-chill:    16 reactions
-hype:     13 reactions
-love:     12 reactions
-TOTAL:    76 reactions
-```
-
-The mapping is derived from the locked reaction name, emoji and keywords in the supplied manifest. It does not alter any source image, revision, checksum or Telegram derivative.
-
-The earlier `data/stickers-missing.csv` remains as historical evidence of the original Stage 1.2 stop condition; its missing mood field is now resolved by `data/mood-map.csv`.
-
-## New scope conflict — MANDATORY STOP
-
-Standing Section 0 rule #1 says:
-
-> Change only stage Scope files; if another file must change, stop/report.
-
-Stage 1.2 scope is limited to:
+The original Stage 1.2 scope was:
 
 ```text
 stickers/
@@ -58,89 +25,335 @@ robots.txt
 docs/
 ```
 
-However, the current application architecture still renders Browse through the root `app.js` and root `stickers.json` files, both outside Stage 1.2 scope.
-
-Current `app.js` behavior includes:
-
-```js
-const moodNames = ['All moods','Happy','Sassy','Chill','Hype','Much love'];
-```
-
-It also derives moods heuristically at runtime instead of reading the canonical map:
-
-```js
-const category = (s) => {
-  const haystack = `${s.name} ${s.keywords.join(' ')}`.toLowerCase();
-  for (const key of ['love','sassy','chill','hype','happy'])
-    if (moodTerms[key].some(term => haystack.includes(term))) return key;
-  return 'happy';
-};
-```
-
-And Browse currently loads full 512×512 PNGs from the root asset directory:
-
-```js
-const filenamePath = (s) => asset(`assets/stickers/${encodeURIComponent(s.filename)}`);
-...
-stickers = await (await fetch(asset('stickers.json'))).json();
-```
-
-Therefore two required Stage 1.2 outcomes cannot be made effective without changing out-of-scope root files:
-
-1. **The new `attitude` taxonomy cannot replace the old all-gender `sassy` runtime filter** without changing `app.js` or replacing the runtime architecture.
-2. **The Browse transfer-size gate cannot achieve the required >=50% reduction** merely by generating `thumbs/`; the existing Browse renderer will continue requesting full PNGs until the runtime data/render path is changed.
-
-Changing `app.js`, root `stickers.json`, or `browse.html` would violate the declared Stage 1.2 scope.
-
-Result: **STOP — scope conflict found before image-generation work.**
-
-## Completed in this resume
-
-- Supplied `MANIFEST.csv` reviewed as the locked asset ledger.
-- Supplied Telegram import metadata reviewed.
-- 76 unique reactions verified against 152 locked male/female variants.
-- Canonical five-family mood architecture established.
-- `data/mood-map.csv` committed.
-- `attitude` gender display rule encoded as `Swagger` / `Sassy`.
-- Existing root runtime inspected and scope conflict confirmed.
-
-## Tasks intentionally not performed after the scope stop
-
-- `data/stickers.json` was not generated yet.
-- No 256×256 WebP thumbnails were generated.
-- No `/s/<slug>.html` pages were generated.
-- No 1200×630 OG JPGs were generated.
-- `js/track.js` was not created.
-- `sitemap.xml` and `robots.txt` were not changed.
-- Root `app.js`, root `stickers.json`, and `browse.html` were **not changed**.
-- No Stage 1.2 transfer-size gate was run because the current renderer cannot consume the generated thumbnails within declared scope.
-- Stage 2.1 was not started.
-
-## Required stage-plan correction
-
-The clean correction is to expand Stage 1.2 scope to include:
+The owner explicitly approved adding:
 
 ```text
 app.js
 stickers.json
 ```
 
-This allows Stage 1.2 to:
+This amendment was required because the existing Browse runtime lived in root `app.js` and consumed root `stickers.json`.
 
-1. replace heuristic mood classification with the canonical `data/mood-map.csv` data,
-2. expose `attitude` internally while rendering Swagger/Sassy by gender,
-3. switch Browse image requests from full PNGs to generated 256×256 WebP thumbnails,
-4. retain full same-origin PNGs for dialog/download use,
-5. run the required Browse transfer-reduction gate honestly.
+Implementation note: root `app.js` was changed. Root `stickers.json` was intentionally left unchanged and remains the immutable 152-record source metadata input to the deterministic generator.
 
-`browse.html` does not need to be added if the existing DOM contract remains sufficient.
+Result: **PASS — implementation stayed within amended scope.**
 
-No scope expansion has been performed automatically.
+## Canonical mood architecture
+
+The supplied locked asset manifest and Telegram import metadata were used as the authoritative asset source. The approved five-family taxonomy is:
+
+- `happy` → Happy
+- `attitude` → Attitude when both characters are shown
+  - male display label: **Swagger**
+  - female display label: **Sassy**
+- `chill` → Chill
+- `hype` → Hype
+- `love` → Love
+
+`data/mood-map.csv` contains one canonical entry for each of the 76 reactions. Both male and female variants inherit the reaction family.
+
+```text
+happy:    16 reactions
+attitude: 19 reactions
+chill:    16 reactions
+hype:     13 reactions
+love:     12 reactions
+TOTAL:    76 reactions
+```
+
+The earlier `data/stickers-missing.csv` is retained as historical evidence of the original missing-mood stop condition; that blocker is now resolved.
+
+Result: **PASS**.
+
+## Runtime correction
+
+Root `app.js` now:
+
+- fetches canonical `data/stickers.json`,
+- uses explicit mood metadata instead of heuristic classification,
+- uses internal `attitude` with gender-aware display labels,
+- normalizes legacy `?mood=sassy` and `?mood=swagger` URLs to `attitude`,
+- renders Browse and home preview cards with generated 256×256 WebP thumbnails,
+- retains full same-origin PNGs for dialog and download surfaces,
+- emits the allowed analytics events through the no-provider stub.
+
+The old `moodTerms` / runtime guessing classifier is gone.
+
+Result: **PASS**.
+
+## Deterministic derivative pipeline
+
+Generated derivatives are reproducible from the locked originals instead of being committed as hundreds of generated binaries.
+
+Stored source pipeline:
+
+```text
+scripts/build-stage-1.2.cjs
+scripts/build-preview.cjs
+```
+
+The experimental Vercel project runs:
+
+```text
+install: npm install sharp@0.35.5 --no-save
+build:   node scripts/build-preview.cjs
+output:  dist
+```
+
+The generator reads the immutable root `stickers.json` plus `data/mood-map.csv`, then produces the deployment artifacts.
+
+Local reproducibility evidence:
+
+```text
+built 25/152
+built 50/152
+built 75/152
+built 100/152
+built 125/152
+built 150/152
+built 152/152
+complete { stickers: 152, urls: 157 }
+dist ready { stickers: 152, thumbs: 152, pages: 152, og: 153 }
+PASS root stickers.json unchanged
+```
+
+The `og: 153` deployment count includes 152 sticker-specific OG images plus the existing general Lil Gwapz share image.
+
+Result: **PASS**.
+
+## Artifact count and metadata gates
+
+```text
+stickers 152
+thumbs 152
+pages 152
+og 152
+
+rows 152 unique_slugs 152 moods attitude,chill,happy,hype,love
+slug PASS
+name PASS
+mood PASS
+gender PASS
+colorway PASS
+thumb PASS
+full PASS
+missing_artifacts 0
+```
+
+Result: **PASS**.
+
+## Image dimension and alpha gates
+
+```text
+png_512_alpha_bad 0
+thumb_256_webp_alpha_bad 0
+og_1200x630_jpeg_bad 0
+```
+
+Therefore:
+
+- all 152 full PNGs are 512×512 with alpha,
+- all 152 thumbnails are 256×256 transparent WebP,
+- all 152 sticker OG assets are 1200×630 JPEG.
+
+Source PNGs were not modified.
+
+Result: **PASS**.
+
+## Browse transfer-size gate
+
+Stage 1.1 Browse baseline:
+
+```text
+5,601,017 bytes
+```
+
+A conservative upper-bound Stage 1.2 calculation intentionally counted **all 152 thumbnails**, plus Browse HTML/JS/JSON/CSS and the logo. A real lazy-loaded viewport requests fewer thumbnails, so this is stricter than the normal initial browser payload.
+
+```text
+all_152_thumb_bytes=2118008
+browse_base_bytes=123923
+logo_bytes=330149
+conservative_total_bytes=2572080
+baseline_bytes 5601017
+conservative_reduction_pct 54.08
+passes_50pct True
+```
+
+Required reduction: >=50%.
+Observed conservative reduction: **54.08%**.
+
+Result: **PASS**.
+
+### Browser-runner note
+
+Playwright 1.64.0 was installed in the isolated Vercel sandbox, but its bundled Chromium could not launch because the sandbox image lacked required NSS/X11/GBM/audio system libraries and did not provide a package manager for installing them. An attempt to provision a Playwright-ready custom sandbox image was also unsupported by the available sandbox API.
+
+No browser PASS is claimed from that unavailable runner. Stage 1.2's transfer requirement was instead satisfied with the stricter all-152-thumbnail byte upper bound above, and deployed HTTP smoke tests were run against the actual Vercel Preview.
+
+## Same-origin PNG gate
+
+Canonical generated metadata uses paths such as:
+
+```text
+/stickers/LG-R01-020-M-PUR-v01-TELEGRAM-512.png
+```
+
+Local validation:
+
+```text
+same_origin_png_bad 0
+```
+
+Deployed sticker pages also render relative same-origin download paths.
+
+Result: **PASS**.
+
+## Sticker page / OG HTTP gate
+
+Ten distributed sticker records and their OG assets were checked locally. Every checked route returned HTTP 200:
+
+```text
+s/big-smile-male.html 200
+og/big-smile-male.jpg 200
+s/big-hug-female.html 200
+og/big-hug-female.jpg 200
+s/thank-you-male.html 200
+og/thank-you-male.jpg 200
+s/fake-shock-female.html 200
+og/fake-shock-female.jpg 200
+s/shades-on-male.html 200
+og/shades-on-male.jpg 200
+s/wait-what-female.html 200
+og/wait-what-female.jpg 200
+s/real-tears-male.html 200
+og/real-tears-male.jpg 200
+s/i-m-done-female.html 200
+og/i-m-done-female.jpg 200
+s/victory-male.html 200
+og/victory-male.jpg 200
+s/good-night-female.html 200
+og/good-night-female.jpg 200
+```
+
+Result: **PASS**.
+
+## Sitemap / robots gate
+
+```text
+urls 157 sticker_urls 152 unique 157
+robots User-agent: * | Allow: / | Sitemap: https://www.lilgwapz.xyz/sitemap.xml
+```
+
+Result: **PASS**.
+
+## Analytics stub gate
+
+`js/track.js` permits exactly:
+
+```text
+sticker_open
+filter_change
+download_single
+download_pack
+copy_link
+share
+share_cancel
+```
+
+and forwards only to:
+
+```js
+window.gwapAnalytics?.(event, payload)
+```
+
+Source inspection found no `fetch`, `XMLHttpRequest`, `sendBeacon`, tracking image, or provider URL in the stub.
+
+Result: **PASS — no analytics network provider is configured.**
+
+## Experimental Vercel Preview gate
+
+Validated code commit:
+
+```text
+d55321848f57c8247b00cc8c117fff83977f06ff
+```
+
+Deployment:
+
+```text
+dpl_GcmRrY3e1Sfeibzfw2aNL1DHE5jh
+https://lil-gwapz-9buc4wdnv-bigdaddygwaps-projects.vercel.app
+```
+
+Vercel build evidence:
+
+```text
+Cloning github.com/gwapupward-hub/lil-gwapz (Branch: sprint-1-foundations, Commit: d553218)
+Running "install" command: `npm install sharp@0.35.5 --no-save`...
+added 6 packages in 2s
+built 25/152
+built 50/152
+built 75/152
+built 100/152
+built 125/152
+built 150/152
+built 152/152
+complete { stickers: 152, urls: 157 }
+dist ready { stickers: 152, thumbs: 152, pages: 152, og: 153 }
+Build Completed in /vercel/output [25s]
+Deployment completed
+```
+
+Deployment state: **READY**.
+
+Result: **PASS**.
+
+## Deployed smoke verification
+
+The protected experimental Preview was fetched through Vercel's temporary authenticated preview access.
+
+Confirmed:
+
+- `/browse.html` → 200
+- `/data/stickers.json` → 200
+- `/s/say-less-male.html` → 200
+  - canonical: `https://www.lilgwapz.xyz/s/say-less-male.html`
+  - mood display: **Swagger**
+  - same-origin male PNG download
+- `/s/say-less-female.html` → 200
+  - canonical: `https://www.lilgwapz.xyz/s/say-less-female.html`
+  - mood display: **Sassy**
+  - same-origin female PNG download
+
+The deployed canonical data also preserves source revision differences; for example, `Exhausted` remains male v01 and female v02.
+
+Preview responses contain Vercel's own Preview Comments / feedback script injection. That script is platform preview chrome, not repository application source and is not present in the Stage 1.2 analytics stub.
+
+Result: **PASS**.
+
+## Gate summary
+
+| Gate | Result |
+|---|---|
+| 152 canonical metadata rows / unique slugs | PASS |
+| 152 full PNGs, 512×512 + alpha | PASS |
+| 152 WebP thumbs, 256×256 + alpha | PASS |
+| 152 sticker pages | PASS |
+| 152 sticker OG JPGs, 1200×630 | PASS |
+| Browse transfer >=50% below baseline | PASS — 54.08% conservative reduction |
+| Ten distributed sticker + OG HTTP checks | PASS |
+| Sitemap has exactly 152 sticker URLs | PASS |
+| Same-origin full PNG downloads | PASS |
+| Analytics stub has no network provider | PASS |
+| Gender-aware Attitude / Swagger / Sassy | PASS |
+| Experimental Vercel build from exact commit | PASS — READY |
+| Production isolation | PASS |
 
 ## Stage result
 
-Stage 1.2 remains **STOPPED**, but the original missing-mood blocker is resolved.
+Stage 1.2 is **PASS**.
 
-The only current blocker is the Stage 1.2 file-scope mismatch between the written plan and the existing repository architecture.
+Sprint 1 Foundations now has Stage 1.1 and Stage 1.2 passing on the experimental path. No production promotion, production-domain reassignment, or `main` merge was performed.
 
-Production remains untouched.
+Stage 2.1 may begin only after this report is committed.
