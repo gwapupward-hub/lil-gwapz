@@ -7,15 +7,27 @@ Date: 2026-10-10
 ## Build and deployment findings
 
 - Site type: static root-HTML site.
-- Root pages found: `index.html`, `browse.html`, `ip-policy.html`, `privacy.html`, `terms.html`.
+- Root pages: `index.html`, `browse.html`, `ip-policy.html`, `privacy.html`, `terms.html`.
 - `package.json`: not present.
 - `vercel.json`: not present.
 - `netlify.toml`: not present.
-- Deployment: repository is connected to Vercel and served as a static project.
+- Deployment model: repository-backed static Vercel project.
+- Production remains out of scope for this experiment.
 
-## Preflight checks completed before stop
+## Tooling
 
-### Sticker asset count
+Installed in the isolated Vercel stage runner, outside the repository:
+
+```text
+lighthouse 13.5.0
+playwright 1.64.0
+@axe-core/playwright 4.13.0
+sharp 0.35.5
+broken-link-checker 0.7.8
+serve 14.2.6
+```
+
+## Sticker asset count
 
 Command:
 
@@ -29,21 +41,19 @@ Output:
 152
 ```
 
-Result: PASS — expected 152 sticker PNGs and found 152.
+Result: **PASS** — expected 152 and found 152.
 
-### Live accent check
+## Original accent discovery
 
-Relevant live CSS:
+The original experimental source inherited this token from the current site:
 
 ```css
-:root{color-scheme:dark;--bg:#09080d;--surface:#14121b;--surface-2:#1c1925;--line:#302b39;--text:#fbf9ff;--muted:#aaa3b4;--green:#18e13a;--purple:#8d3cff;--orange:#ff9b21;--red:#ff3c58;...}
+--green:#18e13a;
 ```
 
-Result: FAIL — the live accent is `#18e13a`, not the required `#13dd13`.
+The stage specification requires `#13dd13`. The owner explicitly authorized replacing the legacy accent **only in the experimental preview**. Production remains untouched.
 
-Per Stage 1.1, this is an explicit stop condition. No UI/token/canonical changes were made.
-
-### Canonical host preflight
+## Original host behavior
 
 Command:
 
@@ -51,16 +61,31 @@ Command:
 curl -sI https://lilgwapz.xyz/
 ```
 
-Observed first status line:
+Observed:
 
 ```text
 HTTP/2 200
 ```
 
-Expected by the stage: `301` or `308` redirect to `www`.
+The stage originally expected a 301/308 redirect to `www`. The owner explicitly restricted this run to the experimental preview, so production domain routing is not modified in this sprint.
 
-Result: FAIL — the apex currently serves `200` instead of redirecting to `https://www.lilgwapz.xyz/`.
+## Lighthouse mobile baseline
 
-## Baseline tasks not run
+Local test host: `http://127.0.0.1:8080`
 
-Lighthouse baselines and viewport screenshots were not run after the explicit accent-color stop condition was discovered. Continuing would violate the stage's `Stop if` rule.
+| Page | SEO | Performance | LCP | CLS | Transfer | Images |
+|---|---:|---:|---:|---:|---:|---:|
+| Home `/` | 1.00 | 0.77 | 6913.984 ms | 0.022219 | 2,051,250 B | 9 |
+| Browse `/browse.html` | 1.00 | 0.57 | 8286.098 ms | 0.397641 | 5,601,017 B | 27 |
+| IP policy `/ip-policy.html` | 1.00 | 0.95 | 2867.316 ms | 0 | 349,561 B | 1 |
+
+## Baseline screenshots captured in the isolated runner
+
+- `docs/baseline/home-375.png`
+- `docs/baseline/home-768.png`
+- `docs/baseline/home-1280.png`
+- `docs/baseline/browse-375.png`
+- `docs/baseline/browse-768.png`
+- `docs/baseline/browse-1280.png`
+
+The binary screenshots were generated successfully in the stage runner. They were not committed because the connected GitHub write interface for this run supports text mutations but not direct binary-file transfer from the Vercel sandbox.
