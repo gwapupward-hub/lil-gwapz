@@ -1,0 +1,33 @@
+name: Stage 5.2 Browse Regression Diagnostic
+
+on:
+  push:
+    branches:
+      - stage52-browse-regression-diagnostic
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact diagnostic commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install sharp
+        run: npm install --no-save sharp@0.35.5
+      - name: Build Browse
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+      - name: Inspect prior-stage mobile filter contract
+        run: |
+          echo "mobile-filter-open: $(grep -o 'id=\"mobile-filter-open\"' browse.html | wc -l)"
+          echo "mobile-filter-dialog: $(grep -o 'id=\"mobile-filter-dialog\"' browse.html | wc -l)"
+          echo "static tiles: $(grep -o 'data-sticker-tile' browse.html | wc -l)"
+          grep -n 'mobile-filter-dialog' browse.html || true
+          grep -n '<footer class=' browse.html | tail -n 3
