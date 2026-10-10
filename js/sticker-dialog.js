@@ -26,6 +26,22 @@
   const sameOriginFull=sticker=>{const url=new URL(sticker.full,location.href);if(url.origin!==location.origin)throw new Error(`Full PNG must be same-origin: ${sticker.slug}`);return url.href};
   const setStatus=message=>{if(status)status.textContent=message||''};
 
+  async function downloadSticker(sticker,surface){
+    const full=sameOriginFull(sticker);
+    const response=await fetch(full,{credentials:'same-origin'});
+    if(!response.ok) throw new Error(`Sticker download failed: ${response.status}`);
+    const blob=await response.blob();
+    const objectUrl=URL.createObjectURL(blob);
+    const anchor=document.createElement('a');
+    anchor.href=objectUrl;
+    anchor.download=`gwap-${sticker.slug}.png`;
+    document.body.append(anchor);
+    anchor.click();
+    anchor.remove();
+    setTimeout(()=>URL.revokeObjectURL(objectUrl),0);
+    window.gwapTrack?.('download_single',{slug:sticker.slug,surface});
+  }
+
   function setSticker(slug){
     const sticker=stickerBySlug.get(slug); if(!sticker) return false;
     let full; try{full=sameOriginFull(sticker)}catch(error){console.error(error);download.hidden=true;return false}
@@ -69,7 +85,11 @@
   dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
   dialog.addEventListener('close',()=>{const target=lastTrigger;lastTrigger=null;target?.focus?.()});
   dialog.addEventListener('keydown',event=>{if(event.key==='ArrowLeft'){event.preventDefault();navigate(-1)}else if(event.key==='ArrowRight'){event.preventDefault();navigate(1)}});
-  download.addEventListener('click',()=>{if(currentSlug)window.gwapTrack?.('download_single',{slug:currentSlug,surface:'dialog'})});
+  download.addEventListener('click',async event=>{
+    if(!currentSticker) return;
+    event.preventDefault();
+    try{await downloadSticker(currentSticker,'dialog')}catch(error){console.error('Could not download sticker',error)}
+  });
 
   shareButton?.addEventListener('click',async()=>{
     if(!currentSticker||!window.gwapShare) return;
@@ -118,9 +138,16 @@
   grid.addEventListener('pointerup',finishTouch,{passive:true});
   grid.addEventListener('pointercancel',()=>{moved=true;suppressUntil=Date.now()+500;finishTouch()},{passive:true});
 
-  grid.addEventListener('click',event=>{
+  grid.addEventListener('click',async event=>{
     const dl=event.target.closest('.tile-download');
-    if(dl){event.preventDefault();event.stopPropagation();const slug=dl.dataset.slug,sticker=stickerBySlug.get(slug);if(!sticker)return;let full;try{full=sameOriginFull(sticker)}catch(error){console.error(error);return}const a=document.createElement('a');a.href=full;a.download=`gwap-${slug}.png`;document.body.append(a);a.click();a.remove();window.gwapTrack?.('download_single',{slug,surface:'tile'});return}
+    if(dl){
+      event.preventDefault();
+      event.stopPropagation();
+      const slug=dl.dataset.slug,sticker=stickerBySlug.get(slug);
+      if(!sticker) return;
+      try{await downloadSticker(sticker,'tile')}catch(error){console.error('Could not download sticker',error)}
+      return;
+    }
     const link=event.target.closest('.browse-tile-link'); if(!link) return;
     if(Date.now()<suppressUntil||longPressed||moved){event.preventDefault();longPressed=false;moved=false;return}
     event.preventDefault();
