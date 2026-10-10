@@ -5,4 +5,22 @@
   const crc32=bytes=>{let c=0xffffffff;for(const b of bytes)c=crcTable[(c^b)&255]^(c>>>8);return(c^0xffffffff)>>>0};const u16=v=>[v&255,(v>>>8)&255],u32=v=>[v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255];const join=parts=>{const length=parts.reduce((n,p)=>n+p.length,0),out=new Uint8Array(length);let offset=0;for(const p of parts){out.set(p,offset);offset+=p.length}return out};
   async function downloadPack(button){button.disabled=true;const old=button.textContent;button.textContent='Preparing your pack…';try{const stickers=await(await fetch(dataUrl)).json();window.gwapTrack?.('download_pack',{count:stickers.length});const locals=[],centrals=[];let offset=0;for(let i=0;i<stickers.length;i+=8){const batch=stickers.slice(i,i+8);const loaded=await Promise.all(batch.map(async s=>({s,bytes:new Uint8Array(await(await fetch(s.full)).arrayBuffer())})));for(const {s,bytes} of loaded){const name=new TextEncoder().encode(`${s.gender==='male'?'Male':'Female'}/${s.filename}`),crc=crc32(bytes);const local=join([new Uint8Array([0x50,0x4b,0x03,0x04]),new Uint8Array(u16(20)),new Uint8Array(u16(0x0800)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u32(crc)),new Uint8Array(u32(bytes.length)),new Uint8Array(u32(bytes.length)),new Uint8Array(u16(name.length)),new Uint8Array(u16(0)),name,bytes]);const central=join([new Uint8Array([0x50,0x4b,0x01,0x02]),new Uint8Array(u16(20)),new Uint8Array(u16(20)),new Uint8Array(u16(0x0800)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u32(crc)),new Uint8Array(u32(bytes.length)),new Uint8Array(u32(bytes.length)),new Uint8Array(u16(name.length)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u32(0)),new Uint8Array(u32(offset)),name]);locals.push(local);centrals.push(central);offset+=local.length}button.textContent=`Preparing ${Math.min(i+batch.length,stickers.length)} / ${stickers.length}…`}const centralBytes=join(centrals),end=join([new Uint8Array([0x50,0x4b,0x05,0x06]),new Uint8Array(u16(0)),new Uint8Array(u16(0)),new Uint8Array(u16(stickers.length)),new Uint8Array(u16(stickers.length)),new Uint8Array(u32(centralBytes.length)),new Uint8Array(u32(offset)),new Uint8Array(u16(0))]);const blob=new Blob([...locals,centralBytes,end],{type:'application/zip'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='Lil-Gwapz-Reaction-Pack-01-152-PNGs.zip';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);toast('Your 152 sticker pack is ready.')}catch(err){console.error(err);toast('Could not prepare the pack. Try again.')}finally{button.disabled=false;button.textContent=old}}
   document.getElementById('download-all')?.addEventListener('click',e=>downloadPack(e.currentTarget));document.getElementById('download-all-bottom')?.addEventListener('click',e=>downloadPack(e.currentTarget));
+
+  function ensureMotionStyles(){
+    if(document.querySelector('link[href="css/motion.css"],link[href="/css/motion.css"]'))return;
+    const link=document.createElement('link');link.rel='stylesheet';link.href='css/motion.css';document.head.append(link);
+  }
+  function setupReveal(){
+    const nodes=[...document.querySelectorAll('[data-sticker-tile],.mood-tile,.featured-pack,.peek-section')];
+    if(!nodes.length)return;
+    const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    nodes.forEach((node,index)=>{node.style.setProperty('--i',String(Math.min(index,6)));node.classList.add('motion-reveal');if(reduced)node.classList.add('is-revealed')});
+    if(reduced||!('IntersectionObserver'in window)){
+      nodes.forEach(node=>node.classList.add('is-revealed'));return;
+    }
+    const observer=new IntersectionObserver(entries=>{for(const entry of entries){if(entry.isIntersecting){entry.target.classList.add('is-revealed');observer.unobserve(entry.target)}}},{threshold:.15});
+    nodes.forEach(node=>observer.observe(node));
+  }
+  ensureMotionStyles();
+  setupReveal();
 })();
