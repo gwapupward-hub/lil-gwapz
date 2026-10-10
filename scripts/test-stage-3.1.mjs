@@ -28,8 +28,9 @@ if(support){
 const firstMood=page.locator('.mood-tile').first();
 await firstMood.scrollIntoViewIfNeeded();
 assert.equal(await firstMood.evaluate(el=>el.classList.contains('motion-reveal')),true,'reveal class installed');
+await page.waitForFunction(()=>document.querySelector('.mood-tile')?.classList.contains('is-revealed'),null,{timeout:2000});
 assert.equal(await firstMood.evaluate(el=>el.classList.contains('is-revealed')),true,'IntersectionObserver reveals visible content');
-await page.waitForFunction(()=>getComputedStyle(document.querySelector('.mood-tile')).opacity==='1');
+await page.waitForFunction(()=>getComputedStyle(document.querySelector('.mood-tile')).opacity==='1',null,{timeout:2000});
 assert.equal(await firstMood.evaluate(el=>getComputedStyle(el).opacity),'1','revealed content visible after transition');
 
 await page.goto(`${base}/browse.html`,{waitUntil:'networkidle'});
