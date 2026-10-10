@@ -12,6 +12,75 @@
 
 .mood-chill { --mood: var(--gwap-green); }
 
+/* Stage 6.1 — shared keyboard/touch affordances on every page that loads tokens. */
+.header-cta,
+.desktop-nav a,
+.site-footer a,
+.mobile-nav a,
+.legal-sidebar nav a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Stage 6.1 — canonical green + semantic contrast enforcement.
+   Gwap Green text is reserved for the exact #09080d background.
+   Green fills always carry dark text. */
+.playground-hero {
+  background:
+    radial-gradient(ellipse at 77% 48%, rgba(116,45,244,.25), transparent 39%),
+    radial-gradient(ellipse at 61% 80%, rgba(19,221,19,.1), transparent 32%);
+}
+.hero h1 em,
+.spark.spark-one {
+  color: var(--ink);
+}
+.button-primary {
+  background: var(--gwap-green);
+  color: #071007;
+  box-shadow: 0 10px 35px rgba(19,221,19,.18);
+}
+.mobile-nav a.selected,
+.mobile-nav a.selected span {
+  color: var(--ink);
+}
+.mobile-nav a.selected {
+  background: rgba(19,221,19,.11);
+}
+
+/* Legal/download surfaces use green as a fill, border, glow, or focus accent
+   when the surface itself is not the canonical background. */
+.legal-owner {
+  border-color: rgba(19,221,19,.22);
+  background: rgba(19,221,19,.055);
+}
+.legal-callout {
+  background: linear-gradient(135deg,rgba(141,60,255,.13),rgba(19,221,19,.04));
+}
+.legal-callout-green {
+  border-color: rgba(19,221,19,.28);
+  background: linear-gradient(135deg,rgba(19,221,19,.095),rgba(141,60,255,.06));
+}
+.rule-card > span {
+  background: rgba(19,221,19,.1);
+  color: var(--ink);
+}
+.license-dialog-mark {
+  background: var(--gwap-green);
+  border-color: var(--gwap-green);
+  color: #071007;
+}
+.license-dialog a,
+.license-dialog a:hover,
+.download-license-note a:hover {
+  color: var(--ink);
+}
+.site-footer.site-footer-expanded .footer-group a.footer-license::before,
+.browse-page .site-footer .footer-group a.footer-license::before {
+  box-shadow: 0 0 12px rgba(19,221,19,.65);
+}
+
 @media (min-width: 641px) {
   #download-all {
     min-width: 105.546875px;

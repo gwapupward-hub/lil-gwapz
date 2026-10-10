@@ -14,7 +14,7 @@ fs.rmSync(dist, { recursive: true, force: true });
 fs.mkdirSync(dist, { recursive: true });
 
 const files = [
-  'index.html','browse.html','ip-policy.html','privacy.html','terms.html',
+  'index.html','browse.html','ip-policy.html','privacy.html','terms.html','404.html',
   'app.js','styles.css','legal.css','legal.js',
   'favicon.ico','favicon-32.png','favicon-96.png','apple-touch-icon.png','site.webmanifest',
   'sitemap.xml','robots.txt'
@@ -31,6 +31,12 @@ for (const dir of ['assets/brand','css','data','js','stickers','thumbs','s','og'
   if (fs.existsSync(src)) fs.cpSync(src, dst, { recursive: true });
 }
 
+// styles.css imports legal.css relatively. Audit/runtime consumers that re-inject the
+// stylesheet from a generated /s/... document resolve that import as /s/legal.css.
+// Keep the generated detail surface self-contained at that exact path.
+const generatedLegalCss = path.join(dist, 's', 'legal.css');
+fs.copyFileSync(path.join(root, 'legal.css'), generatedLegalCss);
+
 const count = (dir, ext) => fs.readdirSync(path.join(dist, dir)).filter((name) => name.endsWith(ext)).length;
 const result = {
   stickers: count('stickers', '.png'),
@@ -42,5 +48,7 @@ const result = {
 if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || result.og < 152) {
   throw new Error(`Unexpected preview build counts: ${JSON.stringify(result)}`);
 }
+if (!fs.existsSync(path.join(dist, '404.html'))) throw new Error('Missing dist/404.html');
+if (!fs.existsSync(generatedLegalCss)) throw new Error('Missing dist/s/legal.css');
 
 console.log('dist ready', result);
