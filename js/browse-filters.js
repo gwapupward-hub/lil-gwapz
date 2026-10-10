@@ -1,0 +1,18 @@
+(() => {
+  const grid=document.getElementById('browse-grid'); if(!grid) return;
+  const tiles=[...grid.querySelectorAll('[data-sticker-tile]')];
+  const search=document.getElementById('search'); const count=document.getElementById('result-count'); const empty=document.getElementById('empty-state');
+  const allowed={mood:new Set(['happy','attitude','chill','hype','love']),sex:new Set(['M','F']),color:new Set(['GRN','ORG','RED','PUR'])};
+  const split=v=>String(v||'').split(',').map(x=>x.trim()).filter(Boolean);
+  let state={q:'',mood:new Set(),sex:new Set(),color:new Set()};
+  const readUrl=()=>{const p=new URLSearchParams(location.search);const moods=split(p.get('mood')).map(v=>['sassy','swagger'].includes(v.toLowerCase())?'attitude':v.toLowerCase()).filter(v=>allowed.mood.has(v));state={q:p.get('q')||'',mood:new Set(moods),sex:new Set(split(p.get('sex')).filter(v=>allowed.sex.has(v))),color:new Set(split(p.get('color')).filter(v=>allowed.color.has(v)))};search.value=state.q};
+  const selected=(g,v)=>state[g].has(v);
+  const syncButtons=()=>{document.querySelectorAll('[data-filter-group]').forEach(b=>{const g=b.dataset.filterGroup,v=b.dataset.filterValue;const on=v==='all'?state[g].size===0:selected(g,v);b.setAttribute('aria-pressed',String(on));b.classList.toggle('selected',on)});const attitude=[...document.querySelectorAll('[data-filter-group="mood"][data-filter-value="attitude"]')];const label=state.sex.size===1?(state.sex.has('M')?'Swagger':'Sassy'):'Attitude';attitude.forEach(b=>b.textContent=label)};
+  const writeUrl=()=>{const p=new URLSearchParams(location.search);for(const k of ['q','mood','sex','color'])p.delete(k);if(state.q)p.set('q',state.q);for(const k of ['mood','sex','color'])if(state[k].size)p.set(k,[...state[k]].join(','));const qs=p.toString();history.replaceState(null,'',`${location.pathname}${qs?`?${qs}`:''}${location.hash}`)};
+  const apply=({write=true}={})=>{const q=state.q.trim().toLowerCase();let visible=0;for(const tile of tiles){const text=tile.dataset.search||'';const okQ=!q||text.includes(q);const okMood=!state.mood.size||state.mood.has(tile.dataset.mood);const okSex=!state.sex.size||state.sex.has(tile.dataset.sex);const okColor=!state.color.size||state.color.has(tile.dataset.color);const show=okQ&&okMood&&okSex&&okColor;tile.hidden=!show;if(show)visible++}count.textContent=`${visible} sticker${visible===1?'':'s'}`;empty.hidden=visible!==0;grid.hidden=visible===0;syncButtons();if(write)writeUrl();window.gwapTrack?.('filter_change',{q:state.q,mood:[...state.mood],sex:[...state.sex],color:[...state.color],visible})};
+  const toggle=(g,v)=>{if(v==='all'){state[g].clear()}else if(state[g].has(v)){state[g].delete(v)}else{state[g].add(v)}apply()};
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-filter-group]');if(b){toggle(b.dataset.filterGroup,b.dataset.filterValue);return}if(e.target.closest('#clear-filters')){state={q:'',mood:new Set(),sex:new Set(),color:new Set()};search.value='';apply()}});
+  search.addEventListener('input',()=>{state.q=search.value;apply()});document.addEventListener('keydown',e=>{if(e.key==='/'&&document.activeElement!==search&&!e.metaKey&&!e.ctrlKey&&!e.altKey){e.preventDefault();search.focus()}});window.addEventListener('popstate',()=>{readUrl();apply({write:false})});
+  const dialog=document.getElementById('mobile-filter-dialog');document.getElementById('mobile-filter-open')?.addEventListener('click',()=>dialog?.showModal());document.getElementById('mobile-filter-close')?.addEventListener('click',()=>dialog?.close());dialog?.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+  readUrl();apply({write:false});
+})();

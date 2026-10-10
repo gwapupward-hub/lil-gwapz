@@ -1,27 +1,27 @@
 # Stage 2.1 Report — Browse tile grid and filters
 
-Status: **STOPPED — REQUIRED CLS GATE FAILED TWICE**
+Status: **PASS — EXPERIMENTAL PREVIEW ONLY**
 
 Branch: `sprint-1-foundations`
 Validation branch: `stage21-ci-validation`
-Previous stage report: `docs/stage-1.2.md` — PASS
+Previous stage: `docs/stage-1.2.md` — PASS
 Date: 2026-10-10
 
 Production (`main`, `lil-gwapz-production`, `lilgwapz.xyz`, and `www.lilgwapz.xyz`) was not changed.
 
-## Owner-approved scope amendments
+## Approved scope
 
-The owner explicitly approved amending Stage 2.1 so these previously missing prerequisite files may be created as Stage 2.1 deliverables:
+The owner amended Stage 2.1 to permit creation of the originally missing prerequisite files:
 
 ```text
 css/browse-tiles.css
 js/browse-tiles.js
 ```
 
-The working Stage 2.1 implementation scope is therefore:
+Final Stage 2.1 repository implementation scope:
 
 ```text
-browse.html
+browse.html (generated deterministically at build time)
 css/browse-tiles.css
 js/browse-tiles.js
 js/browse-filters.js
@@ -29,237 +29,147 @@ scripts/build-browse.mjs
 docs/
 ```
 
-After the original Vercel sandbox could not launch Chromium because Linux browser libraries were unavailable, the owner authorized continuing with the recommended validation approach. A temporary test-only GitHub Actions runner was therefore used on an isolated validation branch so unverified Browse code would not land on `sprint-1-foundations`.
+A temporary GitHub Actions workflow and Playwright test script were used only on `stage21-ci-validation` to obtain a Chromium-capable validation runner. Those validation-only files are not promoted to `sprint-1-foundations`.
 
-Result: **PASS — prerequisite and test-runner scope blockers were resolved without touching production.**
+## Implemented Browse architecture
 
-## Validation isolation
+- 152 static-first sticker tiles.
+- One tile links to each canonical sticker page.
+- First 8 thumbnails load eagerly; remaining 144 load lazily.
+- Tile images use 256×256 WebP derivatives with explicit width/height.
+- No full-size PNG is referenced by Browse tile markup.
+- All 152 tile links remain present and visible with JavaScript disabled.
+- Mood, character, color, and search filters.
+- OR logic within a filter group; AND logic across filter groups.
+- URL synchronization for `q`, `mood`, `sex`, and `color` while preserving existing search state.
+- Legacy `sassy` / `swagger` mood URLs normalize to internal `attitude`.
+- `attitude` is displayed as Swagger for male stickers, Sassy for female stickers, and Attitude in mixed contexts.
+- `/` focuses search.
+- Mobile horizontal mood controls plus a Character & color dialog.
+- Minimum 44px mobile filter targets.
+- Existing full-pack ZIP download behavior retained outside the static tile renderer.
 
-A temporary branch was created from the stopped Stage 2.1 sprint head:
+## Deterministic/static gates
 
-```text
-stage21-ci-validation
-base: 6c2ac419bfe4c7fc47184dfac53319fb2a51dd12
-```
-
-Initial validation implementation commit:
-
-```text
-ded416af9a4496a094ef6e84dd790055f0df8100
-```
-
-Test-harness follow-up commit:
-
-```text
-e1da282e9eb73c245a2f32177b8ce3dc7b2b2c13
-```
-
-No Stage 2.1 source implementation was merged or promoted to `sprint-1-foundations` after the mandatory gate failure.
-
-## Isolated Stage 2.1 implementation
-
-The validation branch contains a static-first Browse architecture with:
-
-- 152 generated sticker tiles,
-- one tile per canonical sticker page,
-- first 8 images eager and remaining 144 lazy,
-- fixed 256x256 thumbnail dimensions,
-- WebP-only Browse tile images,
-- no full-size PNG references in Browse tile markup,
-- mood, character, and color filter state,
-- OR logic within each filter group,
-- AND logic across filter groups,
-- URL synchronization for `q`, `mood`, `sex`, and `color`,
-- search-state preservation,
-- legacy `sassy` / `swagger` URL normalization to internal `attitude`,
-- gender-aware Attitude label (`Swagger` male / `Sassy` female / `Attitude` combined),
-- `/` keyboard shortcut for search,
-- mobile horizontal mood controls,
-- mobile character/color filter dialog,
-- 44px minimum filter targets,
-- JS-off-compatible sticker links,
-- existing full-pack ZIP download behavior retained outside the static grid renderer.
-
-The preview build was also extended on the validation branch to run Stage 1.2 derivative generation first, then deterministic Stage 2.1 Browse generation, and only then create `dist/`.
-
-## Static / deterministic gates
-
-Static sandbox evidence:
+Final generated Browse SHA-256, reproduced in GitHub Actions and again in a fresh experimental Vercel sandbox:
 
 ```text
-tile_count 152
-eager 8
-lazy 144
-full_png_refs_in_tiles 0
-thumb_refs 152
-links 152
-dimensions 152
+309b11a1b2088c3cff09b46f764340ecdf0c3ff8eea28dfdd722c502b5a2e96c  browse.html
 ```
 
-The generator was made idempotent. The GitHub Actions deterministic build gate reran `scripts/build-browse.mjs` and produced the same SHA-256 before and after regeneration:
+Final structure:
 
 ```text
-7ffbeb8c239f3684876c78391e6db3de68f2102a403427975b705d358c994141  browse.html
+tiles                 152
+eager thumbnails        8
+lazy thumbnails       144
+full-PNG tile refs       0
+static legal notices     1
 ```
 
-Result: **PASS — static structure and deterministic generation.**
+Result: **PASS**.
 
-## GitHub Actions browser environment
+## CLS remediation
 
-A test-only workflow on `stage21-ci-validation` used Ubuntu 24.04 and pinned test dependencies:
+The original real-browser gate measured the same initial CLS twice:
 
 ```text
-sharp 0.35.5
-playwright 1.64.0
-serve 14.2.5
+0.016288049603788244
 ```
 
-Chromium was installed with its Linux dependencies using Playwright's supported `--with-deps` installation path.
+A new owner-authorized CLS remediation pass was opened. Removing speculative tile containment did not change the value, disproving the initial tile-reservation hypothesis.
 
-This resolved the previous sandbox blocker. The CI logs confirmed required system libraries including `libnspr4` were available, Chromium installed successfully, the Stage 1.2 + Stage 2.1 preview build succeeded, deterministic Browse generation succeeded, and the local static server started successfully.
-
-Result: **PASS — browser runner environment blocker resolved.**
-
-## Browser run 1
-
-GitHub Actions run:
+Diagnostic-only Chromium runs then isolated the shift:
 
 ```text
-run: 38037435352
-job: 114170711401
-commit: ded416af9a4496a094ef6e84dd790055f0df8100
+#browse-grid y: 594px -> 644px
+shift: +50px
 ```
 
-Successful steps before the application gate:
+The filter controls were stable. The Browse intro grew by the same 50px. Root cause was the existing `legal.js` inserting `.download-license-note` into `.browse-actions` after first paint.
+
+The fix does **not** modify `legal.js`. `scripts/build-browse.mjs` now emits the exact existing approved legal notice statically in Browse markup. `legal.js` detects that the notice already exists and therefore performs no late insertion.
+
+Result after fix:
 
 ```text
-Checkout exact validation commit                      PASS
-Install deterministic test dependencies              PASS
-Install Chromium and system dependencies             PASS
-Build Stage 1.2 + Stage 2.1 preview output           PASS
-Verify deterministic Browse generation              PASS
-Start static server                                  PASS
+initial CLS:          0
+post-interaction CLS: 0
 ```
 
-The Playwright script advanced through the interactive Browse checks before reaching its CLS assertion. This run therefore exercised the tile-count, eager/lazy loading, no-initial-full-PNG, keyboard search, URL synchronization, filter logic, search preservation, mobile filter interaction, tap-target, console, and no-full-PNG-after-filter code paths before the final CLS check.
+Result: **PASS**.
 
-It then failed:
+## Final Playwright gate
+
+Validation commit:
 
 ```text
-AssertionError [ERR_ASSERTION]: CLS expected 0, got 0.016288049603788244
+fbb876f7fda8fca1b8552f73869f3cfc2347bc28
 ```
 
-Result: **FAIL — CLS gate.**
-
-Because that first script accumulated CLS through the interaction sequence, the test harness was narrowed so the zero-CLS requirement would be measured immediately after initial `networkidle`, before intentional filtering or UI state changes. The threshold was not loosened.
-
-## Browser run 2 — isolated initial CLS
-
-GitHub Actions run:
+GitHub Actions:
 
 ```text
-run: 38037553091
-job: 114171053904
-commit: e1da282e9eb73c245a2f32177b8ce3dc7b2b2c13
+run: 38038563033
+job: 114174061307
 ```
 
-Again, environment and build steps passed:
+Final Playwright evidence:
 
-```text
-Checkout exact validation commit                      PASS
-Install deterministic test dependencies              PASS
-Install Chromium and system dependencies             PASS
-Build Stage 1.2 + Stage 2.1 preview output           PASS
-Verify deterministic Browse generation              PASS
-Start static server                                  PASS
-```
-
-The second Playwright run verified before the CLS assertion:
-
-```text
-initial sticker tiles: 152
-initial visible tiles: 152
-eager images: 8
-lazy images: 144
-initial full-PNG requests: 0
-```
-
-It then failed the isolated page-load CLS gate with the same measured value:
-
-```text
-AssertionError [ERR_ASSERTION]: Initial CLS expected 0, got 0.016288049603788244
-```
-
-Result: **FAIL — initial CLS gate.**
-
-The identical initial value confirms the blocker is no longer the browser environment or the interaction timing of the first test. Stage 2.1 currently has a measurable initial layout shift in Chromium.
-
-## Mandatory two-failure stop
-
-Standing Section 0 rule #2 requires:
-
-> Complete tasks then gates; fix/re-run; after two failures same check, stop/report.
-
-The required CLS check failed twice:
-
-```text
-Run 1: 0.016288049603788244
-Run 2: 0.016288049603788244
-Required: 0
-```
-
-Therefore Stage 2.1 must stop here. No third CLS attempt is permitted under the current stage run.
-
-Result: **STOP — mandatory two-failure rule triggered.**
-
-## Gates not claimed
-
-Because both Playwright scripts aborted at the CLS assertion before the screenshot section, Stage 2.1 does **not** claim:
-
-- CLS = 0,
-- completed screenshot evidence,
-- full Stage 2.1 browser-suite PASS.
-
-The second run also stops before the later keyboard/filter assertions; those interaction paths were exercised by run 1 before its later CLS assertion, but the stage as a whole remains failed because CLS is mandatory.
-
-## Likely remediation target — not yet proven
-
-Static inspection suggests one likely source worth investigating in a future owner-authorized remediation pass:
-
-```css
-.browse-tile {
-  content-visibility: auto;
-  contain-intrinsic-size: 280px;
+```json
+{
+  "tileCount": 152,
+  "eager": 8,
+  "lazy": 144,
+  "fullPngRequests": 0,
+  "initialCls": 0,
+  "postInteractionCls": 0,
+  "expectedMood": 58,
+  "expectedAnd": 10,
+  "screenshots": [
+    "mobile-390.png",
+    "tablet-768.png",
+    "desktop-1280.png"
+  ],
+  "jsOffVisible": 152
 }
 ```
 
-If the intrinsic placeholder size differs from the final rendered tile size, Chromium can record layout shift as deferred content becomes realized. Other layout elements may also contribute.
+The test also passed keyboard search, filter count logic, URL synchronization, search preservation, mobile dialog interaction, tap-target checks, console-error checks, and zero full-PNG Browse requests.
 
-This is **not claimed as the proven root cause** because the stage stopped after the second required-gate failure and no third diagnostic browser run is permitted in this run.
+Result: **PASS**.
 
-A future remediation pass should narrowly investigate and fix layout reservation before rerunning the CLS gate.
+## Screenshot evidence
 
-## Repository / preview safety
+```text
+mobile-390.png
+760cb929c6a20aa7ef2e0761f859039afc1588f608cb2755c31cba2aab1df4d4
 
-- Stage 2.1 validation code remains isolated on `stage21-ci-validation`.
-- It was not merged or promoted into `sprint-1-foundations`.
-- The experimental preview remains on the last fully passing Stage 1.2 implementation path.
-- `main` was not changed.
-- `lil-gwapz-production` was not changed.
-- `lilgwapz.xyz` was not changed.
-- `www.lilgwapz.xyz` was not changed.
-- Stage 2.2 was not started.
+tablet-768.png
+99022eebd10a4b45c80dd4564f2a21f8e85e132a6c353703ea3acc64e3da3211
 
-## Required next correction
+desktop-1280.png
+52b4af184fc8b9ae32df0b73340299ae0109940f2210ce4cecadd4572b6f61f6
+```
 
-Stage 2.1 may resume only after explicit owner authorization for a new, narrowly scoped CLS-remediation pass.
+Result: **PASS**.
 
-Recommended first remediation target: remove or replace the Browse tile `content-visibility` / intrinsic-size reservation with geometry that guarantees the final card dimensions are reserved before paint, then rerun the full Stage 2.1 browser gate from a new validation commit.
+## Experimental Vercel integration
 
-No remediation has been applied automatically after the two-failure stop.
+The experimental Vercel project only (`prj_cXCW1emalg3eDXTUatVKjGlQkOE3`, project `lil-gwapz`) is configured to build Stage 2.1 with:
+
+```text
+node scripts/build-stage-1.2.cjs && node scripts/build-browse.mjs && node scripts/build-preview.cjs
+```
+
+Its existing install command continues to install `sharp@0.35.5 --no-save`.
+
+This project is `live: false`. No production project, production domain, production alias, or `main` branch was modified.
+
+Exact sprint-branch preview deployment evidence will be appended after the integrated branch deployment reaches READY and passes smoke verification.
 
 ## Stage result
 
-Stage 2.1 is **STOPPED — FAIL on mandatory CLS = 0 gate**.
+Stage 2.1 browser/static gates: **PASS**.
 
-Stage 1.1 and Stage 1.2 remain PASS. Production remains untouched. Stage 2.2 has not started.
+Stage 2.2 must not begin until the integrated `sprint-1-foundations` preview is READY and smoke-verified.
