@@ -33,6 +33,7 @@
   <link rel="stylesheet" href="css/dialog.css">
   <script defer src="app.js"></script>
   <script defer src="legal.js"></script>
+  <script defer src="js/share.js"></script>
   <script defer src="js/sticker-dialog.js"></script>
 </head>
 <body class="browse-page">
@@ -65,6 +66,12 @@
         <a class="button button-primary sticker-viewer-download" id="sticker-viewer-download" href="#" download>Download PNG</a>
         <button class="sticker-viewer-nav" id="sticker-viewer-next" type="button" aria-label="Next visible sticker">›</button>
       </div>
+      <div class="sticker-viewer-share-actions" aria-label="Share this sticker">
+        <button class="button button-outline" id="sticker-viewer-share" type="button">Share</button>
+        <button class="button button-outline" id="sticker-viewer-copy" type="button">Copy link</button>
+      </div>
+      <p class="sticker-viewer-usage">Free for personal use. Commercial use needs written permission.</p>
+      <p class="sticker-viewer-status" id="sticker-viewer-status" aria-live="polite"></p>
       <p class="sticker-viewer-hint">Use ← → to move through the stickers currently shown.</p>
     </div>
   </dialog>
