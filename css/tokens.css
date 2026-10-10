@@ -12,6 +12,18 @@
 
 .mood-chill { --mood: var(--gwap-green); }
 
+/* Stage 6.1 — shared keyboard/touch affordances on every page that loads tokens. */
+.header-cta,
+.desktop-nav a,
+.site-footer a,
+.mobile-nav a,
+.legal-sidebar nav a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
 /* Stage 6.1 — canonical green + semantic contrast enforcement.
    Gwap Green text is reserved for the exact #09080d background.
    Green fills always carry dark text. */
