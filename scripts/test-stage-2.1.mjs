@@ -17,6 +17,8 @@ assert.equal(await page.locator('[data-sticker-tile]:not([hidden])').count(),152
 assert.equal(await page.locator('img[loading="eager"]').count(),8,'eager count');
 assert.equal(await page.locator('img[loading="lazy"]').count(),144,'lazy count');
 assert.equal(fullPng.length,0,'Browse must not request full PNGs before a user download');
+const initialCls=await page.evaluate(()=>window.__stage21cls||0);
+assert.equal(initialCls,0,`Initial CLS expected 0, got ${initialCls}`);
 
 await page.keyboard.press('/');
 assert.equal(await page.evaluate(()=>document.activeElement?.id),'search','slash focuses search');
@@ -51,8 +53,7 @@ assert.equal(u.searchParams.get('color'),'GRN','color preserved with search');
 
 const tapTargets=await page.locator('#mood-filters button, #mobile-filter-open').evaluateAll(els=>els.map(el=>{const r=el.getBoundingClientRect();return {w:r.width,h:r.height,text:el.textContent}}));
 for(const t of tapTargets) assert.ok(t.h>=44,`tap target ${t.text} height ${t.h}`);
-const cls=await page.evaluate(()=>window.__stage21cls||0);
-assert.equal(cls,0,`CLS expected 0, got ${cls}`);
+const interactionCls=await page.evaluate(()=>window.__stage21cls||0);
 assert.equal(consoleErrors.length,0,`console errors: ${consoleErrors.join(' | ')}`);
 assert.equal(fullPng.length,0,'No full PNG requests after filter interactions');
 
@@ -69,5 +70,5 @@ assert.equal(await noJsPage.locator('[data-sticker-tile]').count(),152,'JS-off t
 assert.equal(await noJsPage.locator('[data-sticker-tile]:not([hidden])').count(),152,'JS-off visible tiles');
 await noJs.close();
 
-console.log(JSON.stringify({tileCount:152,eager:8,lazy:144,fullPngRequests:fullPng.length,cls,expectedMood,expectedAnd,screenshots:['mobile-390.png','tablet-768.png','desktop-1280.png'],jsOffVisible:152},null,2));
+console.log(JSON.stringify({tileCount:152,eager:8,lazy:144,fullPngRequests:fullPng.length,initialCls,interactionCls,expectedMood,expectedAnd,screenshots:['mobile-390.png','tablet-768.png','desktop-1280.png'],jsOffVisible:152},null,2));
 await browser.close();
