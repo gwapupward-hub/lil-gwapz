@@ -1,0 +1,41 @@
+name: Stage 3.2 Browser Gate
+
+on:
+  push:
+    branches:
+      - stage32-ci-validation
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  browser-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact validation commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install deterministic test dependencies
+        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 serve@14.2.5
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Build experimental preview output
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+      - name: Start static server
+        run: |
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+      - name: Run Stage 3.2 Playwright gates
+        run: node scripts/test-stage-3.2.mjs
+      - name: List screenshot evidence
+        if: always()
+        run: |
+          find artifacts/stage-3.2 -maxdepth 1 -type f -name '*.png' -print -exec sha256sum {} \; 2>/dev/null || true
