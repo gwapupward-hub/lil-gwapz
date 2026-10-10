@@ -1,0 +1,101 @@
+name: Stage 6.1 Accessibility Baseline
+
+on:
+  push:
+    branches:
+      - stage61-a11y-baseline
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+
+      - name: Resolve diagnostic package versions
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "AXE_VERSION=$(npm view @axe-core/playwright version)" >> "$GITHUB_ENV"
+          echo "LIGHTHOUSE_VERSION=$(npm view lighthouse version)" >> "$GITHUB_ENV"
+
+      - name: Install diagnostic dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-save \
+            sharp@0.35.5 \
+            playwright@1.64.0 \
+            "@axe-core/playwright@${AXE_VERSION}" \
+            serve@14.2.5 \
+            "lighthouse@${LIGHTHOUSE_VERSION}"
+          node --version
+          npm --version
+          node -e "console.log('axe', require('@axe-core/playwright/package.json').version)"
+          node -e "console.log('playwright', require('playwright/package.json').version)"
+          node -e "console.log('lighthouse', require('lighthouse/package.json').version)"
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Build deterministic preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+
+      - name: Start preview server
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          echo $! > /tmp/lilgwapz-serve.pid
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+
+      - name: Axe, green-use, overflow, and 404 baseline
+        run: node scripts/test-stage-6.1-baseline.mjs
+
+      - name: Lighthouse accessibility baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          for page in home browse terms; do
+            case "$page" in
+              home) url="http://127.0.0.1:4173/" ;;
+              browse) url="http://127.0.0.1:4173/browse.html" ;;
+              terms) url="http://127.0.0.1:4173/terms.html" ;;
+            esac
+            npx lighthouse "$url" \
+              --only-categories=accessibility \
+              --chrome-flags="--headless --no-sandbox --disable-gpu" \
+              --output=json \
+              --output-path="/tmp/lh-${page}.json" \
+              --quiet || true
+          done
+          node - <<'NODE'
+          const fs = require('fs');
+          for (const page of ['home','browse','terms']) {
+            const p = `/tmp/lh-${page}.json`;
+            if (!fs.existsSync(p)) {
+              console.log(`${page}: lighthouse output missing`);
+              continue;
+            }
+            const j = JSON.parse(fs.readFileSync(p,'utf8'));
+            const score = Math.round((j.categories?.accessibility?.score ?? 0) * 100);
+            console.log(`${page}: accessibility=${score}`);
+          }
+          NODE
