@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - stage31-ci-validation
+      - stage31-reveal-remediation
   workflow_dispatch:
 
 permissions:
