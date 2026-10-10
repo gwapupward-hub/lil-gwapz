@@ -27,10 +27,10 @@ if(support){
 
 const firstMood=page.locator('.mood-tile').first();
 await firstMood.scrollIntoViewIfNeeded();
-await page.waitForTimeout(100);
 assert.equal(await firstMood.evaluate(el=>el.classList.contains('motion-reveal')),true,'reveal class installed');
 assert.equal(await firstMood.evaluate(el=>el.classList.contains('is-revealed')),true,'IntersectionObserver reveals visible content');
-assert.equal(await firstMood.evaluate(el=>getComputedStyle(el).opacity),'1','revealed content visible');
+await page.waitForFunction(()=>getComputedStyle(document.querySelector('.mood-tile')).opacity==='1');
+assert.equal(await firstMood.evaluate(el=>getComputedStyle(el).opacity),'1','revealed content visible after transition');
 
 await page.goto(`${base}/browse.html`,{waitUntil:'networkidle'});
 assert.equal(await page.locator('[data-sticker-tile]').count(),152,'Browse retains 152 tiles');
