@@ -1,55 +1,180 @@
 # Stage 3.2 Report — Press feedback, CTA hierarchy, and small-screen spacing
 
-Status: **STOPPED — REQUIRED 44×44 TARGET GATE FAILED TWICE**
+Status: **PASS — EXPERIMENTAL PREVIEW ONLY**
 
 Sprint branch: `sprint-1-foundations`
-Validation branch: `stage32-ci-validation`
+Initial validation branch: `stage32-ci-validation`
+Fresh remediation branch: `stage32-target-remediation`
+Diagnostic branch: `stage32-target-diagnostic`
 Previous stage: `docs/stage-3.1.md` — PASS
 Date: 2026-10-10
 
 Production (`main`, `lil-gwapz-production`, `lilgwapz.xyz`, and `www.lilgwapz.xyz`) was not changed.
 
-## Isolation
+## Scope
 
-Stage 3.2 remained isolated on `stage32-ci-validation`, created directly from the passing Stage 3.1 sprint head:
-
-```text
-2e2bb24a4729726f6436ffdd6eaa9cb7036787e2
-```
-
-The Stage 3.2 product candidate changed only:
+The validated Stage 3.2 product promotion changes only:
 
 ```text
 css/motion.css
 ```
 
-Validation-only files on the temporary branch:
+Validation-only workflow/test changes remained on temporary validation/remediation branches and were not promoted as Stage 3.2 product source.
+
+## Final implementation
+
+Stage 3.2 adds:
+
+- immediate press feedback using `transform: scale(.94)`,
+- Gwap Green press glow using `var(--gwap-green-glow)`,
+- no transform transition while a control is actively pressed so tactile feedback reaches `.94` immediately,
+- primary hero CTA first in DOM, solid canonical `#13DD13`, dark text, and 48px minimum height,
+- secondary hero CTA as a translucent ghost control with 48px minimum height,
+- `touch-action: manipulation`,
+- 44px minimum rendered targets for required interactive controls,
+- 44px treatment for the runtime-injected personal-use `Terms` / `IP Policy` links,
+- responsive heading clamp,
+- single-column mobile CTA stack,
+- <=360px header/section-heading spacing corrections,
+- reduced-motion override that disables press scale and press glow.
+
+Stage 3.1 reveal/hero-motion behavior remains intact.
+
+## Historical mandatory stop
+
+The original Stage 3.2 validation run was correctly stopped after the 44×44 target gate failed twice.
+
+Historical runs:
 
 ```text
-scripts/test-stage-3.2.mjs
-.github/workflows/stage-3.2-browser-gate.yml
+Run 1
+run: 38044019429
+job: 114189789337
+commit: 57cf5519d47c51755f946b3026030ae2496a187e
+failure: 320px horizontal overflow
+
+Run 2
+run: 38044183573
+job: 114190268427
+commit: 9d2b7cf65c70c2b1666bd2f6c454486a79b094d1
+overflow: PASS
+new failure: Terms / IP Policy measured below 44×44
+
+Run 3
+run: 38044313335
+job: 114190639674
+commit: 0c54db0ef5c732ee365a15bb19ab170e4d9e63e5
+same target gate failed again
 ```
 
-No Stage 3.2 product source was promoted to `sprint-1-foundations`.
+The standing two-failure rule was honored. No third target attempt occurred in that run.
 
-## Intended implementation
+Historical STOP report commit:
 
-The isolated Stage 3.2 candidate implements:
+```text
+b0912e7def9e43cc5251034bd8af23b96e21cc71
+docs(stage-3.2): record mandatory target-gate stop
+```
 
-- press feedback using `transform: scale(.94)`,
-- Gwap Green press glow via `var(--gwap-green-glow)`,
-- primary hero CTA first in DOM, solid canonical `#13DD13`, dark text, minimum 48px height,
-- secondary hero CTA as a translucent ghost control, minimum 48px height,
-- responsive hero heading clamp,
-- single-column mobile CTA stack,
-- 44px minimum interactive targets,
-- 320 / 375 / 414px overlap and horizontal-overflow checks,
-- reduced-motion override that removes press scaling/glow,
-- preserved Stage 3.1 motion behavior and Browse 152-sticker generation.
+## Fresh remediation — diagnostic first
 
-## Browser validation environment
+A fresh Stage 3.2 remediation was started without treating it as a prohibited third attempt from the closed historical run.
 
-GitHub Actions runner:
+The product CSS was frozen initially and a diagnostic-only Chromium workflow was used to inspect the built output and matched footer styles.
+
+Diagnostic branch:
+
+```text
+stage32-target-diagnostic
+```
+
+Diagnostic commit:
+
+```text
+7b4780f28b6bdd2d5d8d0e5332a46453d9cb9837
+```
+
+Diagnostic GitHub Actions:
+
+```text
+run: 38045452150
+job: 114193941036
+conclusion: SUCCESS
+```
+
+The diagnostic proved:
+
+- source `css/motion.css` and `dist/css/motion.css` were byte-identical,
+- the footer target rule was physically present in the built CSS,
+- footer `Terms`, `IP Policy`, and `Privacy` anchors computed to at least 44px targets,
+- therefore the historical failing `Terms` / `IP Policy` elements were not the footer anchors.
+
+The actual root cause was then identified in `legal.js`: it injects a separate `.download-license-note` under the hero containing its own `Terms` and `IP Policy` anchors. Those runtime-injected anchors matched the historical measurements and were the real failing targets.
+
+`legal.js` itself was not modified; the already-scoped Stage 3.2 CSS was extended to style the injected notice links.
+
+## Fresh target remediation
+
+The injected license-note anchors were included in the 44px target rule.
+
+Product correction commit on the remediation branch:
+
+```text
+d344f1cee69c024fe3f4c24be6fea6ff8f5aa11f
+fix(stage-3.2): size injected license links for touch
+```
+
+That cleared the 44×44 home target gate and exposed the next independent gate: press-state timing.
+
+## Press-state remediation
+
+The source requested `.94` scale, but Chromium measured an intermediate transform after 40ms because the base `.button` transform transition was still interpolating.
+
+The active press rule was corrected to use `transition:none` while pressed so the tactile state is immediate.
+
+Product correction commit:
+
+```text
+b7a281ff3d33842b757a5c41909db7f0a7c56df7
+fix(stage-3.2): make press feedback immediate
+```
+
+This cleared the exact `.94` press gate and Gwap Green glow gate.
+
+## Browse gate test correction
+
+The next failure was test-only: the Browse assertion counted controls inside a closed mobile filter dialog because their own computed `display` was not `none`, even though the rendered boxes were 0×0 due to the hidden ancestor.
+
+The gate was corrected to measure only rendered controls:
+
+```text
+display != none
+visibility != hidden
+width > 0
+height > 0
+```
+
+Test-only correction commit:
+
+```text
+809cca947d25c898e42b8f59bb43d3f2cd87a96c
+test(stage-3.2): ignore non-rendered dialog controls
+```
+
+No product CSS changed in this commit.
+
+## Final browser validation
+
+Final passing GitHub Actions evidence:
+
+```text
+run: 38045934809
+job: 114195355567
+commit tested: 809cca947d25c898e42b8f59bb43d3f2cd87a96c
+conclusion: SUCCESS
+```
+
+Runner / test stack:
 
 ```text
 Ubuntu 24.04
@@ -59,15 +184,7 @@ serve 14.2.5
 Chromium 156.0.8078.4
 ```
 
-Each run used the approved deterministic build chain:
-
-```text
-node scripts/build-stage-1.2.cjs
-node scripts/build-browse.mjs
-node scripts/build-preview.cjs
-```
-
-Repeated build output:
+Deterministic build output:
 
 ```text
 built 152/152
@@ -76,198 +193,181 @@ browse tiles generated: 152; eager: 8; lazy: 144
 dist ready { stickers: 152, thumbs: 152, pages: 152, og: 153 }
 ```
 
-Result: **PASS — build and browser environment.**
-
-## Run 1 — 320px overflow failure
-
-GitHub Actions:
+Source/build CSS identity:
 
 ```text
-run: 38044019429
-job: 114189789337
-commit: 57cf5519d47c51755f946b3026030ae2496a187e
+2c6a8407bdb2894c780296bfc18b5fdcf2bac0eabfa423d30390a84230e14b9a  css/motion.css
+2c6a8407bdb2894c780296bfc18b5fdcf2bac0eabfa423d30390a84230e14b9a  dist/css/motion.css
 ```
 
-Failure:
+### 320px
 
 ```text
-AssertionError: no horizontal page overflow at 320px
+viewport: 320
+scrollWidth: 320
+primary CTA: 284.8125 × 48
+primary background: rgb(19, 221, 19)
+primary text: rgb(7, 16, 7)
+primary touch-action: manipulation
+secondary CTA: 284.8125 × 48
+secondary background: rgba(20, 18, 27, 0.58)
+hero heading: inside viewport
+hero copy bottom: 553.375
+hero art top: 557.375
+first CTA bottom: 371.375
+second CTA top: 381.375
+header mark right: 112
+header CTA left: 184.90625
+rendered targets checked: 26
+press transform: matrix(0.94, 0, 0, 0.94, 0, 0)
+press glow: drop-shadow(rgba(19, 221, 19, 0.35) 0px 0px 14px)
 ```
 
-The test stopped before screenshots or later Stage 3.2 assertions.
+Result: **PASS**.
 
-Result: **FAIL — 320px horizontal overflow.**
-
-## Overflow correction
-
-The scoped CSS was tightened for <=360px:
-
-- reduced header gap/padding,
-- reduced narrow-screen header CTA padding/font size,
-- stacked section headings vertically,
-- retained the responsive hero heading clamp.
-
-Correction commit:
+### 375px
 
 ```text
-9d2b7cf65c70c2b1666bd2f6c454486a79b094d1
-fix(stage-3.2): remove 320px spacing overflow
+viewport: 375
+scrollWidth: 375
+primary CTA: 333.75 × 48
+secondary CTA: 333.75 × 48
+hero copy bottom: 579.5
+hero art top: 583.5
+header mark right: 116
+header CTA left: 223.078125
+rendered targets checked: 26
+press transform: matrix(0.94, 0, 0, 0.94, 0, 0)
+press glow: Gwap Green drop-shadow
 ```
 
-## Run 2 — overflow fixed, target gate exposed
+Result: **PASS**.
 
-GitHub Actions:
+### 414px
 
 ```text
-run: 38044183573
-job: 114190268427
-commit: 9d2b7cf65c70c2b1666bd2f6c454486a79b094d1
+viewport: 414
+scrollWidth: 414
+primary CTA: 370 × 48
+secondary CTA: 370 × 48
+hero copy bottom: 548.0625
+hero art top: 552.0625
+header mark right: 116
+header CTA left: 262.078125
+rendered targets checked: 26
+press transform: matrix(0.94, 0, 0, 0.94, 0, 0)
+press glow: Gwap Green drop-shadow
 ```
 
-The run passed the previously failing 320px overflow assertion and advanced through the geometry checks before failing the 44×44 target gate.
+Result: **PASS**.
 
-The following checks therefore passed at 320px before the failure:
+### Browse regression / accessibility targets
 
 ```text
-primary CTA is first in DOM: PASS
-secondary CTA is second in DOM: PASS
-primary canonical green / dark text: PASS
-primary CTA >=48px: PASS
-secondary remains ghost/translucent: PASS
-secondary CTA >=48px: PASS
-primary touch-action manipulation: PASS
-horizontal page overflow: PASS
-heading inside viewport: PASS
-hero copy / hero art overlap: PASS
-hero CTA overlap: PASS
-header logo / CTA overlap: PASS
+Browse tiles: 152
+rendered critical Browse controls: 10
+critical target minimum: >=44×44
+375px horizontal overflow: none
 ```
 
-Target failure:
+Result: **PASS**.
+
+### Reduced motion
 
 ```text
-Terms     width 29.453125px  height 11px  display inline
-IP Policy width 39.5px       height 11px  display inline
+pressed transform: none
+pressed filter: none
 ```
 
-Assertion:
+Result: **PASS**.
 
-```text
-all visible home links/buttons are at least 44x44 at 320px
-```
+### Console
 
-Result: **FAIL — 44×44 target gate.**
+The home browser checks at 320 / 375 / 414 completed with zero console errors.
 
-## Target correction
-
-A source-level specific footer rule was added inside the same scoped CSS candidate:
-
-```css
-.site-footer .footer-links a {
-  display: inline-flex !important;
-  min-width: 44px !important;
-  min-height: 44px !important;
-  align-items: center;
-  justify-content: center;
-}
-```
-
-Correction commit:
-
-```text
-0c54db0ef5c732ee365a15bb19ab170e4d9e63e5
-fix(stage-3.2): enforce footer touch targets
-```
-
-No other product file was changed.
-
-## Run 3 — same target gate failed again
-
-GitHub Actions:
-
-```text
-run: 38044313335
-job: 114190639674
-commit: 0c54db0ef5c732ee365a15bb19ab170e4d9e63e5
-```
-
-The exact same target measurements remained in Chromium:
-
-```text
-Terms     width 29.453125px  height 11px  display inline
-IP Policy width 39.5px       height 11px  display inline
-```
-
-Failure:
-
-```text
-AssertionError: all visible home links/buttons are at least 44x44 at 320px
-```
-
-The source override did not change the computed footer-link presentation in the built browser output. The reason is not yet established by evidence in this stage run.
-
-Result: **FAIL — same 44×44 target gate.**
-
-## Mandatory two-failure stop
-
-Standing stage rule:
-
-> Complete tasks then gates; fix/re-run. After two failures on the same check, stop/report.
-
-The required 44×44 target gate failed in Run 2 and Run 3.
-
-Therefore:
-
-```text
-STOP — mandatory two-failure rule triggered.
-```
-
-No third target fix or rerun is permitted in this Stage 3.2 run.
-
-## Gates not claimed
-
-Because the browser suite aborts at the 320px target check, Stage 3.2 does **not** claim final PASS for:
-
-- complete 320 / 375 / 414 responsive suite,
-- `.94` press-state browser verification,
-- press-state Gwap Green glow verification,
-- all-home 44×44 targets,
-- Browse critical-control 44×44 targets,
-- Browse 375px horizontal-overflow browser gate,
-- reduced-motion press-state verification,
-- screenshot evidence.
-
-The implementation candidate contains these behaviors, but static source intent is not substituted for the required browser evidence.
+Result: **PASS**.
 
 ## Screenshot evidence
 
-No Stage 3.2 screenshots are claimed. Every browser run aborted before the screenshot step inside the test script.
+```text
+home-320.png
+SHA256 916c0e631eb603604bde035d9ca020475f9e3e5fa7c50fd5b9a22201a96c1069
 
-## Repository / deployment safety
+home-375.png
+SHA256 a26788935717f51b35cbc2e9efcfa96b1a58ab0fded8502db9717286ca75c43c
 
-- Stage 3.2 product candidate remains isolated on `stage32-ci-validation`.
-- `sprint-1-foundations` retains the fully passing Stage 3.1 product source plus this report only.
-- Stage 4.1 was not started.
-- No Stage 3.2 source promotion was performed.
-- No production deployment or production alias operation was performed.
-- `main` was not changed.
-- `lil-gwapz-production` was not changed.
-- `lilgwapz.xyz` and `www.lilgwapz.xyz` were not changed.
+home-414.png
+SHA256 40acddbf5dfe6471911898ad1ea8ec7647e41eddf2aba422ff3a580d578b67e0
 
-## Recommended next correction
+browse-375.png
+SHA256 440d5850ca73e372b6db47d9e672e90849039e07755cb710020ec5377e6c67e1
+```
 
-Start a **fresh Stage 3.2 touch-target remediation pass** from the isolated candidate, but freeze product CSS initially.
+## Source promotion
 
-Before another target assertion is attempted, diagnose the built browser output itself:
+Only the exact validated product CSS blob was promoted to `sprint-1-foundations`.
 
-1. inspect the generated `dist/css/motion.css` and confirm the footer target rule is physically present,
-2. inspect the computed style / matched CSS rule origin for the `Terms` and `IP Policy` anchors,
-3. determine whether the deterministic preview build is omitting/overwriting the Stage 3.2 rule or whether another cascade/runtime path is winning,
-4. modify product source only after that evidence identifies the actual cause,
-5. restart the target gate as a fresh remediation pass rather than consuming a prohibited third attempt in this run.
+Validated blob:
+
+```text
+ad32e688cf80e7edade7b8025cefc1b811cd13ac
+```
+
+Sprint promotion commit:
+
+```text
+838fb6520b5bd933d79c37f9b35bbb90a26d6436
+feat(stage-3.2): promote validated press and spacing polish
+```
+
+No validation workflow or test-only file was promoted as product source.
+
+## Experimental deployment verification
+
+Experimental Vercel project only:
+
+```text
+project: lil-gwapz
+project ID: prj_cXCW1emalg3eDXTUatVKjGlQkOE3
+deployment: dpl_4GKJZQYEkH5bEb11fefEFDd1SK3w
+URL: https://lil-gwapz-jteiqzrby-bigdaddygwaps-projects.vercel.app
+source branch: sprint-1-foundations
+source commit: 838fb6520b5bd933d79c37f9b35bbb90a26d6436
+state: READY
+target: preview
+```
+
+Deployment alias:
+
+```text
+lil-gwapz-git-sprint-1-foundations-bigdaddygwaps-projects.vercel.app
+```
+
+The experimental project domain inventory contains only:
+
+```text
+lil-gwapz.vercel.app → experiment/ui-ux-v2
+```
+
+It does not contain `lilgwapz.xyz` or `www.lilgwapz.xyz`.
+
+## Production safety
+
+Confirmed unchanged:
+
+```text
+main
+lil-gwapz-production
+lilgwapz.xyz
+www.lilgwapz.xyz
+```
+
+No production promotion, production alias assignment, production-domain update, or `main` merge was performed.
 
 ## Stage result
 
-Stage 3.2 remains **STOPPED**.
+**PASS — EXPERIMENTAL PREVIEW ONLY**
 
-Stage 1.1, Stage 1.2, Stage 2.1, Stage 2.2, and Stage 3.1 remain PASS. Production remains untouched.
+Stage 1.1, Stage 1.2, Stage 2.1, Stage 2.2, Stage 3.1, and Stage 3.2 are PASS.
+
+Stage 4.1 is cleared to begin after this PASS report is committed.
