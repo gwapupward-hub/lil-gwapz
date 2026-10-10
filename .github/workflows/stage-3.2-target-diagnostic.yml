@@ -1,0 +1,75 @@
+name: Stage 3.2 Target Diagnostic
+
+on:
+  push:
+    branches:
+      - stage32-target-diagnostic
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact diagnostic commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Install deterministic diagnostic dependencies
+        run: npm install --no-save sharp@0.35.5 playwright@1.64.0 serve@14.2.5
+      - name: Install Chromium and system dependencies
+        run: npx playwright install --with-deps chromium
+      - name: Build experimental preview output
+        run: |
+          node scripts/build-stage-1.2.cjs
+          node scripts/build-browse.mjs
+          node scripts/build-preview.cjs
+      - name: Verify footer rule in source and built CSS
+        run: |
+          echo '--- source css ---'
+          grep -n -A6 -B2 'site-footer .footer-links a' css/motion.css || true
+          echo '--- built css ---'
+          grep -n -A6 -B2 'site-footer .footer-links a' dist/css/motion.css || true
+          echo '--- hashes ---'
+          sha256sum css/motion.css dist/css/motion.css
+      - name: Start static server
+        run: |
+          npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/lilgwapz-serve.log
+          exit 1
+      - name: Diagnose Chromium footer cascade
+        run: |
+          node --input-type=module <<'NODE'
+          import { chromium } from 'playwright';
+          const browser = await chromium.launch({headless:true});
+          const context = await browser.newContext({viewport:{width:320,height:900},reducedMotion:'no-preference'});
+          const page = await context.newPage();
+          const responses=[];
+          page.on('response',r=>{ if(r.url().includes('motion.css')) responses.push({url:r.url(),status:r.status(),contentType:r.headers()['content-type']||''}); });
+          await page.goto('http://127.0.0.1:4173/',{waitUntil:'networkidle'});
+          const result = await page.evaluate(()=>{
+            const anchors=[...document.querySelectorAll('.site-footer .footer-links a')];
+            const stylesheets=[...document.styleSheets].map(s=>({href:s.href,disabled:s.disabled,ruleCount:(()=>{try{return s.cssRules.length}catch{return -1}})()}));
+            const matched=[];
+            for(const sheet of document.styleSheets){
+              let rules;
+              try{rules=[...sheet.cssRules]}catch{continue}
+              for(const rule of rules){
+                if(rule.type===CSSRule.STYLE_RULE && rule.selectorText){
+                  for(const anchor of anchors){
+                    try{if(anchor.matches(rule.selectorText) && /(site-footer|footer-links)/.test(rule.selectorText)) matched.push({href:sheet.href,selector:rule.selectorText,cssText:rule.style.cssText});}catch{}
+                  }
+                }
+              }
+            }
+            const links=anchors.map(a=>{const s=getComputedStyle(a),r=a.getBoundingClientRect();return {text:a.textContent.trim(),display:s.display,minWidth:s.minWidth,minHeight:s.minHeight,width:r.width,height:r.height,alignItems:s.alignItems,justifyContent:s.justifyContent};});
+            return {stylesheets,matched,links};
+          });
+          const cssText=await (await page.request.get('http://127.0.0.1:4173/css/motion.css')).text();
+          console.log(JSON.stringify({responses,result,builtMotionContainsRule:cssText.includes('.site-footer .footer-links a')},null,2));
+          await browser.close();
+          NODE
