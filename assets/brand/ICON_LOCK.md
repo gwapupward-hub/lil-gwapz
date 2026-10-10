@@ -1,27 +1,23 @@
-# Lil Gwapz app icon — v1 APPROVED / LOCKED
+# Lil Gwapz favicon — v2 APPROVED / LOCKED
 
-Approved by Tha Emerald General on October 9, 2026 (America/New_York).
+Approved by Tha Emerald General on October 10, 2026 (America/New_York).
 
-Canonical artwork: `lil-gwapz-icon-master-v1.png` (1254 × 1254 RGB PNG).
-This file is an exact, unmodified copy of the final approved artwork.
+Source artwork: the newly supplied 1254 × 1254 transparent PNG. All favicon exports below were generated directly from that approved artwork with no redesign.
 
-SHA-256: `93381eb51568001d7b55e4f87175bb3beed482a79c8c6c41ff1dd32b736ca2e0`
+Source SHA-256: `3175255ac3f8f1ca9b5a5ba1ecdbfe4855aaef91ec2b8f086530ae03f522fe65`
 
 ## Locked design
 
-- Crowned LG monogram: yellow-orange L, silver-white G, yellow crown.
-- Rainbow exterior outline and matching interior separation outline.
-- Black negative space between the letters; no orange wedge in that gap.
-- Glossy dimensional finish on a near-black square background.
-- Preserve the composition, proportions, materials, colors, and safe margins.
-- Do not regenerate, recolor, redraw, crop, or redesign without explicit approval.
+- Crowned LG monogram.
+- Glossy yellow-orange L and silver-white G.
+- Full rainbow exterior rim with matching inner rainbow separation line.
+- Deep black / near-black dimensional icon body with transparent outer corners.
+- Preserve composition, proportions, materials, color balance, highlights, crown, rim treatment and safe margins.
+- Do not regenerate, recolor, redraw, crop, simplify or redesign without explicit approval.
 
-This icon replaces the former generic crown/LG favicon. It does not replace
-the full Lil Gwapz wordmark, sticker artwork, or social share card.
+This v2 artwork supersedes the previous v1 favicon artwork. Git history preserves the superseded source.
 
-## Web exports
-
-All exports are resized directly from the locked master without creative edits.
+## Active web exports
 
 | File | Size | Use |
 | --- | --- | --- |
@@ -29,12 +25,6 @@ All exports are resized directly from the locked master without creative edits.
 | `/favicon-32.png` | 32 × 32 | Browser tabs |
 | `/favicon-96.png` | 96 × 96 | High-density browser/search icon |
 | `/apple-touch-icon.png` | 180 × 180 | Apple touch / home-screen icon |
-| `lil-gwapz-icon-192.png` | 192 × 192 | Web manifest icon |
-| `lil-gwapz-icon-512.png` | 512 × 512 | Large web manifest icon |
+| `/assets/brand/lil-gwapz-icon-192.png` | 192 × 192 | Web manifest icon |
 
-All five HTML pages use the version token `lg-v1` to refresh old icon URLs.
-The web manifest preserves browser display mode; this change does not add
-offline support or claim a native app or fully installable PWA.
-
-The prior SVG favicon is superseded and removed. Its history remains in Git.
-Future icon exports must use this approved master, not an earlier preview.
+The legacy 512px v1 manifest icon is removed so the old artwork cannot be selected by the browser. The manifest now points only to the approved v2 192px icon. Existing favicon paths are retained for compatibility.
