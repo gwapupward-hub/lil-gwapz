@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - stage32-ci-validation
+      - stage32-target-remediation
   workflow_dispatch:
 
 permissions:
@@ -27,6 +28,10 @@ jobs:
           node scripts/build-stage-1.2.cjs
           node scripts/build-browse.mjs
           node scripts/build-preview.cjs
+      - name: Verify exact Stage 3.2 CSS in build
+        run: |
+          sha256sum css/motion.css dist/css/motion.css
+          grep -n -A6 -B2 'site-footer .footer-links a' dist/css/motion.css
       - name: Start static server
         run: |
           npx serve dist -l 4173 > /tmp/lilgwapz-serve.log 2>&1 &
