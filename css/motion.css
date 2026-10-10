@@ -38,6 +38,7 @@
   box-shadow:none;
 }
 .header-cta,.desktop-nav a,.text-link,.site-footer a,.mobile-nav a,.filter-chip{
+  min-width:44px;
   min-height:44px;
   display:inline-flex;
   align-items:center;
