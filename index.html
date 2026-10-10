@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/motion.css">
+  <link rel="stylesheet" href="css/mood-showcase.css">
   <script defer src="app.js"></script>
   <script defer src="legal.js"></script>
   <script defer src="js/browse-tiles.js"></script>
@@ -58,14 +59,23 @@
       </div>
     </section>
 
-    <section class="section moods-section" aria-labelledby="moods-title">
-      <div class="section-heading"><div><p class="eyebrow">PICK A FEELING</p><h2 id="moods-title">What’s the mood?</h2></div><a class="text-link" href="browse.html">All 152 stickers</a></div>
-      <div class="mood-grid">
-        <a class="mood-tile mood-happy" href="browse.html?mood=happy"><span class="mood-icon">☺</span><b>Happy</b><small>Good energy only</small></a>
-        <a class="mood-tile mood-sassy" href="browse.html?mood=sassy"><span class="mood-icon">◉</span><b>Sassy</b><small>Say it with a look</small></a>
-        <a class="mood-tile mood-chill" href="browse.html?mood=chill"><span class="mood-icon">☼</span><b>Chill</b><small>Easy does it</small></a>
-        <a class="mood-tile mood-hype" href="browse.html?mood=hype"><span class="mood-icon">♨</span><b>Hype</b><small>Turn it all the way up</small></a>
-        <a class="mood-tile mood-love" href="browse.html?mood=love"><span class="mood-icon">♡</span><b>Much love</b><small>Send the good stuff</small></a>
+    <section class="section moods-section mood-showcase" aria-labelledby="moods-title">
+      <div class="mood-showcase-shell">
+        <div class="section-heading mood-showcase-intro">
+          <div>
+            <p class="eyebrow">PICK A FEELING</p>
+            <h2 id="moods-title">What’s the mood?</h2>
+            <p class="mood-showcase-copy">Five mood families make all 152 reactions easier to find. Pick the energy first, then choose your Lil Gwapz.</p>
+          </div>
+          <a class="text-link" href="browse.html">All 152 stickers</a>
+        </div>
+        <div class="mood-grid mood-showcase-track" role="list" aria-label="Lil Gwapz mood families">
+          <a class="mood-tile mood-happy" role="listitem" href="browse.html?mood=happy"><span class="mood-step">01</span><span class="mood-icon">☺</span><b>Happy</b><small>Good energy only</small></a>
+          <a class="mood-tile mood-attitude" role="listitem" href="browse.html?mood=attitude"><span class="mood-step">02</span><span class="mood-icon">◉</span><b>Attitude</b><small>Say it with a look</small><span class="mood-variant-label">Sassy · Swagger</span></a>
+          <a class="mood-tile mood-chill" role="listitem" href="browse.html?mood=chill"><span class="mood-step">03</span><span class="mood-icon">☼</span><b>Chill</b><small>Easy does it</small></a>
+          <a class="mood-tile mood-hype" role="listitem" href="browse.html?mood=hype"><span class="mood-step">04</span><span class="mood-icon">♨</span><b>Hype</b><small>Turn it all the way up</small></a>
+          <a class="mood-tile mood-love" role="listitem" href="browse.html?mood=love"><span class="mood-step">05</span><span class="mood-icon">♡</span><b>Much love</b><small>Send the good stuff</small></a>
+        </div>
       </div>
     </section>
 
