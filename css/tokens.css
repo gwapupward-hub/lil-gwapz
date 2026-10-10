@@ -24,6 +24,19 @@
   align-items: center;
 }
 
+/* Stage 6.2 — full-release target audit closes the remaining hit-area gaps. */
+.search-box input {
+  min-height: 44px;
+  height: 100%;
+}
+.legal-page .legal-document section a:not(.legal-action-link) {
+  display: inline-flex;
+  align-items: center;
+  min-width: 44px;
+  min-height: 44px;
+  max-width: 100%;
+}
+
 /* Stage 6.1 — canonical green + semantic contrast enforcement.
    Gwap Green text is reserved for the exact #09080d background.
    Green fills always carry dark text. */
