@@ -37,8 +37,8 @@ for(const path of pages){
   const response=await page.goto(`${base}${path}`,{waitUntil:'networkidle'});
   assert.equal(response?.status(),200,`${path} returns 200`);
 
-  const footer=page.locator('.site-footer.site-footer-expanded');
-  assert.equal(await footer.count(),1,`${path} has one expanded footer`);
+  const footer=page.locator('.site-footer');
+  assert.equal(await footer.count(),1,`${path} has one public footer`);
   assert.equal(await footer.locator('.footer-group').count(),3,`${path} has Legal/Ecosystem/Connect groups`);
 
   const hrefs=await footer.locator('a[href]').evaluateAll(nodes=>nodes.map(a=>a.getAttribute('href')));
@@ -63,6 +63,12 @@ for(const path of pages){
   assert.deepEqual(tooSmall,[],`${path} footer links meet 44px target minimum: ${JSON.stringify(tooSmall)}`);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${path} has no 375px horizontal overflow`);
   assert.equal(consoleErrors.length,0,`${path} console errors: ${consoleErrors.join(' | ')}`);
+
+  if(path==='/browse.html'){
+    assert.equal(await page.locator('#mobile-filter-open').count(),1,'Browse retains mobile filter trigger');
+    assert.equal(await page.locator('#mobile-filter-dialog').count(),1,'Browse retains generated mobile Character & color dialog');
+    assert.equal(await page.locator('[data-sticker-tile]').count(),152,'Browse retains 152 static grouped tiles');
+  }
 
   evidence.push({path,hrefs,targets:renderedTargets.length});
   await context.close();
@@ -90,7 +96,7 @@ await legalContext.close();
 const jsOff=await browser.newContext({viewport:{width:375,height:900},javaScriptEnabled:false});
 const jsOffPage=await jsOff.newPage();
 await jsOffPage.goto(`${base}/browse.html`,{waitUntil:'domcontentloaded'});
-assert.equal(await jsOffPage.locator('.site-footer.site-footer-expanded').count(),1,'expanded Browse footer is static with JS disabled');
+assert.equal(await jsOffPage.locator('.site-footer').count(),1,'Browse footer is static with JS disabled');
 assert.equal(await jsOffPage.locator('[data-sticker-tile]').count(),152,'Browse retains all 152 static tiles with JS disabled');
 assert.ok(await jsOffPage.locator('a[href="https://gwapspot.com/contact"]').count()>=1,'licensing path remains available with JS disabled');
 await jsOffPage.screenshot({path:'artifacts/stage-5.2/browse-mobile-js-off.png',fullPage:true});
@@ -103,6 +109,7 @@ console.log(JSON.stringify({
   ecosystem:['https://gwapspot.com','https://gwapspot.fun/name','https://gwapscore.live/','https://dimimusic.xyz/','https://gwapspot.store/'],
   pages:evidence,
   termsCtaStyle,
+  browseMobileFilterDialog:1,
   jsOffBrowseTiles:152,
   screenshots:['terms-desktop.png','ip-policy-desktop.png','browse-mobile-js-off.png']
 },null,2));
