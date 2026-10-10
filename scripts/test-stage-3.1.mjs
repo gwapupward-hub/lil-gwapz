@@ -75,7 +75,8 @@ const motionSource=fs.readFileSync('js/browse-tiles.js','utf8');
 assert.ok(!/addEventListener\s*\(\s*['\"]scroll['\"]/.test(motionSource),'no scroll event listener');
 assert.ok(!/\.onscroll\s*=/.test(motionSource),'no onscroll handler');
 assert.ok(/IntersectionObserver/.test(motionSource),'IntersectionObserver used for reveal');
-const externalScripts=await page.goto(`${base}/`,{waitUntil:'networkidle'}).then(()=>page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>n.getAttribute('src')).filter(src=>/^https?:\/\//i.test(src||''))));
+await page.goto(`${base}/`,{waitUntil:'networkidle'});
+const externalScripts=await page.locator('script[src]').evaluateAll(nodes=>nodes.map(n=>n.src).filter(Boolean).filter(src=>new URL(src,location.href).origin!==location.origin));
 assert.deepEqual(externalScripts,[],'no third-party script URLs');
 
 console.log(JSON.stringify({heroStickers:3,scrollTimelineSupported:support,motionState,reducedState,browseTiles:152,hoverState,jsOffBrowseVisible:152,consoleErrors:0,screenshots:['mobile-home-390.png','desktop-home-1280.png']},null,2));
