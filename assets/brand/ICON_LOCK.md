@@ -1,30 +1,32 @@
-# Lil Gwapz favicon — v2 APPROVED / LOCKED
+# Lil Gwapz favicon — OFFICIAL / LOCKED
 
-Approved by Tha Emerald General on October 10, 2026 (America/New_York).
+Approved by Tha Emerald General on October 13, 2026.
 
-Source artwork: the newly supplied 1254 × 1254 transparent PNG. All favicon exports below were generated directly from that approved artwork with no redesign.
-
-Source SHA-256: `3175255ac3f8f1ca9b5a5ba1ecdbfe4855aaef91ec2b8f086530ae03f522fe65`
+This crowned **LG** mark is the single official Lil Gwapz favicon. It supersedes all earlier favicon artwork.
 
 ## Locked design
-
 - Crowned LG monogram.
-- Glossy yellow-orange L and silver-white G.
-- Full rainbow exterior rim with matching inner rainbow separation line.
-- Deep black / near-black dimensional icon body with transparent outer corners.
-- Preserve composition, proportions, materials, color balance, highlights, crown, rim treatment and safe margins.
-- Do not regenerate, recolor, redraw, crop, simplify or redesign without explicit approval.
+- Glossy yellow-orange **L** and metallic silver-white **G**.
+- Black dimensional outline with rainbow/neon exterior rim.
+- Transparent outer background.
+- Square 1:1 composition.
+- Preserve the crown, proportions, materials, highlights, color balance, rim treatment and transparent background.
+- Do not regenerate, recolor, redraw, crop, simplify or replace without explicit approval.
 
-This v2 artwork supersedes the previous v1 favicon artwork. Git history preserves the superseded source.
+## Canonical production asset
+- `/assets/brand/lil-gwapz-favicon-official.png` — 192 × 192 transparent PNG.
+- SHA-256: `6dff5fdb3340cb8ff27c922532321485e0cb70c5b2fc73a00f4acdd0dce662c7`
+- Derived directly from the approved transparent artwork for web/favicon delivery.
 
-## Active web exports
+## Compatibility exports
+These are not alternate designs; they are required browser/device exports generated from the one official asset.
 
-| File | Size | Use |
+| File | Size / format | Use |
 | --- | --- | --- |
-| `/favicon.ico` | 16, 32, 48 px | Browser fallback / automatic favicon discovery |
-| `/favicon-32.png` | 32 × 32 | Browser tabs |
-| `/favicon-96.png` | 96 × 96 | High-density browser/search icon |
-| `/apple-touch-icon.png` | 180 × 180 | Apple touch / home-screen icon |
-| `/assets/brand/lil-gwapz-icon-192.png` | 192 × 192 | Web manifest icon |
+| `/favicon.ico` | 16, 32, 48 px | Browser fallback |
+| `/favicon-32.png` | 32 × 32 | Standard browser icon |
+| `/favicon-96.png` | 96 × 96 | Hi-DPI browser icon |
+| `/apple-touch-icon.png` | 180 × 180 | Apple touch icon |
+| `/assets/brand/lil-gwapz-favicon-official.png` | 192 × 192 | Manifest / canonical favicon source |
 
-The legacy 512px v1 manifest icon is removed so the old artwork cannot be selected by the browser. The manifest now points only to the approved v2 192px icon. Existing favicon paths are retained for compatibility.
+Cache-busting token: `lg-v3`.
