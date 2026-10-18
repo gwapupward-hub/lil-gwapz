@@ -10,11 +10,11 @@ The owner received **Lil_Gwapz_Halloween_2026_Website_Deploy_Kit.zip** as a Chat
 
 1. On an owner-controlled checkout of this feature branch, download the kit from the original ChatGPT conversation.
 2. Run:
-   \`\`\`sh
+   ```sh
    python3 scripts/import_halloween_2026.py /path/to/Lil_Gwapz_Halloween_2026_Website_Deploy_Kit.zip
    python3 scripts/verify_halloween_assets.py
    node --check halloween.js
-   \`\`\`
+   ```
 3. Add only the resulting seasonal files, then commit and push to this branch.
 4. Confirm the GitHub Action **Halloween 2026 Release Gate** passes.
 5. Inspect the **Vercel preview** of /halloween.html on mobile and desktop. Test all 20 cards, character filters, search, dialog, original PNG download, both ZIP downloads, and OG share card.
