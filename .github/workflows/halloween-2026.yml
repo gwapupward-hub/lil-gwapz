@@ -1,0 +1,24 @@
+name: Halloween 2026 Release Gate
+on:
+  pull_request:
+    paths:
+      - 'halloween.*'
+      - 'assets/halloween-2026/**'
+      - 'downloads/Lil_Gwapz_Halloween_2026_*'
+      - 'og/lil-gwapz-halloween-2026.jpg'
+      - 'scripts/*halloween*'
+      - '.github/workflows/halloween-2026.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  seasonal-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify all Halloween artwork and bundles
+        run: python3 scripts/verify_halloween_assets.py
+      - name: Check seasonal JavaScript syntax
+        run: node --check halloween.js
