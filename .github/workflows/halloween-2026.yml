@@ -5,6 +5,9 @@ on:
       - 'halloween.*'
       - 'index.html'
       - 'css/halloween-promo.css'
+      - 'css/halloween-splash.css'
+      - 'js/halloween-splash.js'
+      - 'assets/halloween-2026/splash/**'
       - 'assets/halloween-2026/**'
       - 'downloads/Lil_Gwapz_Halloween_2026_*'
       - 'og/lil-gwapz-halloween-2026.jpg'
@@ -25,6 +28,10 @@ jobs:
         run: python3 scripts/verify_halloween_assets.py
       - name: Check complete Halloween release
         run: python3 scripts/verify_halloween_release.py
+      - name: Verify hybrid Halloween splash, including optimized video
+        run: python3 scripts/verify_halloween_splash.py
+      - name: Check splash JavaScript syntax
+        run: node --check js/halloween-splash.js
       - name: Check seasonal JavaScript syntax
         run: node --check halloween.js
       - name: Check Vercel build-script syntax
