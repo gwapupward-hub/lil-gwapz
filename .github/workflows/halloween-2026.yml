@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'halloween.*'
+      - 'index.html'
+      - 'css/halloween-promo.css'
       - 'assets/halloween-2026/**'
       - 'downloads/Lil_Gwapz_Halloween_2026_*'
       - 'og/lil-gwapz-halloween-2026.jpg'
@@ -27,3 +29,16 @@ jobs:
         run: node --check halloween.js
       - name: Check Vercel build-script syntax
         run: node --check scripts/build-preview.cjs
+      - name: Validate homepage Halloween discovery link
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          home = Path("index.html").read_text()
+          assert 'href="/halloween.html"' in home, "Missing homepage Halloween link"
+          assert 'css/halloween-promo.css' in home, "Missing seasonal stylesheet reference"
+          assert Path("css/halloween-promo.css").is_file(), "Missing promotional stylesheet"
+          for f in ("LG-HW26-M08-werewolf-roar.webp", "LG-HW26-F10-witch-spellbook.webp"):
+              assert Path("assets/halloween-2026/previews", f).is_file(), f"Missing homepage featured sticker: {f}"
+          assert 'https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot' in home, "Wrong Telegram destination"
+          print("PASS: homepage Halloween links and featured artwork")
+          PY
