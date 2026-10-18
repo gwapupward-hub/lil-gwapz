@@ -1,7 +1,8 @@
 {
   "release": "Haunted Gwapz 2026",
   "total": 20,
-  "telegram_published": false,
+  "telegram_published": true,
+  "telegram_url": "https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot",
   "stickers": [
     {
       "id": "LG-HW26-M01",
