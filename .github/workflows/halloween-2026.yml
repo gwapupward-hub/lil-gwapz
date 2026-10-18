@@ -28,8 +28,6 @@ jobs:
         run: python3 scripts/verify_halloween_assets.py
       - name: Check complete Halloween release
         run: python3 scripts/verify_halloween_release.py
-      - name: Verify hybrid Halloween splash, including optimized video
-        run: python3 scripts/verify_halloween_splash.py
       - name: Check splash JavaScript syntax
         run: node --check js/halloween-splash.js
       - name: Check seasonal JavaScript syntax
@@ -49,3 +47,5 @@ jobs:
           assert 'https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot' in home, "Wrong Telegram destination"
           print("PASS: homepage Halloween links and featured artwork")
           PY
+      - name: Verify hybrid Halloween splash, including optimized video
+        run: python3 scripts/verify_halloween_splash.py
