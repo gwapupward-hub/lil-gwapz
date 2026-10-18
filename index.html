@@ -32,11 +32,37 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/motion.css">
   <link rel="stylesheet" href="css/mood-showcase.css">
+  <link rel="stylesheet" href="css/halloween-promo.css">
+  <link rel="stylesheet" href="css/halloween-splash.css">
   <script defer src="app.js"></script>
   <script defer src="legal.js"></script>
   <script defer src="js/browse-tiles.js"></script>
+  <script defer src="js/halloween-splash.js"></script>
 </head>
 <body class="home-page">
+  <!-- Seasonal splash is progressive enhancement. The normal homepage remains usable without JS. -->
+  <div class="haunted-splash is-static" id="haunted-splash" role="dialog" aria-modal="true" aria-labelledby="haunted-splash-title" aria-describedby="haunted-splash-description" hidden>
+    <div class="haunted-splash__visual" aria-hidden="true">
+      <div class="haunted-splash__static">
+        <img src="/assets/halloween-2026/previews/LG-HW26-M08-werewolf-roar.webp" alt="" width="640" height="640" fetchpriority="high">
+        <img src="/assets/halloween-2026/previews/LG-HW26-F10-witch-spellbook.webp" alt="" width="640" height="640" fetchpriority="high">
+      </div>
+      <video class="haunted-splash__video" id="haunted-splash-video" muted playsinline preload="none" aria-hidden="true"></video>
+      <div class="haunted-splash__shade"></div>
+    </div>
+    <button class="haunted-splash__skip" type="button" data-haunted-close aria-label="Skip Halloween introduction and continue to Lil Gwapz homepage">Skip <span aria-hidden="true">×</span></button>
+    <div class="haunted-splash__body">
+      <p class="haunted-splash__eyebrow">Limited October 2026 Edition</p>
+      <h2 class="haunted-splash__title" id="haunted-splash-title">HAUNTED <span>GWAPZ</span><em>2026.</em></h2>
+      <p class="haunted-splash__description" id="haunted-splash-description">20 spooky Lil Gwapz reactions. <strong>10 male · 10 female.</strong> The Halloween edition is here.</p>
+      <div class="haunted-splash__actions">
+        <a class="haunted-splash__button haunted-splash__button--primary" href="/halloween.html">Enter Halloween Edition ↗</a>
+        <a class="haunted-splash__button haunted-splash__button--telegram" href="https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot" target="_blank" rel="noopener noreferrer">Add on Telegram ↗</a>
+        <a class="haunted-splash__button" href="/browse.html">Browse 152 ↗</a>
+      </div>
+      <p class="haunted-splash__footnote">LIL GWAPZ × THA GWAPSPOT · SEASONAL DROP 01</p>
+    </div>
+  </div>
   <header class="site-header">
     <a class="wordmark" href="./" aria-label="Lil Gwapz home"><img src="/assets/brand/lil-gwapz-logo-v2.png" width="672" height="448" alt="Lil Gwapz" fetchpriority="high"></a>
     <nav class="desktop-nav" aria-label="Main navigation"><a class="active" href="./">Explore</a><a href="browse.html">Browse 152</a><a href="#pack">The pack</a><a href="/ip-policy.html">Legal</a></nav>
@@ -57,6 +83,22 @@
         <div class="hero-sticker hero-sticker-three"><img data-sticker="LG-R01-024-M" alt="Hype, male Lil Gwapz"></div>
         <span class="spark spark-one">✦</span><span class="spark spark-two">✧</span><span class="hero-tag">SAME MOOD.<br>NEW ENERGY.</span>
       </div>
+    </section>
+
+    <section class="seasonal-promo" aria-labelledby="seasonal-promo-title">
+      <div class="seasonal-promo__copy">
+        <p class="seasonal-promo__eyebrow">HALLOWEEN 2026 · TELEGRAM PACK LIVE</p>
+        <h2 id="seasonal-promo-title">Meet the <span>Haunted Gwapz.</span></h2>
+        <p class="seasonal-promo__description">20 spooky reactions. 10 male and 10 female Lil Gwapz. Add the official Telegram stickers instantly—or explore the exclusive high-resolution edition.</p>
+        <div class="seasonal-promo__actions">
+          <a class="button seasonal-promo__button" href="/halloween.html">Explore Halloween edition ↗</a>
+          <a class="seasonal-promo__telegram" href="https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot" target="_blank" rel="noopener noreferrer">Get Telegram stickers ↗</a>
+        </div>
+      </div>
+      <a class="seasonal-promo__art" href="/halloween.html" aria-label="Explore 20 Haunted Gwapz Halloween stickers">
+        <img src="/assets/halloween-2026/previews/LG-HW26-M08-werewolf-roar.webp" alt="Male Lil Gwapz dressed as a Halloween werewolf" loading="lazy" width="250" height="250">
+        <img src="/assets/halloween-2026/previews/LG-HW26-F10-witch-spellbook.webp" alt="Female Lil Gwapz casting a spooky spell" loading="lazy" width="250" height="250">
+      </a>
     </section>
 
     <section class="section moods-section mood-showcase" aria-labelledby="moods-title">

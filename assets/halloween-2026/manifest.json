@@ -1,0 +1,488 @@
+{
+  "release": "Haunted Gwapz 2026",
+  "total": 20,
+  "telegram_published": true,
+  "telegram_url": "https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot",
+  "stickers": [
+    {
+      "id": "LG-HW26-M01",
+      "slug": "LG-HW26-M01-candy-champion",
+      "title": "Candy Champion",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "trick-or-treat excitement",
+      "emoji": "🍬",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M01-candy-champion.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M01-candy-champion.webp",
+      "telegram_file": "stickers/LG-HW26-M01-candy-champion.webp",
+      "master_sha256": "3a9f152b0281078728168e57812df8d3578b244c4b16fb649c4b906f380a4617",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 79200,
+      "preview_bytes": 109968
+    },
+    {
+      "id": "LG-HW26-M02",
+      "slug": "LG-HW26-M02-ghost-jump-scare",
+      "title": "Ghost Jump Scare",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "spooked",
+      "emoji": "😱",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M02-ghost-jump-scare.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M02-ghost-jump-scare.webp",
+      "telegram_file": "stickers/LG-HW26-M02-ghost-jump-scare.webp",
+      "master_sha256": "fa431259a27b9d81b7f5efff825c0117bd5452af01ee5446e8799e3aa5021426",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 105986,
+      "preview_bytes": 134726
+    },
+    {
+      "id": "LG-HW26-M03",
+      "slug": "LG-HW26-M03-vampire-swagger",
+      "title": "Vampire Swagger",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "confident spooky grin",
+      "emoji": "🧛",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M03-vampire-swagger.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M03-vampire-swagger.webp",
+      "telegram_file": "stickers/LG-HW26-M03-vampire-swagger.webp",
+      "master_sha256": "68a1bfab160d85467a485e3163379255e84a4e52af1ed43fdd679c00e15d40ce",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 59952,
+      "preview_bytes": 76828
+    },
+    {
+      "id": "LG-HW26-M04",
+      "slug": "LG-HW26-M04-gwap-warlock",
+      "title": "Gwap Warlock",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "spooky spellcasting",
+      "emoji": "🪄",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M04-gwap-warlock.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M04-gwap-warlock.webp",
+      "telegram_file": "stickers/LG-HW26-M04-gwap-warlock.webp",
+      "master_sha256": "d33db07b923aa3bbc024eba73390f366a4fd10febbceb6f69a39d8bdb8a073f5",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 126302,
+      "preview_bytes": 182348
+    },
+    {
+      "id": "LG-HW26-M05",
+      "slug": "LG-HW26-M05-spiderweb-disgust",
+      "title": "Spiderweb Disgust",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "annoyed",
+      "emoji": "🕷️",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M05-spiderweb-disgust.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M05-spiderweb-disgust.webp",
+      "telegram_file": "stickers/LG-HW26-M05-spiderweb-disgust.webp",
+      "master_sha256": "d59751e158d90be1f68a05643832831d101d7e8037eabaa49e647628607230a6",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 74822,
+      "preview_bytes": 102946
+    },
+    {
+      "id": "LG-HW26-M06",
+      "slug": "LG-HW26-M06-mummy-escape",
+      "title": "Mummy Escape",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "frustrated bandages",
+      "emoji": "😤",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M06-mummy-escape.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M06-mummy-escape.webp",
+      "telegram_file": "stickers/LG-HW26-M06-mummy-escape.webp",
+      "master_sha256": "232e1365989ee3892c60c07c1115d242a1cebebee945cbf5da938ffeb07d0d47",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 82854,
+      "preview_bytes": 110182
+    },
+    {
+      "id": "LG-HW26-M07",
+      "slug": "LG-HW26-M07-zombie-gwap-mode",
+      "title": "Zombie Gwap Mode",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "silly zombie chase",
+      "emoji": "🧟",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M07-zombie-gwap-mode.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M07-zombie-gwap-mode.webp",
+      "telegram_file": "stickers/LG-HW26-M07-zombie-gwap-mode.webp",
+      "master_sha256": "9d21bb906e386b7ffccc113f790cc5e4d881bd028e69a96431021de3fbef26f1",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 121310,
+      "preview_bytes": 171726
+    },
+    {
+      "id": "LG-HW26-M08",
+      "slug": "LG-HW26-M08-werewolf-roar",
+      "title": "Werewolf Roar",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "playful monster hype",
+      "emoji": "🐺",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M08-werewolf-roar.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M08-werewolf-roar.webp",
+      "telegram_file": "stickers/LG-HW26-M08-werewolf-roar.webp",
+      "master_sha256": "db6249957c9b0c31cd4d32801bc5930ecbb080ee4e92623d887191954f5d246f",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 115814,
+      "preview_bytes": 162702
+    },
+    {
+      "id": "LG-HW26-M09",
+      "slug": "LG-HW26-M09-reaper-drip",
+      "title": "Reaper Drip",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "confident grim-reaper swagger",
+      "emoji": "💀",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M09-reaper-drip.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M09-reaper-drip.webp",
+      "telegram_file": "stickers/LG-HW26-M09-reaper-drip.webp",
+      "master_sha256": "629d21b2300f22bbd774d59e222210db6672cfc147c4a9ca09087b832abf19cb",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 115206,
+      "preview_bytes": 159120
+    },
+    {
+      "id": "LG-HW26-M10",
+      "slug": "LG-HW26-M10-black-cat-candy-heist",
+      "title": "Black Cat Candy Heist",
+      "gender": "male",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "mischievous candy steal",
+      "emoji": "🐈‍⬛",
+      "full": "/assets/halloween-2026/masters/LG-HW26-M10-black-cat-candy-heist.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-M10-black-cat-candy-heist.webp",
+      "telegram_file": "stickers/LG-HW26-M10-black-cat-candy-heist.webp",
+      "master_sha256": "8cdfa1a0c256bce482137ad1c71f2c788c85f679e8a4dcf2d658002729d448ef",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 72558,
+      "preview_bytes": 105036
+    },
+    {
+      "id": "LG-HW26-F01",
+      "slug": "LG-HW26-F01-candy-queen",
+      "title": "Candy Queen",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "trick-or-treat excitement",
+      "emoji": "🍬",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F01-candy-queen.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F01-candy-queen.webp",
+      "telegram_file": "stickers/LG-HW26-F01-candy-queen.webp",
+      "master_sha256": "7766a3a797aac820fffbc76249835f41665fd9565ff76c26c4f5584335d465fb",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 90920,
+      "preview_bytes": 123500
+    },
+    {
+      "id": "LG-HW26-F02",
+      "slug": "LG-HW26-F02-ghost-jump-scare",
+      "title": "Ghost Jump Scare",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "spooked",
+      "emoji": "😱",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F02-ghost-jump-scare.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F02-ghost-jump-scare.webp",
+      "telegram_file": "stickers/LG-HW26-F02-ghost-jump-scare.webp",
+      "master_sha256": "9f46b6155fdf9f6045a7296f3b34b62cedbff1f9a9475e1d36c185a2f908a7e0",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 81880,
+      "preview_bytes": 106590
+    },
+    {
+      "id": "LG-HW26-F03",
+      "slug": "LG-HW26-F03-vampire-glam",
+      "title": "Vampire Glam",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "mischievous vampire grin",
+      "emoji": "🧛‍♀️",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F03-vampire-glam.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F03-vampire-glam.webp",
+      "telegram_file": "stickers/LG-HW26-F03-vampire-glam.webp",
+      "master_sha256": "620b353f52e04a2e68531c09825c8cbca014356d0c870c95e4524384c7e7b520",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 79966,
+      "preview_bytes": 106294
+    },
+    {
+      "id": "LG-HW26-F04",
+      "slug": "LG-HW26-F04-witch-magic",
+      "title": "Witch Magic",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "spooky spellcasting",
+      "emoji": "🪄",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F04-witch-magic.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F04-witch-magic.webp",
+      "telegram_file": "stickers/LG-HW26-F04-witch-magic.webp",
+      "master_sha256": "9cc41b9a8a40fd81b54757dfa047762bec634f3547fc28cc1e83bad77b350e10",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 106810,
+      "preview_bytes": 153806
+    },
+    {
+      "id": "LG-HW26-F05",
+      "slug": "LG-HW26-F05-spiderweb-side-eye",
+      "title": "Spiderweb Side Eye",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 1,
+      "emotion": "annoyed",
+      "emoji": "🕷️",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F05-spiderweb-side-eye.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F05-spiderweb-side-eye.webp",
+      "telegram_file": "stickers/LG-HW26-F05-spiderweb-side-eye.webp",
+      "master_sha256": "2e19bfcbf7985b84424021163de893f4c88c1d52d1571d3fc5535fd0bac2da59",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 97684,
+      "preview_bytes": 136466
+    },
+    {
+      "id": "LG-HW26-F06",
+      "slug": "LG-HW26-F06-mummy-attitude",
+      "title": "Mummy Attitude",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "fed up",
+      "emoji": "😤",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F06-mummy-attitude.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F06-mummy-attitude.webp",
+      "telegram_file": "stickers/LG-HW26-F06-mummy-attitude.webp",
+      "master_sha256": "64abfd2a7732af87e045aba80077d2cc7b766f257a310a9a34778265c2ae1bec",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 97604,
+      "preview_bytes": 136932
+    },
+    {
+      "id": "LG-HW26-F07",
+      "slug": "LG-HW26-F07-black-cat-sass",
+      "title": "Black Cat Sass",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "playfully cute",
+      "emoji": "🐈‍⬛",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F07-black-cat-sass.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F07-black-cat-sass.webp",
+      "telegram_file": "stickers/LG-HW26-F07-black-cat-sass.webp",
+      "master_sha256": "956785513a33adf0479ca5b72feba68345221e929c1f2d32fef9d804ecef229a",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 92864,
+      "preview_bytes": 131026
+    },
+    {
+      "id": "LG-HW26-F08",
+      "slug": "LG-HW26-F08-zombie-gwap-mode",
+      "title": "Zombie Gwap Mode",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "deadpan zombie glare",
+      "emoji": "🧟‍♀️",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F08-zombie-gwap-mode.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F08-zombie-gwap-mode.webp",
+      "telegram_file": "stickers/LG-HW26-F08-zombie-gwap-mode.webp",
+      "master_sha256": "3b4f300138383ff3dd529e35703fb662be3513be0c15b1c56220668425a679bc",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 96372,
+      "preview_bytes": 132442
+    },
+    {
+      "id": "LG-HW26-F09",
+      "slug": "LG-HW26-F09-pumpkin-jackpot",
+      "title": "Pumpkin Jackpot",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "hyped for candy",
+      "emoji": "🎃",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F09-pumpkin-jackpot.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F09-pumpkin-jackpot.webp",
+      "telegram_file": "stickers/LG-HW26-F09-pumpkin-jackpot.webp",
+      "master_sha256": "a16dc8c3ab7350feb06f0ba15280456372ef85fdaab2131b431483c515c717f3",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 95638,
+      "preview_bytes": 130692
+    },
+    {
+      "id": "LG-HW26-F10",
+      "slug": "LG-HW26-F10-witch-spellbook",
+      "title": "Witch Spellbook",
+      "gender": "female",
+      "season": "Halloween 2026",
+      "batch": 2,
+      "emotion": "magical excitement",
+      "emoji": "✨",
+      "full": "/assets/halloween-2026/masters/LG-HW26-F10-witch-spellbook.png",
+      "preview": "/assets/halloween-2026/previews/LG-HW26-F10-witch-spellbook.webp",
+      "telegram_file": "stickers/LG-HW26-F10-witch-spellbook.webp",
+      "master_sha256": "205ffea77b6ae25191989143a59decfedea0617e2641546fe2ad95e870ee31b2",
+      "original_dimensions": [
+        1254,
+        1254
+      ],
+      "telegram_dimensions": [
+        512,
+        512
+      ],
+      "telegram_bytes": 123888,
+      "preview_bytes": 175712
+    }
+  ]
+}

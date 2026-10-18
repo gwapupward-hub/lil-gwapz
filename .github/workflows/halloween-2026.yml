@@ -1,0 +1,51 @@
+name: Halloween 2026 Release Gate
+on:
+  pull_request:
+    paths:
+      - 'halloween.*'
+      - 'index.html'
+      - 'css/halloween-promo.css'
+      - 'css/halloween-splash.css'
+      - 'js/halloween-splash.js'
+      - 'assets/halloween-2026/splash/**'
+      - 'assets/halloween-2026/**'
+      - 'downloads/Lil_Gwapz_Halloween_2026_*'
+      - 'og/lil-gwapz-halloween-2026.jpg'
+      - 'scripts/*halloween*'
+      - 'scripts/build-preview.cjs'
+      - '.github/workflows/halloween-2026.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  seasonal-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Verify all Halloween artwork and bundles
+        run: python3 scripts/verify_halloween_assets.py
+      - name: Check complete Halloween release
+        run: python3 scripts/verify_halloween_release.py
+      - name: Check splash JavaScript syntax
+        run: node --check js/halloween-splash.js
+      - name: Check seasonal JavaScript syntax
+        run: node --check halloween.js
+      - name: Check Vercel build-script syntax
+        run: node --check scripts/build-preview.cjs
+      - name: Validate homepage Halloween discovery link
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          home = Path("index.html").read_text()
+          assert 'href="/halloween.html"' in home, "Missing homepage Halloween link"
+          assert 'css/halloween-promo.css' in home, "Missing seasonal stylesheet reference"
+          assert Path("css/halloween-promo.css").is_file(), "Missing promotional stylesheet"
+          for f in ("LG-HW26-M08-werewolf-roar.webp", "LG-HW26-F10-witch-spellbook.webp"):
+              assert Path("assets/halloween-2026/previews", f).is_file(), f"Missing homepage featured sticker: {f}"
+          assert 'https://t.me/addstickers/lil_gwapz_haunted2026_by_thalilgwapz_bot' in home, "Wrong Telegram destination"
+          print("PASS: homepage Halloween links and featured artwork")
+          PY
+      - name: Verify hybrid Halloween splash, including optimized video
+        run: python3 scripts/verify_halloween_splash.py

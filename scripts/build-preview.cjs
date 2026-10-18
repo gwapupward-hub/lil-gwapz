@@ -17,7 +17,8 @@ const files = [
   'index.html','browse.html','ip-policy.html','privacy.html','terms.html','404.html',
   'app.js','styles.css','legal.css','legal.js',
   'favicon.ico','favicon-32.png','favicon-96.png','apple-touch-icon.png','site.webmanifest',
-  'sitemap.xml','robots.txt'
+  'sitemap.xml','robots.txt',
+  'halloween.html','halloween.css','halloween.js'
 ];
 
 for (const file of files) {
@@ -25,7 +26,7 @@ for (const file of files) {
   if (fs.existsSync(src)) fs.copyFileSync(src, path.join(dist, file));
 }
 
-for (const dir of ['assets/brand','css','data','js','stickers','thumbs','s','og']) {
+for (const dir of ['assets/brand','assets/halloween-2026','downloads','css','data','js','stickers','thumbs','s','og']) {
   const src = path.join(root, dir);
   const dst = path.join(dist, dir);
   if (fs.existsSync(src)) fs.cpSync(src, dst, { recursive: true });

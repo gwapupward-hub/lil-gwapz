@@ -1,0 +1,114 @@
+/* HAUNTED GWAPZ 2026 — isolated, progressively enhanced seasonal splash */
+html.haunted-splash-open { overflow: hidden; }
+.haunted-splash[hidden] { display: none !important; }
+.haunted-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  isolation: isolate;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #08070c;
+  color: #fff;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.haunted-splash *, .haunted-splash *::before, .haunted-splash *::after { box-sizing: border-box; }
+.haunted-splash__visual { position: absolute; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; }
+.haunted-splash__visual::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 55% 45%, rgba(106,29,155,.51), transparent 63%),
+    radial-gradient(ellipse at 80% 80%, rgba(255,118,20,.22), transparent 48%),
+    #090711;
+}
+.haunted-splash__static { position: absolute; inset: 0; opacity: 1; transition: opacity .5s ease; }
+.haunted-splash__static img {
+  display: block;
+  position: absolute;
+  bottom: 8%;
+  width: min(30vw, 385px);
+  max-height: 70%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px #0009);
+}
+.haunted-splash__static img:first-child { right: 23%; transform: rotate(-10deg) translateY(3%); }
+.haunted-splash__static img:last-child { right: 4%; transform: rotate(8deg) translateY(-1%); }
+.haunted-splash__video {
+  position: absolute; inset: 0; margin: auto;
+  width: 100%; height: 100%;
+  object-fit: contain; opacity: 0; background: #090711;
+  transition: opacity .5s ease;
+}
+.haunted-splash.is-playing .haunted-splash__video { opacity: 1; }
+.haunted-splash.is-playing .haunted-splash__static { opacity: 0; }
+.haunted-splash__shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg,rgba(8,7,13,.98) 0%,rgba(8,7,13,.9) 27%,rgba(8,7,13,.65) 52%,rgba(8,7,13,.17) 100%),
+    linear-gradient(0deg,rgba(8,7,13,.73),transparent 40%);
+}
+.haunted-splash__skip {
+  position: fixed; z-index: 4; top: max(18px, env(safe-area-inset-top)); right: max(18px, env(safe-area-inset-right));
+  min-height: 48px; padding: 0 17px; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  border: 1px solid #ffffff6b; border-radius: 999px; color: #fff; background: #11101bc9;
+  font-weight: 800; font-size: 13px; line-height: 1.2; font-family: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.haunted-splash__skip:hover { border-color: #13dd13; }
+.haunted-splash__skip:focus-visible, .haunted-splash__button:focus-visible {
+  outline: 3px solid #13dd13; outline-offset: 4px;
+}
+.haunted-splash__body {
+  position: relative; z-index: 2;
+  min-height: 100vh; min-height: 100dvh;
+  width: min(1320px,100%);
+  margin: 0 auto; padding: max(76px, env(safe-area-inset-top)) clamp(22px, 7.5vw, 106px)
+    max(34px,env(safe-area-inset-bottom));
+  display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+}
+.haunted-splash__eyebrow {
+  color: #ffc88c; font-weight: 900; font-size: clamp(10px,1.25vw,13px);
+  letter-spacing: .22em; margin: 0 0 17px; text-transform: uppercase;
+}
+.haunted-splash__title {
+  font-size: clamp(54px,8.3vw,118px);
+  font-weight: 950; line-height: .88; letter-spacing: -.075em; margin: 0 0 24px;
+  text-shadow: 0 8px 35px rgba(0,0,0,.5);
+}
+.haunted-splash__title span { color: #ff9727; display: block; }
+.haunted-splash__title em { color: #13dd13; font-style: normal; display: block; }
+.haunted-splash__description { color: #e9e1f1; max-width: 445px; font-size: clamp(14px,1.7vw,18px); line-height: 1.65; margin: 0 0 28px; }
+.haunted-splash__actions { display: flex; flex-wrap: wrap; gap: 12px; max-width: 580px; }
+.haunted-splash__button {
+  min-height: 52px; min-width: 160px; padding: 12px 20px;
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  border-radius: 13px; text-decoration: none; font-size: 14px; line-height: 1.35;
+  font-weight: 900; border: 1px solid #ffffff4a;
+  color: #fff; background: #21172de3; transition: transform .16s,border-color .16s;
+}
+.haunted-splash__button:hover { transform: translateY(-2px); border-color: #ffc188; }
+.haunted-splash__button--primary { background: #13dd13; border-color: #13dd13; color: #061306; }
+.haunted-splash__button--telegram { background: #372046de; border-color: #8958b0; }
+.haunted-splash__footnote { font-size: 11px; font-weight: 700; letter-spacing: .11em; color: #c6b6d1; margin: 23px 0 0; }
+@media (max-width: 740px) {
+  .haunted-splash__body { justify-content: flex-end; padding: max(80px, env(safe-area-inset-top)) 22px max(27px, env(safe-area-inset-bottom)); }
+  .haunted-splash__visual .haunted-splash__static img { width: min(50vw, 230px); max-height: 45%; bottom: 29%; }
+  .haunted-splash__static img:first-child { left: 4%; right: auto; }
+  .haunted-splash__static img:last-child { right: 2%; }
+  .haunted-splash__shade { background: linear-gradient(0deg,#08070c 0%,rgba(8,7,12,.98) 21%,rgba(8,7,12,.76) 42%,rgba(8,7,12,.07) 82%); }
+  .haunted-splash__title { font-size: clamp(51px,12vw,73px); margin-bottom: 14px; }
+  .haunted-splash__eyebrow { margin-bottom: 12px; }
+  .haunted-splash__description { line-height: 1.48; margin-bottom: 18px; max-width: 360px; }
+  .haunted-splash__actions { display: grid; grid-template-columns: 1fr 1fr; width: 100%; max-width: 470px; gap: 9px; }
+  .haunted-splash__button { min-width: 0; min-height: 49px; padding: 10px 12px; font-size: 12px; }
+  .haunted-splash__button--primary { grid-column: 1 / -1; }
+  .haunted-splash__footnote { margin: 15px 0 0; font-size: 10px; }
+  .haunted-splash__video { object-fit: cover; }
+}
+@media (max-width: 380px) and (max-height: 710px) {
+  .haunted-splash__body { min-height: 680px; }
+  .haunted-splash__title { font-size: 49px; }
+  .haunted-splash__description { font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .haunted-splash__video,.haunted-splash__static,.haunted-splash__button { transition: none !important; }
+}
