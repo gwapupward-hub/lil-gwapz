@@ -1,0 +1,24 @@
+{
+  "oar": "0.1",
+  "app_id": "2gJB5wqCowb6d8pNFiwkWwFCykwUzcMbb5TafDuQdXZV",
+  "cluster": "solana:devnet",
+  "name": "Lil Gwapz",
+  "summary": "Lil Gwapz is an original digital character and expressive sticker brand created under Tha GwapSpot.",
+  "categories": [
+    "social",
+    "media",
+    "nft"
+  ],
+  "domains": [
+    "lilgwapz.xyz"
+  ],
+  "links": {
+    "website": "https://lilgwapz.xyz"
+  },
+  "repositories": [
+    {
+      "url": "https://github.com/gwapupward-hub/lil-gwapz",
+      "role": "app"
+    }
+  ]
+}
