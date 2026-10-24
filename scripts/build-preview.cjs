@@ -26,7 +26,7 @@ for (const file of files) {
   if (fs.existsSync(src)) fs.copyFileSync(src, path.join(dist, file));
 }
 
-for (const dir of ['assets/brand','assets/halloween-2026','downloads','css','data','js','stickers','thumbs','s','og']) {
+for (const dir of ['assets/brand','assets/halloween-2026','downloads','css','data','js','stickers','thumbs','s','og','.well-known']) {
   const src = path.join(root, dir);
   const dst = path.join(dist, dir);
   if (fs.existsSync(src)) fs.cpSync(src, dst, { recursive: true });
@@ -51,5 +51,10 @@ if (result.stickers !== 152 || result.thumbs !== 152 || result.pages !== 152 || 
 }
 if (!fs.existsSync(path.join(dist, '404.html'))) throw new Error('Missing dist/404.html');
 if (!fs.existsSync(generatedLegalCss)) throw new Error('Missing dist/s/legal.css');
+for (const file of ['oar.json', 'oar-manifest.json']) {
+  if (!fs.existsSync(path.join(dist, '.well-known', file))) {
+    throw new Error(`Missing dist/.well-known/${file}`);
+  }
+}
 
 console.log('dist ready', result);
